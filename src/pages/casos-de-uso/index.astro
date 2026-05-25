@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "ItemList",
+    "@id": "https://firstsecurity.com.br/casos-de-uso/#itemlist",
+    "name": "Casos de uso para contratação de pentest",
+    "description": "Os principais momentos em que contratar um pentest entrega o maior retorno: lançamento de produto, compliance, M&A, incidente, mudança de infraestrutura e programa recorrente.",
+    "numberOfItems": 8,
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Lançamento de novo produto ou funcionalidade", "url": "https://firstsecurity.com.br/casos-de-uso/" },
+      { "@type": "ListItem", "position": 2, "name": "Requisito de compliance ou auditoria", "url": "https://firstsecurity.com.br/casos-de-uso/" },
+      { "@type": "ListItem", "position": 3, "name": "Processo de M&A ou captação de investimento", "url": "https://firstsecurity.com.br/casos-de-uso/" },
+      { "@type": "ListItem", "position": 4, "name": "Resposta a incidente ou suspeita de comprometimento", "url": "https://firstsecurity.com.br/casos-de-uso/" },
+      { "@type": "ListItem", "position": 5, "name": "Mudança significativa de infraestrutura", "url": "https://firstsecurity.com.br/casos-de-uso/" },
+      { "@type": "ListItem", "position": 6, "name": "Programa de segurança recorrente", "url": "https://firstsecurity.com.br/casos-de-uso/" },
+      { "@type": "ListItem", "position": 7, "name": "Exigência contratual de cliente ou parceiro", "url": "https://firstsecurity.com.br/casos-de-uso/" },
+      { "@type": "ListItem", "position": 8, "name": "Validação de controles após remediação", "url": "https://firstsecurity.com.br/casos-de-uso/" }
+    ]
+  },
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/casos-de-uso/#webpage",
+    "url": "https://firstsecurity.com.br/casos-de-uso",
+    "name": "Casos de Uso de Pentest: Quando Contratar e Para Quê | First Security",
+    "description": "Principais casos de uso para contratação de pentest: lançamento de produto, compliance, M&A, resposta a incidente e programa de segurança recorrente.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Casos de Uso", "item": "https://firstsecurity.com.br/casos-de-uso" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Casos de Uso de Pentest: Quando Contratar e Para Quê | First Security"
+  description="Os principais casos de uso para contratar um pentest: lançamento de produto, requisitos de compliance, processo de M&A, resposta a incidente e programa recorrente."
+  canonical="/casos-de-uso"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Casos de Uso' }]} />
+
+  <section style="padding:var(--space-16) 0 var(--space-12);" aria-labelledby="casosH1">
+    <div class="container" style="max-width:900px">
+      <span class="badge badge-cyan" style="margin-bottom:16px;">Quando contratar</span>
+      <h1 id="casosH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;">Casos de uso para pentest</h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;margin-bottom:32px;">
+        Existem momentos específicos em que a contratação de um pentest entrega o maior retorno. Identifique o caso de uso mais próximo do seu contexto atual.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="casosListTitle">
+    <div class="container" style="max-width:900px">
+      <div class="grid-2" style="gap:var(--space-6);">
+        {[
+          {
+            num: '01',
+            titulo: 'Lançamento de novo produto ou funcionalidade',
+            desc: 'Antes de lançar um novo produto, aplicação ou funcionalidade crítica para o mercado. Identificar vulnerabilidades antes do lançamento custa muito menos do que remediar após um incidente público.',
+            quando: 'Idealmente 4 a 8 semanas antes do lançamento'
+          },
+          {
+            num: '02',
+            titulo: 'Requisito de compliance ou auditoria',
+            desc: 'Quando PCI DSS, ISO 27001, BACEN 4.893, SOC 2 ou contrato com cliente enterprise exigem evidência de pentest. O relatório é entregue com rastreabilidade para os requisitos específicos.',
+            quando: 'Pelo menos 60 dias antes da auditoria para ter tempo de remediar'
+          },
+          {
+            num: '03',
+            titulo: 'Processo de M&A ou captação de investimento',
+            desc: 'Due diligence técnica em processos de fusão e aquisição ou rodadas de investimento. Investidores e compradores estão cada vez mais avaliando riscos de segurança antes de fechar negócio.',
+            quando: 'Durante a fase de due diligence técnica'
+          },
+          {
+            num: '04',
+            titulo: 'Resposta a incidente ou suspeita de comprometimento',
+            desc: 'Após um incidente de segurança confirmado ou suspeita de comprometimento. O pentest pós-incidente verifica se outros vetores de entrada ainda estão abertos e se o atacante deixou persistência.',
+            quando: 'Após contenção do incidente e limpeza do ambiente'
+          },
+          {
+            num: '05',
+            titulo: 'Mudança significativa de infraestrutura',
+            desc: 'Migração para cloud, redesenho de arquitetura, adoção de novos serviços ou expansão da superfície de ataque (nova API pública, novo canal digital, aquisição de sistema legado).',
+            quando: 'Logo após a estabilização do novo ambiente'
+          },
+          {
+            num: '06',
+            titulo: 'Programa de segurança recorrente',
+            desc: 'Organizações maduras realizam pentests anuais ou semestrais como parte de um programa de segurança contínuo. Cada ciclo cobre um escopo diferente para maximizar a cobertura ao longo do tempo.',
+            quando: 'Anualmente no mínimo, semestralmente para ambientes críticos'
+          },
+          {
+            num: '07',
+            titulo: 'Exigência contratual de cliente ou parceiro',
+            desc: 'Contratos com grandes empresas, bancos, varejo ou governo frequentemente incluem cláusulas de segurança que exigem pentest anual. O relatório é apresentado ao cliente como evidência.',
+            quando: 'Conforme prazo contratual estabelecido'
+          },
+          {
+            num: '08',
+            titulo: 'Validação de controles após remediação',
+            desc: 'Reteste de vulnerabilidades identificadas em pentest anterior para confirmar que as correções foram efetivas. Essencial para processos de compliance que exigem evidência de remediação.',
+            quando: 'Após conclusão das remediações das vulnerabilidades críticas e altas'
+          },
+        ].map((item) => (
+          <div class="card">
+            <div style="display:flex;gap:16px;align-items:flex-start;">
+              <span style="font-family:var(--font-mono);font-size:22px;font-weight:700;color:var(--color-cyan-600);flex-shrink:0;line-height:1;">{item.num}</span>
+              <div>
+                <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:8px;">{item.titulo}</h3>
+                <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;margin-bottom:10px;">{item.desc}</p>
+                <div style="font-size:12px;color:var(--color-cyan-600);font-weight:600;background:rgba(0,180,255,0.08);padding:4px 10px;border-radius:var(--radius-sm);display:inline-block;">{item.quando}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="ctaCasos">
+    <div class="container text-center">
+      <h2 id="ctaCasos" class="section-title" style="color:white;">Identificou o seu caso de uso?</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Solicite um orçamento descrevendo seu contexto e receberá uma proposta adaptada ao seu momento.
+      </p>
+      <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar orçamento</a>
+    </div>
+  </section>
+</BaseLayout>

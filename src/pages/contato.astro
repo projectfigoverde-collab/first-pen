@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "ContactPage",
+    "@id": "https://firstsecurity.com.br/contato/#contactpage",
+    "url": "https://firstsecurity.com.br/contato",
+    "name": "Contato | First Security",
+    "description": "Entre em contato com a First Security para tirar dúvidas sobre pentest, agendar uma conversa com especialistas ou solicitar uma proposta.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Contato", "item": "https://firstsecurity.com.br/contato" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Contato | First Security"
+  description="Entre em contato com a First Security para tirar dúvidas sobre pentest, agendar uma conversa com especialistas ou solicitar uma proposta comercial."
+  canonical="/contato"
+  schema={schema}
+>
+
+  <Breadcrumbs items={[{ label: 'Contato' }]} />
+
+  <!-- HERO -->
+  <section style="padding:var(--space-16) 0 var(--space-12);" aria-labelledby="contatoH1">
+    <div class="container" style="max-width:860px">
+      <span class="badge badge-cyan" style="margin-bottom:16px;">Fale conosco</span>
+      <h1 id="contatoH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;">
+        Entre em contato
+      </h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:640px;">
+        Tire dúvidas sobre metodologia, solicite uma proposta ou agende uma conversa com um de nossos especialistas. Respondemos em até um dia útil.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <section class="section" style="padding-top:0;" aria-label="Formas de contato e formulário">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:var(--space-12);align-items:start;">
+
+        <!-- INFORMAÇÕES DE CONTATO -->
+        <div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-6);">
+
+            <div>
+              <div style="font-size:12px;font-weight:700;color:rgba(0,0,0,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-4);">Como podemos ajudar</div>
+              {[
+                { titulo: 'Solicitar proposta de pentest', desc: 'Descreva seu ambiente e escopo desejado. Enviamos proposta comercial detalhada em até 24 horas.' },
+                { titulo: 'Tirar dúvidas técnicas', desc: 'Perguntas sobre metodologia, escopo, certificações ou como funciona um pentest.' },
+                { titulo: 'Conversa com especialista', desc: 'Agendar uma chamada de 30 minutos sem compromisso para alinhar expectativas.' },
+                { titulo: 'Emergência de segurança', desc: 'Em caso de incidente ativo, use o canal direto para atendimento prioritário.' },
+              ].map((item) => (
+                <div style="padding:16px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);margin-bottom:12px;">
+                  <h3 class="t-heading-sm" style="color:var(--color-navy);margin-bottom:6px;">{item.titulo}</h3>
+                  <p style="font-size:13.5px;color:var(--color-slate);line-height:1.55;">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div>
+              <div style="font-size:12px;font-weight:700;color:rgba(0,0,0,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-4);">Informações</div>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <div>
+                    <div style="font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:2px;">Localização</div>
+                    <div style="font-size:13px;color:var(--color-slate);">São Paulo, SP. Atendemos todo o Brasil de forma remota.</div>
+                  </div>
+                </div>
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12,6 12,12 16,14"></polyline>
+                  </svg>
+                  <div>
+                    <div style="font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:2px;">Tempo de resposta</div>
+                    <div style="font-size:13px;color:var(--color-slate);">Até um dia útil para retorno inicial.</div>
+                  </div>
+                </div>
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;" aria-hidden="true">
+                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                  <div>
+                    <div style="font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:2px;">LinkedIn</div>
+                    <a href="https://www.linkedin.com/company/firstsecurity" style="font-size:13px;color:var(--color-cyan-600);text-decoration:none;" rel="noopener noreferrer" target="_blank">linkedin.com/company/firstsecurity</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORMULÁRIO -->
+        <div style="background:white;border:1px solid var(--color-slate-200);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:var(--shadow-md);">
+          <h2 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--color-navy);margin-bottom:var(--space-6);">Envie uma mensagem</h2>
+          <form action="#" method="post" novalidate aria-label="Formulário de contato">
+            <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+                <div>
+                  <label for="contatoNome" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">Nome <span aria-hidden="true" style="color:#e05555;">*</span></label>
+                  <input type="text" id="contatoNome" name="nome" required autocomplete="name" placeholder="Seu nome completo"
+                    style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);background:white;box-sizing:border-box;transition:border-color 0.15s;"
+                    onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                    onblur="this.style.borderColor='var(--color-slate-200)';"
+                  />
+                </div>
+                <div>
+                  <label for="contatoEmpresa" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">Empresa</label>
+                  <input type="text" id="contatoEmpresa" name="empresa" autocomplete="organization" placeholder="Nome da empresa"
+                    style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);background:white;box-sizing:border-box;transition:border-color 0.15s;"
+                    onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                    onblur="this.style.borderColor='var(--color-slate-200)';"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="contatoEmail" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">E-mail corporativo <span aria-hidden="true" style="color:#e05555;">*</span></label>
+                <input type="email" id="contatoEmail" name="email" required autocomplete="email" placeholder="voce@empresa.com.br"
+                  style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);background:white;box-sizing:border-box;transition:border-color 0.15s;"
+                  onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                  onblur="this.style.borderColor='var(--color-slate-200)';"
+                />
+              </div>
+
+              <div>
+                <label for="contatoAssunto" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">Assunto <span aria-hidden="true" style="color:#e05555;">*</span></label>
+                <select id="contatoAssunto" name="assunto" required
+                  style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);background:white;box-sizing:border-box;transition:border-color 0.15s;"
+                  onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                  onblur="this.style.borderColor='var(--color-slate-200)';"
+                >
+                  <option value="" disabled selected>Selecione um assunto</option>
+                  <option value="pentest-web">Pentest Web</option>
+                  <option value="pentest-mobile">Pentest Mobile</option>
+                  <option value="pentest-api">Pentest API</option>
+                  <option value="pentest-cloud">Pentest Cloud</option>
+                  <option value="pentest-infra">Pentest Infraestrutura</option>
+                  <option value="red-team">Red Team</option>
+                  <option value="purple-team">Purple Team</option>
+                  <option value="ptaas">Pentest as a Service</option>
+                  <option value="duvida">Dúvida geral</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="contatoMensagem" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">Mensagem <span aria-hidden="true" style="color:#e05555;">*</span></label>
+                <textarea id="contatoMensagem" name="mensagem" required rows="4" placeholder="Descreva seu ambiente, escopo de interesse ou dúvida..."
+                  style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);background:white;box-sizing:border-box;resize:vertical;transition:border-color 0.15s;line-height:1.6;"
+                  onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                  onblur="this.style.borderColor='var(--color-slate-200)';"
+                ></textarea>
+              </div>
+
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <input type="checkbox" id="contatoLgpd" name="lgpd" required style="margin-top:3px;flex-shrink:0;" />
+                <label for="contatoLgpd" style="font-size:13px;color:var(--color-slate);line-height:1.5;">
+                  Concordo com a <a href="/legal/politica-de-privacidade" style="color:var(--color-cyan-600);">Política de Privacidade</a> e autorizo o uso dos meus dados para contato comercial conforme a LGPD.
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-cyan" style="width:100%;justify-content:center;padding:12px 20px;font-size:15px;">
+                Enviar mensagem
+              </button>
+
+              <p style="font-size:12px;color:var(--color-slate-400);text-align:center;">
+                Respondemos em até um dia útil. Seus dados são tratados com confidencialidade.
+              </p>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

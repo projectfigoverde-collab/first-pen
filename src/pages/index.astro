@@ -1,0 +1,462 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = [
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/#webpage",
+    "url": "https://firstsecurity.com.br",
+    "name": "First Security: Pentest, Red Team e Ciberseguranca Ofensiva",
+    "description": "Empresa brasileira de pentest profissional, Red Team e Purple Team. LGPD, BACEN, PCI DSS e ISO 27001 atendidos com metodologia transparente.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "about": { "@id": "https://firstsecurity.com.br/#organization" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" }]
+    }
+  }
+];
+
+const servicos = [
+  { icon: '🌐', title: 'Pentest Web', desc: 'OWASP Top 10, injeção SQL, XSS, CSRF, autenticação quebrada e lógica de negócio.', href: '/servicos/pentest-web' },
+  { icon: '📱', title: 'Pentest Mobile', desc: 'Android e iOS conforme OWASP MASVS, analisando armazenamento, rede e lógica do app.', href: '/servicos/pentest-mobile' },
+  { icon: '⚙️', title: 'Pentest API', desc: 'REST, GraphQL e gRPC. OWASP API Top 10, controle de acesso e autenticacao de tokens.', href: '/servicos/pentest-api' },
+  { icon: '☁️', title: 'Pentest Cloud', desc: 'AWS, Azure e GCP. Misconfiguration de IAM, S3 públicos, Kubernetes e permissões excessivas.', href: '/servicos/pentest-cloud' },
+  { icon: '🏢', title: 'Pentest Infraestrutura', desc: 'Redes internas, externas e wireless. Identificação de vetores de entrada e escalada de privilégios.', href: '/servicos/pentest-infraestrutura' },
+  { icon: '🪟', title: 'Pentest Active Directory', desc: 'Kerberoasting, Pass-the-Hash, BloodHound e ataques a trust de domínios.', href: '/servicos/pentest-active-directory' },
+  { icon: '🤖', title: 'Pentest AI e LLM', desc: 'Prompt injection, jailbreak, exfiltração de dados e testes em modelos de linguagem.', href: '/servicos/pentest-ai' },
+];
+
+const diferenciais = [
+  {
+    icon: '📋',
+    title: 'Metodologia certificada',
+    desc: 'PTES, OWASP WSTG e MASTG, NIST SP 800-115 e MITRE ATT&CK como frameworks de referência. Cada fase documentada com evidências reproduzíveis.',
+  },
+  {
+    icon: '🏆',
+    title: 'Equipe com certificações ofensivas',
+    desc: 'OSCP, OSWE, OSEP e CRTO na equipe ativa. Certificações que exigem exploração real de vulnerabilidades em ambientes controlados.',
+  },
+  {
+    icon: '📄',
+    title: 'Relatório de verdade',
+    desc: 'Relatório executivo para o C-level e relatório técnico para o time de desenvolvimento, com severidade CVSS, prova de conceito e remediações priorizadas.',
+  },
+  {
+    icon: '🔁',
+    title: 'Reteste sem custo adicional',
+    desc: 'Após a remediação das vulnerabilidades críticas e altas, validamos a correção sem cobrar nova rodada de serviço.',
+  },
+];
+
+const complianceLinks = [
+  { label: 'LGPD', href: '/compliance/pentest-lgpd' },
+  { label: 'PCI DSS', href: '/compliance/pentest-pci-dss' },
+  { label: 'ISO 27001', href: '/compliance/pentest-iso-27001' },
+  { label: 'BACEN', href: '/compliance/pentest-bacen' },
+  { label: 'SOC 2', href: '/compliance/pentest-soc-2' },
+  { label: 'NIST CSF', href: '/compliance/pentest-nist-csf' },
+];
+
+const faqs = [
+  {
+    q: 'Quanto tempo leva um pentest?',
+    a: 'Depende do escopo. Um pentest web de uma aplicação média leva de cinco a dez dias úteis. Red Team assessments duram de duas a quatro semanas. Fornecemos estimativa detalhada após o briefing inicial.',
+  },
+  {
+    q: 'A First Security atua em todo o Brasil?',
+    a: 'Sim. Atendemos remotamente qualquer empresa no Brasil e temos presença presencial nas principais capitais para projetos que exigem atuação on-site.',
+  },
+  {
+    q: 'Qual a diferença entre pentest e análise de vulnerabilidade?',
+    a: 'A análise de vulnerabilidade identifica e lista falhas usando ferramentas automatizadas. O pentest vai além: nossos especialistas exploram as vulnerabilidades de forma controlada, encadeando falhas para demonstrar o impacto real no negócio.',
+  },
+  {
+    q: 'O serviço cobre requisitos de compliance?',
+    a: 'Sim. Nossos relatórios atendem as exigências de pentest da LGPD, PCI DSS Requisito 11, ISO 27001 Anexo A, BACEN Resolução 4893 e SOC 2. Cada norma tem sua própria seção no relatório.',
+  },
+];
+---
+
+<BaseLayout
+  title="First Security: Pentest, Red Team e Ciberseguranca Ofensiva"
+  description="Empresa brasileira de pentest profissional, Red Team e Purple Team. LGPD, BACEN, PCI DSS e ISO 27001 atendidos com metodologia transparente."
+  canonical="/"
+  schema={schema}
+>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span class="badge badge-cyan">Cibersegurança Ofensiva no Brasil</span>
+          </div>
+
+          <h1 id="heroTitle" class="hero-title">
+            Cibersegurança ofensiva<br/>
+            que <span class="highlight">entrega o que promete</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Pentest profissional, Red Team e Purple Team para empresas que não podem se dar ao luxo de descobrir suas vulnerabilidades por um atacante real.
+          </p>
+
+          <div class="hero-actions">
+            <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar diagnóstico</a>
+          </div>
+        </div>
+
+        <!-- Formulário hero multi-step -->
+        <div class="hero-visual">
+          <div class="hero-card" role="region" aria-label="Formulário de orçamento">
+
+            <!-- Barra de progresso -->
+            <div id="hf-progress" style="margin-bottom:22px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <span id="hf-step-label" style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--color-slate);letter-spacing:0.06em;text-transform:uppercase;">Etapa 1 de 2</span>
+              </div>
+              <div style="height:3px;background:var(--color-slate-200);border-radius:2px;overflow:hidden;">
+                <div id="hf-bar" style="height:100%;width:50%;background:var(--color-cyan);border-radius:2px;transition:width 0.35s ease;"></div>
+              </div>
+            </div>
+
+            <!-- Etapa 1: dados de contato -->
+            <div id="hf-step1">
+              <p style="font-size:17px;font-weight:700;color:var(--color-navy);margin-bottom:3px;">Orçamento gratuito</p>
+              <p style="font-size:12.5px;color:var(--color-slate);margin-bottom:20px;">Resposta em até 24 horas úteis</p>
+              <div style="display:flex;flex-direction:column;gap:13px;">
+
+                <div>
+                  <label for="hf-nome" style="font-size:12.5px;font-weight:600;color:var(--color-navy);display:block;margin-bottom:5px;">Nome</label>
+                  <input id="hf-nome" type="text" placeholder="Seu nome completo" autocomplete="name"
+                    style="width:100%;padding:10px 13px;border:1.5px solid var(--color-slate-200);border-radius:var(--radius-lg);font-size:13.5px;color:var(--color-navy);outline:none;box-sizing:border-box;background:white;transition:border-color 0.2s;"
+                    onfocus="this.style.borderColor='#00B4FF'" onblur="this.style.borderColor=''" />
+                  <span id="hf-err-nome" style="display:none;font-size:11px;color:#EF4444;margin-top:3px;">Campo obrigatório.</span>
+                </div>
+
+                <div>
+                  <label for="hf-wa" style="font-size:12.5px;font-weight:600;color:var(--color-navy);display:block;margin-bottom:5px;">WhatsApp</label>
+                  <input id="hf-wa" type="tel" placeholder="(11) 99999-9999" maxlength="15" autocomplete="tel"
+                    style="width:100%;padding:10px 13px;border:1.5px solid var(--color-slate-200);border-radius:var(--radius-lg);font-size:13.5px;color:var(--color-navy);outline:none;box-sizing:border-box;background:white;transition:border-color 0.2s;"
+                    onfocus="this.style.borderColor='#00B4FF'" onblur="this.style.borderColor=''" />
+                  <span id="hf-err-wa" style="display:none;font-size:11px;color:#EF4444;margin-top:3px;">Número inválido. Informe DDD + número.</span>
+                </div>
+
+                <div>
+                  <label for="hf-email" style="font-size:12.5px;font-weight:600;color:var(--color-navy);display:block;margin-bottom:5px;">E-mail</label>
+                  <input id="hf-email" type="email" placeholder="voce@empresa.com" autocomplete="email"
+                    style="width:100%;padding:10px 13px;border:1.5px solid var(--color-slate-200);border-radius:var(--radius-lg);font-size:13.5px;color:var(--color-navy);outline:none;box-sizing:border-box;background:white;transition:border-color 0.2s;"
+                    onfocus="this.style.borderColor='#00B4FF'" onblur="this.style.borderColor=''" />
+                  <span id="hf-err-email" style="display:none;font-size:11px;color:#EF4444;margin-top:3px;">E-mail inválido.</span>
+                </div>
+
+              </div>
+              <button onclick="hfNext()" style="margin-top:20px;width:100%;padding:12px;background:var(--color-cyan);color:white;font-weight:700;font-size:14px;border:none;border-radius:var(--radius-lg);cursor:pointer;letter-spacing:0.01em;">Próximo</button>
+            </div>
+
+            <!-- Etapa 2: solução e mensagem -->
+            <div id="hf-step2" style="display:none;">
+              <p style="font-size:17px;font-weight:700;color:var(--color-navy);margin-bottom:3px;">O que você busca?</p>
+              <p style="font-size:12.5px;color:var(--color-slate);margin-bottom:20px;">Selecione a solução e descreva sua necessidade</p>
+              <div style="display:flex;flex-direction:column;gap:13px;">
+
+                <div>
+                  <label for="hf-sol" style="font-size:12.5px;font-weight:600;color:var(--color-navy);display:block;margin-bottom:5px;">Solução de interesse</label>
+                  <select id="hf-sol"
+                    style="width:100%;padding:10px 13px;border:1.5px solid var(--color-slate-200);border-radius:var(--radius-lg);font-size:13.5px;color:var(--color-navy);outline:none;box-sizing:border-box;background:white;transition:border-color 0.2s;appearance:auto;"
+                    onfocus="this.style.borderColor='#00B4FF'" onblur="this.style.borderColor=''">
+                    <option value="">Selecione...</option>
+                    <option>Pentest Web</option>
+                    <option>Pentest de API</option>
+                    <option>Pentest Mobile</option>
+                    <option>Pentest Cloud</option>
+                    <option>Pentest de Infraestrutura</option>
+                    <option>Red Team</option>
+                    <option>Purple Team</option>
+                    <option>Outro</option>
+                  </select>
+                  <span id="hf-err-sol" style="display:none;font-size:11px;color:#EF4444;margin-top:3px;">Selecione uma opção.</span>
+                </div>
+
+                <div>
+                  <label for="hf-msg" style="font-size:12.5px;font-weight:600;color:var(--color-navy);display:block;margin-bottom:5px;">Mensagem</label>
+                  <textarea id="hf-msg" rows="3" placeholder="Descreva brevemente seu ambiente e necessidade..."
+                    style="width:100%;padding:10px 13px;border:1.5px solid var(--color-slate-200);border-radius:var(--radius-lg);font-size:13.5px;color:var(--color-navy);outline:none;box-sizing:border-box;background:white;resize:vertical;font-family:inherit;transition:border-color 0.2s;"
+                    onfocus="this.style.borderColor='#00B4FF'" onblur="this.style.borderColor=''"></textarea>
+                  <span id="hf-err-msg" style="display:none;font-size:11px;color:#EF4444;margin-top:3px;">Campo obrigatório.</span>
+                </div>
+
+              </div>
+              <div style="display:flex;gap:10px;margin-top:20px;">
+                <button onclick="hfPrev()" style="padding:12px 18px;background:transparent;color:var(--color-slate);font-weight:600;font-size:13.5px;border:1.5px solid var(--color-slate-200);border-radius:var(--radius-lg);cursor:pointer;">Voltar</button>
+                <button onclick="hfSubmit()" style="flex:1;padding:12px;background:var(--color-navy);color:white;font-weight:700;font-size:14px;border:none;border-radius:var(--radius-lg);cursor:pointer;">Enviar proposta</button>
+              </div>
+            </div>
+
+            <!-- Obrigado -->
+            <div id="hf-thanks" style="display:none;text-align:center;padding:20px 0 8px;">
+              <div style="width:56px;height:56px;background:var(--color-cyan);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+                <svg width="26" height="26" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <p style="font-size:18px;font-weight:700;color:var(--color-navy);margin-bottom:10px;">Proposta recebida!</p>
+              <p style="font-size:13.5px;color:var(--color-slate);line-height:1.65;">Obrigado pelo interesse na First Security. Entraremos em contato pelo WhatsApp informado em até 24 horas úteis.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== STATS ====== -->
+  <section class="stats-strip" aria-label="Números da First Security">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Pentests realizados</div>
+        </div>
+        <div>
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Anos de operação</div>
+        </div>
+        <div>
+          <div class="stat-number">15</div>
+          <div class="stat-label">Setores atendidos</div>
+        </div>
+        <div>
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Clientes que renovam</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== O QUE FAZEMOS ====== -->
+  <section class="section" aria-labelledby="servicosTitle">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-eyebrow">Pentest por escopo</div>
+        <h2 id="servicosTitle" class="section-title">Cobertura completa de segurança ofensiva</h2>
+        <p class="section-subtitle" style="margin:0 auto;">
+          Cada escopo tem metodologia própria, equipe certificada e relatório padronizado conforme as principais normas do mercado.
+        </p>
+      </div>
+
+      <div class="grid-4" style="gap:16px;">
+        {servicos.map((s) => (
+          <article class="card">
+            <div class="card-icon" aria-hidden="true" style="font-size:20px;">{s.icon}</div>
+            <h3 class="t-heading-md" style="margin-bottom:8px;">{s.title}</h3>
+            <p style="font-size:13.5px;color:var(--color-slate);line-height:1.55;margin-bottom:16px;">{s.desc}</p>
+            <a href={s.href} class="btn btn-ghost" style="padding:0;font-size:13px;color:var(--color-cyan-600);">
+              Saiba mais
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+        ))}
+
+        <!-- Card Red Team -->
+        <article class="card" style="border-color:rgba(0,180,255,0.25);background:linear-gradient(135deg,rgba(0,180,255,0.04),var(--color-white));">
+          <div class="card-icon" aria-hidden="true" style="font-size:20px;">🎯</div>
+          <h3 class="t-heading-md" style="margin-bottom:8px;">Red Team</h3>
+          <p style="font-size:13.5px;color:var(--color-slate);line-height:1.55;margin-bottom:16px;">Simulação completa de adversário real com TTPs do MITRE ATT&amp;CK. Testa pessoas, processos e tecnologia de forma integrada.</p>
+          <a href="/red-team" class="btn btn-ghost" style="padding:0;font-size:13px;color:var(--color-cyan-600);">
+            Saiba mais
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+
+      <div style="text-align:center;margin-top:40px;">
+        <a href="/servicos" class="btn btn-secondary">Ver todos os serviços</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== COMPLIANCE ====== -->
+  <section class="section-sm" style="background:var(--color-off-white);" aria-labelledby="complianceTitle">
+    <div class="container">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;">
+        <div>
+          <h2 id="complianceTitle" class="t-heading-lg" style="margin-bottom:8px;">Compliance que entregamos</h2>
+          <p style="font-size:14px;color:var(--color-slate);">Relatórios aceitos pelas principais normas brasileiras e internacionais.</p>
+        </div>
+        <div class="compliance-grid">
+          {complianceLinks.map((c) => (
+            <a href={c.href} class="compliance-tag">{c.label}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== DIFERENCIAIS ====== -->
+  <section class="section" aria-labelledby="diferencialTitle">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Por que a First Security</div>
+        <h2 id="diferencialTitle" class="section-title">Profundidade tecnica com responsabilidade comercial</h2>
+      </div>
+
+      <div class="grid-2">
+        {diferenciais.map((d) => (
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div class="card-icon" aria-hidden="true" style="font-size:20px;flex-shrink:0;">{d.icon}</div>
+            <div>
+              <h3 class="t-heading-md" style="margin-bottom:8px;">{d.title}</h3>
+              <p style="font-size:14px;color:var(--color-slate);line-height:1.6;">{d.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section class="section-sm" style="background:var(--color-off-white);" aria-labelledby="faqTitle">
+    <div class="container" style="max-width:760px">
+      <div class="section-header text-center">
+        <h2 id="faqTitle" class="section-title">Perguntas frequentes</h2>
+      </div>
+
+      <div>
+        {faqs.map((faq, i) => (
+          <div class="faq-item">
+            <button
+              class="faq-question"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${i}`}
+              id={`faq-btn-${i}`}
+            >
+              {faq.q}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="flex-shrink:0;transition:transform 0.2s;">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div
+              class="faq-answer"
+              id={`faq-answer-${i}`}
+              role="region"
+              aria-labelledby={`faq-btn-${i}`}
+              hidden
+            >
+              {faq.a}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top:32px;text-align:center;">
+        <a href="/pentest/o-que-e" style="font-size:14px;color:var(--color-cyan-600);font-weight:500;">
+          Ver guia completo sobre pentest
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:inline;margin-left:4px;vertical-align:middle;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA FINAL ====== -->
+  <section class="cta-section" aria-labelledby="ctaTitle">
+    <div class="container text-center">
+      <div class="section-eyebrow" style="justify-content:center;color:rgba(255,255,255,0.5);">Proximo passo</div>
+      <h2 id="ctaTitle" class="section-title" style="color:white;margin-bottom:16px;">
+        Pronto para saber o que um atacante real veria?
+      </h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Diagnóstico inicial sem compromisso. Respondemos em até um dia útil.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
+        <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar orçamento</a>
+        <a href="/contato" class="btn btn-secondary btn-lg" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:white;">
+          Agendar conversa
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script is:inline>
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var expanded = this.getAttribute('aria-expanded') === 'true';
+    var answer = document.getElementById(this.getAttribute('aria-controls'));
+    var icon = this.querySelector('svg');
+    this.setAttribute('aria-expanded', String(!expanded));
+    answer.hidden = expanded;
+    if (icon) icon.style.transform = expanded ? '' : 'rotate(180deg)';
+  });
+});
+
+// Formulário hero multi-step
+(function() {
+  var waInput = document.getElementById('hf-wa');
+  if (!waInput) return;
+
+  function maskPhone(v) {
+    v = v.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 10) return '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+    if (v.length > 6)  return '(' + v.slice(0,2) + ') ' + v.slice(2,6) + '-' + v.slice(6);
+    if (v.length > 2)  return '(' + v.slice(0,2) + ') ' + v.slice(2);
+    if (v.length)      return '(' + v;
+    return v;
+  }
+
+  waInput.addEventListener('input', function() {
+    this.value = maskPhone(this.value);
+  });
+  waInput.addEventListener('keydown', function(e) {
+    var allowed = ['Backspace','Delete','ArrowLeft','ArrowRight','Tab'];
+    if (allowed.indexOf(e.key) === -1 && !/^\d$/.test(e.key)) e.preventDefault();
+  });
+
+  function err(id, show) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = show ? 'block' : 'none';
+  }
+
+  window.hfNext = function() {
+    var nome  = document.getElementById('hf-nome').value.trim();
+    var wa    = document.getElementById('hf-wa').value.replace(/\D/g, '');
+    var email = document.getElementById('hf-email').value.trim();
+    var ok    = true;
+
+    err('hf-err-nome',  !nome);                                           if (!nome)         ok = false;
+    err('hf-err-wa',    wa.length < 10);                                  if (wa.length < 10) ok = false;
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    err('hf-err-email', !emailOk);                                        if (!emailOk)      ok = false;
+    if (!ok) return;
+
+    document.getElementById('hf-step1').style.display = 'none';
+    document.getElementById('hf-step2').style.display = 'block';
+    document.getElementById('hf-step-label').textContent = 'Etapa 2 de 2';
+    document.getElementById('hf-bar').style.width = '100%';
+  };
+
+  window.hfPrev = function() {
+    document.getElementById('hf-step2').style.display = 'none';
+    document.getElementById('hf-step1').style.display = 'block';
+    document.getElementById('hf-step-label').textContent = 'Etapa 1 de 2';
+    document.getElementById('hf-bar').style.width = '50%';
+  };
+
+  window.hfSubmit = function() {
+    var sol = document.getElementById('hf-sol').value;
+    var msg = document.getElementById('hf-msg').value.trim();
+    var ok  = true;
+
+    err('hf-err-sol', !sol); if (!sol) ok = false;
+    err('hf-err-msg', !msg); if (!msg) ok = false;
+    if (!ok) return;
+
+    document.getElementById('hf-progress').style.display = 'none';
+    document.getElementById('hf-step2').style.display    = 'none';
+    document.getElementById('hf-thanks').style.display   = 'block';
+  };
+})();
+</script>

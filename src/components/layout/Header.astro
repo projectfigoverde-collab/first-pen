@@ -1,0 +1,434 @@
+---
+const navItems = [
+  {
+    label: 'Soluções',
+    href: '/servicos',
+    hasDropdown: true,
+    columns: [
+      {
+        title: 'Pentest por escopo',
+        links: [
+          { label: 'Pentest Web', href: '/servicos/pentest-web' },
+          { label: 'Pentest Mobile', href: '/servicos/pentest-mobile' },
+          { label: 'Pentest API', href: '/servicos/pentest-api' },
+          { label: 'Pentest Cloud', href: '/servicos/pentest-cloud' },
+          { label: 'Pentest Infraestrutura', href: '/servicos/pentest-infraestrutura' },
+          { label: 'Pentest Active Directory', href: '/servicos/pentest-active-directory' },
+        ],
+      },
+      {
+        title: 'Times ofensivos',
+        links: [
+          { label: 'Red Team', href: '/red-team' },
+          { label: 'Purple Team', href: '/servicos/purple-team' },
+          { label: 'Engenharia Social', href: '/servicos/engenharia-social' },
+        ],
+      },
+      {
+        title: 'Modelos comerciais',
+        links: [
+          { label: 'PTaaS', href: '/servicos/pentest-as-a-service' },
+          { label: 'Pentest AI e LLM', href: '/servicos/pentest-ai' },
+          { label: 'AI Red Teaming', href: '/servicos/ai-red-teaming' },
+          { label: 'Consultoria', href: '/servicos/consultoria-pentest' },
+        ],
+      },
+    ],
+  },
+  { label: 'Quem somos', href: '/quem-somos', hasDropdown: false },
+  { label: 'Blog', href: '/blog', hasDropdown: false },
+  { label: 'Contato', href: '/contato', hasDropdown: false },
+];
+---
+
+<style>
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  height: var(--header-height);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-slate-100);
+  transition: box-shadow 0.2s;
+}
+
+.header.scrolled {
+  box-shadow: 0 2px 16px rgba(10,31,61,0.06);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: var(--space-8);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.logo-text .first { color: var(--color-navy); }
+.logo-text .security { color: var(--color-cyan); }
+
+/* Nav principal */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-slate);
+  border-radius: var(--radius-md);
+  transition: all 0.15s;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link[aria-expanded="true"] {
+  color: var(--color-navy);
+  background: rgba(10,31,61,0.05);
+}
+
+.nav-link svg {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.15s;
+}
+
+.nav-link[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  padding: var(--space-6);
+  display: none;
+  gap: var(--space-8);
+  min-width: 520px;
+  z-index: 600;
+}
+
+.dropdown.open {
+  display: flex;
+}
+
+.dropdown-col {
+  min-width: 160px;
+}
+
+.dropdown-col-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--color-slate-400);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-3);
+}
+
+.dropdown-link {
+  display: block;
+  padding: 6px 0;
+  font-size: 13.5px;
+  color: var(--color-slate);
+  font-weight: 500;
+  transition: color 0.1s;
+  text-decoration: none;
+}
+
+.dropdown-link:hover {
+  color: var(--color-cyan-600);
+}
+
+/* CTAs do header */
+.header-ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+/* Hamburguer mobile */
+.hamburger {
+  display: none;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  color: var(--color-navy);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Drawer mobile */
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,31,61,0.4);
+  z-index: 490;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(320px, 85vw);
+  background: var(--color-white);
+  z-index: 495;
+  transform: translateX(-100%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  padding: var(--space-6);
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-slate-100);
+}
+
+.drawer-nav-link {
+  display: block;
+  padding: 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-navy);
+  border-bottom: 1px solid var(--color-slate-100);
+  text-decoration: none;
+}
+
+.drawer-ctas {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (max-width: 1024px) {
+  .nav { display: none; }
+  .hamburger { display: flex; }
+  .header-ctas { gap: var(--space-2); }
+}
+</style>
+
+<header class="header" id="siteHeader">
+  <div class="container">
+    <div class="header-inner">
+
+      <!-- Logo -->
+      <a href="/" class="logo" aria-label="First Security, ir para a página inicial">
+        <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <linearGradient id="hdrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0A1F3D"/>
+              <stop offset="100%" stop-color="#00B4FF"/>
+            </linearGradient>
+          </defs>
+          <path d="M50 8 L86 28 L86 72 L50 92 L14 72 L14 28 Z" fill="none" stroke="url(#hdrGrad)" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M40 30 L40 70 L46 70 L46 38 L36 38" fill="none" stroke="url(#hdrGrad)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+          <path d="M58 45 L72 45 L72 55 L58 55" fill="none" stroke="url(#hdrGrad)" stroke-width="5" stroke-linejoin="round"/>
+          <circle cx="65" cy="49" r="2.5" fill="url(#hdrGrad)"/>
+          <rect x="64" y="49" width="2.5" height="6" fill="url(#hdrGrad)"/>
+        </svg>
+        <span class="logo-text">
+          <span class="first">First</span><span class="security">Security</span>
+        </span>
+      </a>
+
+      <!-- Nav desktop -->
+      <nav class="nav" aria-label="Navegação principal">
+        {navItems.map((item) => (
+          <div class="nav-item">
+            {item.hasDropdown ? (
+              <>
+                <button
+                  class="nav-link"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-nav-btn
+                >
+                  {item.label}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+                <div class="dropdown" role="menu">
+                  {item.columns?.map((col) => (
+                    <div class="dropdown-col">
+                      <div class="dropdown-col-title">{col.title}</div>
+                      {col.links.map((link) => (
+                        <a href={link.href} class="dropdown-link" role="menuitem">{link.label}</a>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <a href={item.href} class="nav-link">{item.label}</a>
+            )}
+          </div>
+        ))}
+      </nav>
+
+      <!-- CTAs desktop -->
+      <div class="header-ctas">
+        <a href="/orcamento" class="btn btn-cyan btn-sm">Solicitar orçamento</a>
+      </div>
+
+      <!-- Hamburguer -->
+      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="siteDrawer">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<!-- Drawer mobile -->
+<div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+<nav class="drawer" id="siteDrawer" aria-label="Menu mobile">
+  <div class="drawer-logo">
+    <svg width="28" height="28" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="drwGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0A1F3D"/>
+          <stop offset="100%" stop-color="#00B4FF"/>
+        </linearGradient>
+      </defs>
+      <path d="M50 8 L86 28 L86 72 L50 92 L14 72 L14 28 Z" fill="none" stroke="url(#drwGrad)" stroke-width="6"/>
+      <path d="M40 30 L40 70 L46 70 L46 38 L36 38" fill="none" stroke="url(#drwGrad)" stroke-width="6"/>
+    </svg>
+    <span style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--color-navy);">
+      First<span style="color:var(--color-cyan);">Security</span>
+    </span>
+  </div>
+  {navItems.map((item) => (
+    <a href={item.href} class="drawer-nav-link">{item.label}</a>
+  ))}
+  <div class="drawer-ctas">
+    <a href="/orcamento" class="btn btn-cyan">Solicitar orçamento</a>
+  </div>
+</nav>
+
+<script is:inline>
+(function() {
+  // Scroll sticky
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function() {
+    header.classList.toggle('scrolled', window.scrollY > 80);
+  }, { passive: true });
+
+  // Dropdowns desktop
+  document.querySelectorAll('[data-nav-btn]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var isOpen = this.getAttribute('aria-expanded') === 'true';
+      // Fechar todos
+      document.querySelectorAll('[data-nav-btn]').forEach(function(b) {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling && b.nextElementSibling.classList.remove('open');
+      });
+      if (!isOpen) {
+        this.setAttribute('aria-expanded', 'true');
+        this.nextElementSibling && this.nextElementSibling.classList.add('open');
+      }
+    });
+  });
+
+  // Fechar ao clicar fora
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-item')) {
+      document.querySelectorAll('[data-nav-btn]').forEach(function(b) {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling && b.nextElementSibling.classList.remove('open');
+      });
+    }
+  });
+
+  // ESC fecha dropdown
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('[data-nav-btn]').forEach(function(b) {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling && b.nextElementSibling.classList.remove('open');
+      });
+    }
+  });
+
+  // Drawer mobile
+  var hamburger = document.getElementById('hamburgerBtn');
+  var drawer = document.getElementById('siteDrawer');
+  var overlay = document.getElementById('drawerOverlay');
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.style.display = 'block';
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.style.display = 'none';
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', function() {
+    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+  });
+  overlay.addEventListener('click', closeDrawer);
+})();
+</script>

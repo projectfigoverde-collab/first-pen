@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/legal/politica-de-divulgacao-responsavel/#webpage",
+    "url": "https://firstsecurity.com.br/legal/politica-de-divulgacao-responsavel",
+    "name": "Política de Divulgação Responsável de Vulnerabilidades | First Security",
+    "description": "Como reportar vulnerabilidades de segurança identificadas nos sistemas da First Security: canal de reporte, prazo de resposta e reconhecimento.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Legal", "item": "https://firstsecurity.com.br/legal" },
+        { "@type": "ListItem", "position": 3, "name": "Divulgação Responsável", "item": "https://firstsecurity.com.br/legal/politica-de-divulgacao-responsavel" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Política de Divulgação Responsável de Vulnerabilidades | First Security"
+  description="Política de responsible disclosure da First Security: como reportar vulnerabilidades encontradas em nossos sistemas, canal de contato e nossos compromissos com o pesquisador."
+  canonical="/legal/politica-de-divulgacao-responsavel"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Legal', href: '/legal' }, { label: 'Divulgação Responsável' }]} />
+
+  <section style="padding:var(--space-16) 0 var(--space-12);" aria-labelledby="disclosureH1">
+    <div class="container" style="max-width:760px">
+      <span class="badge badge-cyan" style="margin-bottom:16px;">Responsible Disclosure</span>
+      <h1 id="disclosureH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:12px;">Política de Divulgação Responsável</h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;margin-top:16px;">
+        A First Security valoriza a comunidade de segurança e reconhece que pesquisadores independentes podem identificar vulnerabilidades em nossos sistemas. Se você encontrou uma vulnerabilidade, queremos saber.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" aria-labelledby="disclosureContent">
+    <div class="container" style="max-width:760px">
+      <div class="prose">
+        <h2>Como reportar</h2>
+        <p>Envie um relatório detalhado para o nosso canal de segurança pelo formulário em <a href="/contato">/contato</a> com o assunto "Divulgação Responsável". Inclua no relatório:</p>
+        <ul>
+          <li>Descrição detalhada da vulnerabilidade;</li>
+          <li>Passos para reprodução (PoC);</li>
+          <li>Impacto potencial da vulnerabilidade;</li>
+          <li>Evidências (screenshots, requests/responses, se aplicável);</li>
+          <li>Seu nome ou pseudônimo para fins de reconhecimento (opcional).</li>
+        </ul>
+
+        <h2>Escopo</h2>
+        <p>Esta política abrange os sistemas operados diretamente pela First Security:</p>
+        <ul>
+          <li>firstsecurity.com.br e subdomínios diretos;</li>
+          <li>Sistemas de e-mail corporativo (@firstsecurity.com.br).</li>
+        </ul>
+
+        <h2>O que não é permitido</h2>
+        <p>Ao realizar pesquisa de segurança em nossos sistemas, você não deve:</p>
+        <ul>
+          <li>Acessar, modificar ou excluir dados de terceiros;</li>
+          <li>Executar ataques de negação de serviço (DoS/DDoS);</li>
+          <li>Realizar engenharia social contra funcionários;</li>
+          <li>Instalar malware ou ferramentas persistentes;</li>
+          <li>Divulgar publicamente a vulnerabilidade antes do prazo de coordenação;</li>
+          <li>Extorquir ou ameaçar a First Security.</li>
+        </ul>
+
+        <h2>Nossos compromissos</h2>
+        <p>Em troca do reporte responsável, a First Security se compromete a:</p>
+        <ul>
+          <li>Confirmar o recebimento do relatório em até 3 dias úteis;</li>
+          <li>Avaliar e classificar a vulnerabilidade em até 10 dias úteis;</li>
+          <li>Informar sobre o progresso da remediação de vulnerabilidades válidas;</li>
+          <li>Não tomar ação legal contra pesquisadores que agirem de boa-fé e dentro do escopo desta política;</li>
+          <li>Reconhecer publicamente o pesquisador (se desejado) após a correção.</li>
+        </ul>
+
+        <h2>Prazo de divulgação coordenada</h2>
+        <p>Solicitamos um prazo de até 90 dias para remediação antes de qualquer divulgação pública. Para vulnerabilidades críticas com alto risco imediato, trabalharemos em conjunto para estabelecer um prazo de divulgação adequado.</p>
+
+        <h2>Reconhecimento</h2>
+        <p>Pesquisadores que reportarem vulnerabilidades válidas e seguirem esta política serão reconhecidos em nossa página de agradecimentos (Hall of Fame) com seu nome ou pseudônimo, conforme preferência.</p>
+
+        <h2>Nota importante</h2>
+        <p>Esta política não constitui autorização para testar sistemas de clientes da First Security. Qualquer teste em sistemas de terceiros requer autorização expressa e por escrito do proprietário do sistema, independentemente de qualquer relação com a First Security.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

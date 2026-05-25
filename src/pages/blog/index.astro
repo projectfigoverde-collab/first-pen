@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "Blog",
+    "@id": "https://firstsecurity.com.br/blog/#blog",
+    "name": "Blog First Security",
+    "description": "Artigos técnicos sobre pentest, Red Team, vulnerabilidades, cibersegurança ofensiva e tendências de segurança da informação no Brasil.",
+    "publisher": { "@id": "https://firstsecurity.com.br/#organization" },
+    "inLanguage": "pt-BR",
+    "url": "https://firstsecurity.com.br/blog"
+  },
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/blog/#webpage",
+    "url": "https://firstsecurity.com.br/blog",
+    "name": "Blog de Cibersegurança Ofensiva | First Security",
+    "description": "Artigos técnicos sobre pentest, Red Team, vulnerabilidades e cibersegurança ofensiva escritos por especialistas certificados OSCP e OSWE.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://firstsecurity.com.br/blog" }
+      ]
+    }
+  }
+];
+
+const categorias = [
+  { label: 'Pentest Web', href: '/blog/categoria/pentest-web' },
+  { label: 'Pentest Cloud', href: '/blog/categoria/pentest-cloud' },
+  { label: 'Active Directory', href: '/blog/categoria/active-directory' },
+  { label: 'Red Team', href: '/blog/categoria/red-team' },
+  { label: 'Vulnerabilidades', href: '/blog/categoria/vulnerabilidades' },
+  { label: 'Compliance', href: '/blog/categoria/compliance' },
+  { label: 'OWASP', href: '/blog/categoria/owasp' },
+];
+
+const artigos = [
+  {
+    titulo: 'OWASP Top 10 2025: o que mudou e o que continua igual',
+    categoria: 'OWASP',
+    desc: 'Análise das principais mudanças na versão 2025 do OWASP Top 10, com exemplos práticos de exploração e remediação para cada categoria.',
+    slug: 'owasp-top-10-2025',
+    dataISO: '2025-05-10',
+    dataFormatada: '10 mai. 2025',
+    leitura: '12 min',
+  },
+  {
+    titulo: 'Kerberoasting na prática: ataque e defesa em ambientes Active Directory',
+    categoria: 'Active Directory',
+    desc: 'Como o Kerberoasting funciona, como executar o ataque em ambiente de laboratório e quais controles implementar para detectar e prevenir.',
+    slug: 'kerberoasting-pratica-ataque-defesa',
+    dataISO: '2025-04-28',
+    dataFormatada: '28 abr. 2025',
+    leitura: '15 min',
+  },
+  {
+    titulo: 'SSRF em ambientes cloud: exploração e impacto em AWS',
+    categoria: 'Pentest Cloud',
+    desc: 'Server-Side Request Forgery em aplicações hospedadas na AWS. Como explorar via metadata service, acesso a credenciais IAM e mitigações efetivas.',
+    slug: 'ssrf-cloud-aws-exploracao-impacto',
+    dataISO: '2025-04-15',
+    dataFormatada: '15 abr. 2025',
+    leitura: '10 min',
+  },
+  {
+    titulo: 'Como avaliar um relatório de pentest: o que deve e o que não deve estar lá',
+    categoria: 'Pentest Web',
+    desc: 'Guia para gestores e equipes de segurança avaliarem a qualidade de um relatório de pentest: indicadores de qualidade, red flags e critérios objetivos.',
+    slug: 'como-avaliar-relatorio-pentest',
+    dataISO: '2025-03-22',
+    dataFormatada: '22 mar. 2025',
+    leitura: '8 min',
+  },
+  {
+    titulo: 'Prompt Injection em LLMs: os ataques que estão chegando nas aplicações corporativas',
+    categoria: 'Vulnerabilidades',
+    desc: 'Como funcionam os ataques de prompt injection em sistemas baseados em Large Language Models, vetores de exploração e como proteger aplicações que integram IA.',
+    slug: 'prompt-injection-llms-ataques-corporativos',
+    dataISO: '2025-03-08',
+    dataFormatada: '08 mar. 2025',
+    leitura: '11 min',
+  },
+  {
+    titulo: 'PCI DSS 4.0 e pentest: o que mudou nos requisitos 11.3 e 11.4',
+    categoria: 'Compliance',
+    desc: 'Análise das mudanças nos requisitos de teste de penetração do PCI DSS versão 4.0, com checklist para adequação e dicas para o processo de auditoria.',
+    slug: 'pci-dss-4-pentest-requisitos-11',
+    dataISO: '2025-02-18',
+    dataFormatada: '18 fev. 2025',
+    leitura: '9 min',
+  },
+];
+---
+
+<BaseLayout
+  title="Blog de Cibersegurança Ofensiva | First Security"
+  description="Artigos técnicos sobre pentest, Red Team, vulnerabilidades e cibersegurança ofensiva escritos por especialistas certificados OSCP e OSWE da First Security."
+  canonical="/blog"
+  schema={schema}
+>
+
+  <Breadcrumbs items={[{ label: 'Blog' }]} />
+
+  <!-- HERO -->
+  <section style="padding:var(--space-14) 0 var(--space-10);" aria-labelledby="blogH1">
+    <div class="container" style="max-width:900px">
+      <span class="badge badge-cyan" style="margin-bottom:16px;">Conhecimento técnico</span>
+      <h1 id="blogH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:16px;">
+        Blog de cibersegurança ofensiva
+      </h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;">
+        Artigos técnicos escritos pela equipe de especialistas da First Security sobre pentest, Red Team, vulnerabilidades e segurança ofensiva no Brasil.
+      </p>
+    </div>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section style="padding:var(--space-4) 0 var(--space-10);" aria-label="Filtrar por categoria">
+    <div class="container">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <a href="/blog" class="btn btn-cyan btn-sm">Todos</a>
+        {categorias.map((cat) => (
+          <a href={cat.href} class="btn btn-secondary btn-sm">{cat.label}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIGOS -->
+  <section class="section" style="padding-top:0;" aria-labelledby="artigosTitle">
+    <div class="container">
+      <h2 id="artigosTitle" class="sr-only">Artigos recentes</h2>
+
+      <!-- ARTIGO DESTAQUE -->
+      <article style="background:white;border:1px solid var(--color-slate-200);border-radius:var(--radius-xl);padding:var(--space-8);margin-bottom:var(--space-6);box-shadow:var(--shadow-sm);" aria-label={`Artigo em destaque: ${artigos[0].titulo}`}>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <span class="badge badge-navy">Destaque</span>
+          <span class="compliance-tag">{artigos[0].categoria}</span>
+        </div>
+        <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-navy);margin-bottom:12px;line-height:1.3;">
+          <a href={`/blog/${artigos[0].slug}`} style="text-decoration:none;color:inherit;">{artigos[0].titulo}</a>
+        </h3>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.65;max-width:720px;margin-bottom:16px;">{artigos[0].desc}</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <time datetime={artigos[0].dataISO} style="font-size:13px;color:var(--color-slate-400);">{artigos[0].dataFormatada}</time>
+            <span style="font-size:13px;color:var(--color-slate-400);">{artigos[0].leitura} de leitura</span>
+          </div>
+          <a href={`/blog/${artigos[0].slug}`} class="btn btn-secondary btn-sm">Ler artigo &rarr;</a>
+        </div>
+      </article>
+
+      <!-- GRID DE ARTIGOS -->
+      <div class="grid-3">
+        {artigos.slice(1).map((artigo) => (
+          <article class="card" style="display:flex;flex-direction:column;" aria-label={`Artigo: ${artigo.titulo}`}>
+            <span class="compliance-tag" style="margin-bottom:12px;display:inline-block;align-self:flex-start;">{artigo.categoria}</span>
+            <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:10px;line-height:1.35;flex:1;">
+              <a href={`/blog/${artigo.slug}`} style="text-decoration:none;color:inherit;">{artigo.titulo}</a>
+            </h3>
+            <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;margin-bottom:16px;">{artigo.desc}</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;">
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <time datetime={artigo.dataISO} style="font-size:12px;color:var(--color-slate-400);">{artigo.dataFormatada}</time>
+                <span style="font-size:12px;color:var(--color-slate-400);">{artigo.leitura} de leitura</span>
+              </div>
+              <a href={`/blog/${artigo.slug}`} style="font-size:13px;font-weight:600;color:var(--color-cyan-600);text-decoration:none;">Ler &rarr;</a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="section" style="background:var(--color-navy);" aria-labelledby="newsletterBlogTitle">
+    <div class="container" style="max-width:640px;text-align:center;">
+      <div class="section-eyebrow" style="color:var(--color-cyan-400);">Newsletter</div>
+      <h2 id="newsletterBlogTitle" class="section-title" style="color:white;">Conteúdo técnico mensal</h2>
+      <p style="color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:var(--space-6);">
+        Pentest, Red Team e tendências de cibersegurança ofensiva no Brasil. Sem spam, apenas o que é relevante para profissionais de segurança.
+      </p>
+      <form style="display:flex;gap:10px;max-width:440px;margin:0 auto;" action="#" method="post" aria-label="Formulário de inscrição na newsletter">
+        <label for="blogEmail" class="sr-only">Seu e-mail</label>
+        <input
+          type="email"
+          id="blogEmail"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="seu@email.com.br"
+          style="flex:1;padding:11px 14px;border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-md);background:rgba(255,255,255,0.07);color:white;font-family:var(--font-body);font-size:14px;"
+          onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+          onblur="this.style.borderColor='rgba(255,255,255,0.15)';"
+        />
+        <button type="submit" class="btn btn-cyan">Assinar</button>
+      </form>
+    </div>
+  </section>
+
+</BaseLayout>

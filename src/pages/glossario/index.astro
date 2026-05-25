@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "DefinedTermSet",
+    "@id": "https://firstsecurity.com.br/glossario/#definedtermset",
+    "name": "Glossário de Segurança Cibernética e Pentest",
+    "description": "Glossário completo de termos de pentest, segurança ofensiva e hacking ético em português.",
+    "url": "https://firstsecurity.com.br/glossario",
+    "inLanguage": "pt-BR",
+    "publisher": { "@id": "https://firstsecurity.com.br/#organization" },
+    "hasDefinedTerm": [
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#attck", "name": "ATT&CK (MITRE)", "description": "Base de conhecimento global que documenta as táticas, técnicas e procedimentos (TTPs) usados por atacantes reais.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/MITRE_ATT%26CK", "https://www.wikidata.org/wiki/Q73935275"] },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#black-box", "name": "Black Box", "description": "Modalidade de pentest onde o testador não tem nenhuma informação prévia sobre o alvo.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset" },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#cve", "name": "CVE", "description": "Common Vulnerabilities and Exposures. Identificador único para vulnerabilidades de segurança conhecidas.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures", "https://www.wikidata.org/wiki/Q1503195"] },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#cvss", "name": "CVSS", "description": "Common Vulnerability Scoring System. Escala de 0 a 10 que classifica a severidade de vulnerabilidades.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/Common_Vulnerability_Scoring_System", "https://www.wikidata.org/wiki/Q1130028"] },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#cwe", "name": "CWE", "description": "Common Weakness Enumeration. Classificação de tipos de fraquezas de software.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/Common_Weakness_Enumeration", "https://www.wikidata.org/wiki/Q1130029"] },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#dast", "name": "DAST", "description": "Dynamic Application Security Testing. Testes de segurança executados na aplicação em execução.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset" },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#exploit", "name": "Exploit", "description": "Código ou técnica que aproveita uma vulnerabilidade para causar comportamento não intencional em um sistema.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/Exploit_(computer_security)", "https://www.wikidata.org/wiki/Q189685"] },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#grey-box", "name": "Grey Box", "description": "Modalidade de pentest com informações parciais: credenciais de usuário comum, documentação de APIs, diagramas de arquitetura.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset" },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#idor", "name": "IDOR", "description": "Insecure Direct Object Reference. Vulnerabilidade onde um usuário acessa recursos de outros usuários manipulando identificadores.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset" },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#kerberoasting", "name": "Kerberoasting", "description": "Técnica de ataque contra o protocolo Kerberos do Active Directory para extrair hashes de senhas.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset" },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#owasp", "name": "OWASP", "description": "Open Worldwide Application Security Project. Publica o Top 10 de vulnerabilidades web, MASVS e API Security Top 10.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/OWASP", "https://www.wikidata.org/wiki/Q604846"] },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#payload", "name": "Payload", "description": "Parte de um exploit que executa a ação desejada pelo atacante após a exploração da vulnerabilidade.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset" },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#pentest", "name": "Pentest", "description": "Teste de intrusão. Simulação controlada de ataque cibernético por especialista autorizado.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/Penetration_test", "https://www.wikidata.org/wiki/Q178766"] },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#ptes", "name": "PTES", "description": "Penetration Testing Execution Standard. Metodologia de referência para execução de pentests.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset" },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#pivoting", "name": "Pivoting", "description": "Técnica de usar um sistema comprometido como ponto de partida para acessar sistemas adicionais na rede interna.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset" },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#red-team", "name": "Red Team", "description": "Exercício avançado de simulação de adversário com objetivos de negócio específicos, sem escopo técnico restrito.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/Red_team", "https://www.wikidata.org/wiki/Q7304875"] },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#sql-injection", "name": "SQL Injection", "description": "Vulnerabilidade onde entrada de usuário não sanitizada é interpretada como código SQL.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/SQL_injection", "https://www.wikidata.org/wiki/Q3421823"] },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#white-box", "name": "White Box", "description": "Modalidade de pentest com acesso completo: código-fonte, diagramas de arquitetura, credenciais e documentação.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset" },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#xss", "name": "XSS", "description": "Cross-Site Scripting. Injeção de scripts maliciosos em páginas web visualizadas por outros usuários.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/Cross-site_scripting", "https://www.wikidata.org/wiki/Q191560"] },
+      { "@type": "DefinedTerm", "@id": "https://firstsecurity.com.br/glossario/#zero-day", "name": "Zero-day", "description": "Vulnerabilidade desconhecida pelo desenvolvedor do software e sem correção disponível.", "inDefinedTermSet": "https://firstsecurity.com.br/glossario/#definedtermset", "sameAs": ["https://en.wikipedia.org/wiki/Zero-day_(computing)", "https://www.wikidata.org/wiki/Q1476604"] }
+    ]
+  },
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/glossario/#webpage",
+    "url": "https://firstsecurity.com.br/glossario",
+    "name": "Glossário de Segurança Cibernética e Pentest | First Security",
+    "description": "Glossário completo de termos de segurança cibernética, pentest e hacking ético em português: CVE, CVSS, OWASP, exploit, payload, pivoting e mais.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Glossário", "item": "https://firstsecurity.com.br/glossario" }
+      ]
+    }
+  }
+];
+
+const termos = [
+  { t: 'ATT&CK (MITRE)', d: 'Base de conhecimento global que documenta as táticas, técnicas e procedimentos (TTPs) usados por atacantes reais. Usada em Red Team e Purple Team para simular adversários específicos.' },
+  { t: 'Black Box', d: 'Modalidade de pentest onde o testador não tem nenhuma informação prévia sobre o alvo, simulando um atacante externo sem acesso privilegiado.' },
+  { t: 'CVE', d: 'Common Vulnerabilities and Exposures. Identificador único para vulnerabilidades de segurança conhecidas. Ex: CVE-2021-44228 é a Log4Shell. Mantido pela MITRE com apoio do NVD.' },
+  { t: 'CVSS', d: 'Common Vulnerability Scoring System. Escala de 0 a 10 que classifica a severidade de vulnerabilidades: Crítico (9-10), Alto (7-8.9), Médio (4-6.9), Baixo (0.1-3.9).' },
+  { t: 'CWE', d: 'Common Weakness Enumeration. Classificação de tipos de fraquezas de software, como CWE-89 (SQL Injection) e CWE-79 (XSS). Diferente do CVE, que identifica vulnerabilidades específicas.' },
+  { t: 'DAST', d: 'Dynamic Application Security Testing. Testes de segurança executados na aplicação em execução, analisando comportamento ao receber entradas maliciosas. Complementa o SAST.' },
+  { t: 'Engenharia reversa', d: 'Análise de um software compilado para entender seu funcionamento interno sem acesso ao código-fonte. Usada em análise de malware e testes de aplicativos mobile.' },
+  { t: 'Escalada de privilégios', d: 'Técnica de elevar permissões de acesso além do nível autorizado inicialmente. Vertical: usuário comum vira admin. Horizontal: usuário A acessa dados do usuário B.' },
+  { t: 'Exploit', d: 'Código ou técnica que aproveita uma vulnerabilidade para causar comportamento não intencional em um sistema. Pode ser público (known exploit) ou inédito (zero-day).' },
+  { t: 'False positive', d: 'Vulnerabilidade reportada por uma ferramenta que não existe na prática. Alto índice de falsos positivos é uma limitação de ferramentas de varredura automatizada.' },
+  { t: 'Grey Box', d: 'Modalidade de pentest com informações parciais: credenciais de usuário comum, documentação de APIs, diagramas de arquitetura. Simula ameaça interna com acesso limitado.' },
+  { t: 'IDOR', d: 'Insecure Direct Object Reference. Vulnerabilidade onde um usuário acessa recursos de outros usuários manipulando identificadores. Ex: trocar id=123 por id=124 para ver dados de outro usuário.' },
+  { t: 'Kerberoasting', d: 'Técnica de ataque contra o protocolo Kerberos do Active Directory para extrair hashes de senhas de contas de serviço e tentar quebrá-las offline.' },
+  { t: 'Lateral movement', d: 'Técnica de movimentação dentro de uma rede comprometida para acessar outros sistemas. Exemplos: Pass-the-Hash, exploração de serviços internos, abuso de confiança entre servidores.' },
+  { t: 'OWASP', d: 'Open Worldwide Application Security Project. Fundação sem fins lucrativos que publica o Top 10 de vulnerabilidades web, MASVS (mobile) e API Security Top 10, usados como base de metodologia em pentest.' },
+  { t: 'Payload', d: 'Parte de um exploit ou script malicioso que executa a ação desejada pelo atacante após a exploração da vulnerabilidade: acesso ao sistema, exfiltração de dados, execução de código.' },
+  { t: 'Pentest', d: 'Teste de intrusão. Simulação controlada de ataque cibernético por especialista autorizado, com objetivo de identificar vulnerabilidades exploráveis antes que atacantes reais o façam.' },
+  { t: 'PTES', d: 'Penetration Testing Execution Standard. Metodologia de referência para execução de pentests, cobrindo inteligência, modelagem de ameaças, exploração, pós-exploração e relatório.' },
+  { t: 'Pivoting', d: 'Técnica de usar um sistema comprometido como ponto de partida para acessar sistemas adicionais na rede interna que não seriam acessíveis diretamente.' },
+  { t: 'Post-exploitation', d: 'Fase após a exploração bem-sucedida de uma vulnerabilidade: manutenção de acesso, escalada de privilégios, movimentação lateral e exfiltração de dados.' },
+  { t: 'Purple Team', d: 'Exercício colaborativo onde Red Team (ataque) e Blue Team (defesa) trabalham juntos para melhorar controles de detecção e resposta. Diferente do Red Team tradicional.' },
+  { t: 'RBAC', d: 'Role-Based Access Control. Controle de acesso baseado em papéis. Vulnerabilidades de RBAC permitem que usuários com papel menos privilegiado executem ações reservadas a papéis superiores.' },
+  { t: 'Red Team', d: 'Exercício avançado de simulação de adversário com objetivos de negócio específicos, sem escopo técnico restrito e com duração mais longa que um pentest tradicional.' },
+  { t: 'Reteste', d: 'Verificação realizada após a remediação de vulnerabilidades para confirmar que as correções eliminaram de fato os problemas identificados no pentest original.' },
+  { t: 'SAST', d: 'Static Application Security Testing. Análise de código-fonte em busca de vulnerabilidades sem execução do programa. Integrado ao CI/CD como parte do DevSecOps.' },
+  { t: 'Scope', d: 'Escopo do pentest: sistemas, endereços IP, aplicações, domínios e funcionalidades que podem ser testados. Definido em contrato e autorização formal antes do início.' },
+  { t: 'Social engineering', d: 'Manipulação psicológica de pessoas para obter informações ou acesso não autorizado. Inclui phishing, vishing e pretexting. Parte de exercícios de Red Team.' },
+  { t: 'SQL Injection', d: 'Vulnerabilidade onde entrada de usuário não sanitizada é interpretada como código SQL. Permite extrair, modificar ou apagar dados do banco. Listada como A03 no OWASP Top 10.' },
+  { t: 'Threat modeling', d: 'Processo de identificação e priorização de ameaças relevantes para um sistema específico, considerando ativos, atacantes prováveis e vetores de ataque. Base para definição de escopo.' },
+  { t: 'White Box', d: 'Modalidade de pentest com acesso completo: código-fonte, diagramas de arquitetura, credenciais e documentação. Permite cobertura mais profunda em menos tempo.' },
+  { t: 'XSS', d: 'Cross-Site Scripting. Injeção de scripts maliciosos em páginas web visualizadas por outros usuários. Tipos: Reflected, Stored e DOM-based. Listado como A03 no OWASP Top 10.' },
+  { t: 'Zero-day', d: 'Vulnerabilidade desconhecida pelo desenvolvedor do software e sem correção disponível. Exploits de zero-day são raros e de alto valor no mercado de segurança ofensiva.' },
+];
+---
+
+<BaseLayout
+  title="Glossário de Segurança Cibernética e Pentest | First Security"
+  description="Glossário completo de termos de segurança cibernética em português: CVE, CVSS, OWASP, exploit, payload, Red Team, IDOR, Kerberoasting e mais de 30 termos explicados."
+  canonical="/glossario"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Glossário' }]} />
+
+  <section style="padding:var(--space-16) 0 var(--space-12);" aria-labelledby="glossarioH1">
+    <div class="container" style="max-width:860px">
+      <span class="badge badge-cyan" style="margin-bottom:16px;">Referência técnica</span>
+      <h1 id="glossarioH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;">Glossário de segurança cibernética</h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;">
+        Definições dos principais termos de pentest, segurança ofensiva e hacking ético em português, organizados em ordem alfabética.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="termosTitle">
+    <div class="container" style="max-width:860px">
+      <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--color-slate-200);border-radius:var(--radius-lg);overflow:hidden;">
+        {termos.map((item, i) => (
+          <div id={item.t.toLowerCase().replace(/\s+/g,'-').replace(/[()\/]/g,'')} style={`display:grid;grid-template-columns:180px 1fr;gap:16px;padding:14px 20px;${i > 0 ? 'border-top:1px solid var(--color-slate-200);' : ''}`}>
+            <span style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--color-navy);padding-top:2px;">{item.t}</span>
+            <span style="font-size:13.5px;color:var(--color-slate);line-height:1.6;">{item.d}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="ctaGlossario">
+    <div class="container text-center">
+      <h2 id="ctaGlossario" class="section-title" style="color:white;">Precisa de um pentest?</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Nossa equipe aplica esses conceitos na prática para proteger sua organização.
+      </p>
+      <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar orçamento</a>
+    </div>
+  </section>
+</BaseLayout>

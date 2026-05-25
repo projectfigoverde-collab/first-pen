@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/quem-somos/equipe/#webpage",
+    "url": "https://firstsecurity.com.br/quem-somos/equipe",
+    "name": "Nossa Equipe: Especialistas em Pentest Certificados | First Security",
+    "description": "Conheça a equipe da First Security: especialistas com certificações OSCP, OSWE, CRTO, CEH. Profissionais próprios, sem terceirização.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Quem Somos", "item": "https://firstsecurity.com.br/quem-somos" },
+        { "@type": "ListItem", "position": 3, "name": "Equipe", "item": "https://firstsecurity.com.br/quem-somos/equipe" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Nossa Equipe: Especialistas em Pentest Certificados | First Security"
+  description="Conheça a equipe da First Security: especialistas certificados com OSCP, OSWE, CRTO e outras certificações práticas. Profissionais CLT próprios, sem terceirização."
+  canonical="/quem-somos/equipe"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Quem Somos', href: '/quem-somos' }, { label: 'Equipe' }]} />
+
+  <section style="padding:var(--space-16) 0 var(--space-12);" aria-labelledby="equipeH1">
+    <div class="container" style="max-width:860px">
+      <span class="badge badge-navy" style="margin-bottom:16px;">Especialistas próprios</span>
+      <h1 id="equipeH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;">Nossa equipe</h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;">
+        Todos os especialistas da First Security são profissionais próprios com vínculo empregatício. Não terceirizamos projetos para freelancers. Isso garante responsabilidade, consistência de qualidade e confidencialidade nos projetos que executamos.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="certsTitle">
+    <div class="container" style="max-width:900px">
+      <div class="section-header">
+        <div class="section-eyebrow">Certificações da equipe</div>
+        <h2 id="certsTitle" class="section-title">Certificações práticas que importam</h2>
+      </div>
+      <div class="prose" style="max-width:760px;margin:0 auto var(--space-10);">
+        <p>Certificações práticas exigem que o profissional execute explorações reais em ambientes controlados. São fundamentalmente diferentes de certificações teóricas que apenas testam conhecimento memorizado. Ao avaliar uma empresa de pentest, pergunte quais certificações os especialistas que farão o seu projeto possuem.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+        {[
+          { cert: 'OSCP', full: 'Offensive Security Certified Professional', tipo: 'Prática', foco: 'Pentest de infraestrutura e exploração manual' },
+          { cert: 'OSWE', full: 'Offensive Security Web Expert', tipo: 'Prática', foco: 'Pentest avançado de aplicações web' },
+          { cert: 'OSEP', full: 'Offensive Security Experienced Penetration Tester', tipo: 'Prática', foco: 'Evasão de defesas e pós-exploração avançada' },
+          { cert: 'CRTO', full: 'Certified Red Team Operator', tipo: 'Prática', foco: 'Operações de Red Team com Cobalt Strike' },
+          { cert: 'CRTE', full: 'Certified Red Team Expert', tipo: 'Prática', foco: 'Active Directory e ataques avançados em AD' },
+          { cert: 'eWPTX', full: 'eLearnSecurity Web Penetration Tester eXtreme', tipo: 'Prática', foco: 'Técnicas avançadas de pentest web' },
+        ].map((item) => (
+          <div class="card" style="text-align:center;">
+            <div style="font-family:var(--font-mono);font-size:20px;font-weight:800;color:var(--color-navy);margin-bottom:6px;">{item.cert}</div>
+            <div style="font-size:11px;font-weight:600;color:var(--color-cyan-600);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">{item.tipo}</div>
+            <div style="font-size:12px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">{item.full}</div>
+            <div style="font-size:12px;color:var(--color-slate);line-height:1.5;">{item.foco}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--color-off-white);" aria-labelledby="valoresEquipeTitle">
+    <div class="container" style="max-width:900px">
+      <div class="section-header">
+        <div class="section-eyebrow">Cultura de segurança</div>
+        <h2 id="valoresEquipeTitle" class="section-title">Como trabalhamos</h2>
+      </div>
+      <div class="grid-3">
+        {[
+          { t: 'Pesquisa contínua', d: 'Nossa equipe dedica tempo para pesquisa de novas técnicas de ataque, ferramentas e CVEs. O conhecimento atualizado é aplicado diretamente nos projetos de clientes.' },
+          { t: 'Mentalidade de adversário', d: 'Pensamos como atacantes reais, não como checklist. Cada projeto inclui análise de quais caminhos um atacante motivado tomaria para atingir os objetivos de negócio.' },
+          { t: 'Comunicação clara', d: 'Vulnerabilidades técnicas são explicadas em linguagem de negócio no relatório. O cliente entende o que foi encontrado, qual o risco real e o que precisa ser feito.' },
+          { t: 'Confidencialidade total', d: 'NDA obrigatório antes de qualquer troca de informação. Dados do ambiente do cliente nunca são compartilhados fora do escopo do projeto. Profissionais próprios garantem rastreabilidade.' },
+          { t: 'Responsabilidade total', d: 'Somos CLT, não freelancers. Há uma empresa com CNPJ, contrato e responsabilidade jurídica clara por tudo que é executado. Sem intermediários no caminho.' },
+          { t: 'Educação do cliente', d: 'O debriefing não é apenas apresentação de slides. Explicamos como cada vulnerabilidade funciona, por que ela existe e como evitá-la no futuro.' },
+        ].map((item) => (
+          <div class="card">
+            <h3 class="t-heading-sm" style="color:var(--color-navy);margin-bottom:8px;">{item.t}</h3>
+            <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;">{item.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="ctaEquipe">
+    <div class="container text-center">
+      <h2 id="ctaEquipe" class="section-title" style="color:white;">Conheça quem vai executar seu projeto</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Transparência sobre quem faz o pentest é um critério essencial na escolha de um fornecedor.
+      </p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar orçamento</a>
+        <a href="/quem-somos" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,0.3);color:white;">Sobre a empresa</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

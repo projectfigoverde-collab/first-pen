@@ -1,0 +1,301 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: object | object[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = 'https://firstsecurity.com.br/og-default.jpg',
+  schema,
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = 'https://firstsecurity.com.br';
+const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
+
+const schemaArray = schema
+  ? (Array.isArray(schema) ? schema : [schema])
+  : [];
+---
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="First Security" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="512x512" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <meta name="theme-color" content="#0A1F3D" />
+
+  <!-- Fontes: preconnect + carga não-bloqueante -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://api.fontshare.com" />
+  <!-- Satoshi (display) — carregamento assíncrono -->
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" media="print" onload="this.media='all'" />
+  <!-- Inter + JetBrains Mono — carregamento assíncrono, apenas pesos usados -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  </noscript>
+
+  <!-- Schema JSON-LD base: Organization + WebSite -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://firstsecurity.com.br/#organization",
+        "name": "First Security",
+        "url": "https://firstsecurity.com.br",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://firstsecurity.com.br/favicon.png",
+          "width": 512,
+          "height": 512
+        },
+        "description": "Empresa brasileira de pentest profissional, Red Team e Purple Team. Segurança ofensiva com metodologia certificada (PTES, OWASP WSTG, NIST SP 800-115, MITRE ATT&CK).",
+        "foundingDate": "2016",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "BR",
+          "addressLocality": "São Paulo",
+          "addressRegion": "SP"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "availableLanguage": "Portuguese",
+          "email": "contato@firstsecurity.com.br",
+          "url": "https://firstsecurity.com.br/contato"
+        },
+        "knowsAbout": [
+          "Penetration Testing",
+          "Red Team Operations",
+          "Purple Team",
+          "Web Application Security Testing",
+          "Mobile Security Testing",
+          "API Security Testing",
+          "Cloud Security",
+          "Active Directory Security",
+          "OWASP",
+          "MITRE ATT&CK",
+          "CVSS",
+          "LGPD Compliance",
+          "PCI DSS",
+          "ISO 27001"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Serviços de Cibersegurança Ofensiva",
+          "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pentest Web", "url": "https://firstsecurity.com.br/servicos/pentest-web"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pentest Mobile", "url": "https://firstsecurity.com.br/servicos/pentest-mobile"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pentest API", "url": "https://firstsecurity.com.br/servicos/pentest-api"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pentest Cloud", "url": "https://firstsecurity.com.br/servicos/pentest-cloud"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pentest Active Directory", "url": "https://firstsecurity.com.br/servicos/pentest-active-directory"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Red Team", "url": "https://firstsecurity.com.br/red-team"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Purple Team", "url": "https://firstsecurity.com.br/servicos/purple-team"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "PTaaS", "url": "https://firstsecurity.com.br/servicos/pentest-as-a-service"}}
+          ]
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/firstsecurity",
+          "https://github.com/firstsecurity"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://firstsecurity.com.br/#website",
+        "name": "First Security",
+        "url": "https://firstsecurity.com.br",
+        "publisher": { "@id": "https://firstsecurity.com.br/#organization" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://firstsecurity.com.br/glossario?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Schema JSON-LD da página -->
+  {schemaArray.length > 0 && (
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": schemaArray })} />
+  )}
+</head>
+<body>
+  <a href="#main-content" class="sr-only" style="position:fixed;top:4px;left:4px;z-index:9999;padding:8px 14px;background:var(--color-cyan);color:white;border-radius:6px;font-weight:600;">
+    Ir para o conteúdo principal
+  </a>
+
+  <Header />
+
+  <main id="main-content" style="padding-top: var(--header-height);">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <!-- Botão flutuante WhatsApp -->
+  <!-- ATENÇÃO: Substitua 5511999999999 pelo número real com DDI+DDD -->
+  <div id="wa-float" role="complementary" aria-label="Contato via WhatsApp">
+
+    <!-- Widget de chat -->
+    <div id="wa-bubble" role="dialog" aria-label="Fale com a First Security pelo WhatsApp">
+
+      <!-- Header verde -->
+      <div class="wa-chat-header">
+        <div class="wa-avatar" aria-hidden="true">FS</div>
+        <div class="wa-chat-info">
+          <div class="wa-chat-name">First Security</div>
+          <div class="wa-chat-status">&#9679; online</div>
+        </div>
+        <button id="wa-close" aria-label="Fechar chat">&#10005;</button>
+      </div>
+
+      <!-- Mensagem -->
+      <div class="wa-chat-body">
+        <div class="wa-msg-bubble">
+          Olá! &#128075; Quer saber se sua empresa está exposta a ataques? Fale agora com um especialista em pentest.
+        </div>
+      </div>
+
+      <!-- Input falso — clica e abre WhatsApp -->
+      <a
+        class="wa-chat-footer"
+        href="https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+pentest+para+minha+empresa."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Iniciar conversa no WhatsApp"
+      >
+        <span class="wa-input-fake">Digite sua mensagem...</span>
+        <span class="wa-send" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </span>
+      </a>
+
+    </div>
+
+    <!-- Botão principal -->
+    <a
+      id="wa-btn"
+      href="https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+pentest+para+minha+empresa."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Abrir WhatsApp da First Security"
+    >
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="white" aria-hidden="true">
+        <path d="M16 2C8.268 2 2 8.268 2 16c0 2.47.644 4.787 1.77 6.793L2 30l7.43-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.46 11.46 0 01-5.84-1.6l-.418-.247-4.41 1.037 1.06-4.3-.272-.44A11.465 11.465 0 014.5 16C4.5 9.649 9.649 4.5 16 4.5S27.5 9.649 27.5 16 22.351 27.5 16 27.5zm6.29-8.567c-.344-.172-2.04-1.006-2.357-1.12-.317-.115-.547-.172-.777.172-.23.344-.892 1.12-1.093 1.35-.2.23-.402.258-.746.086-.344-.172-1.453-.536-2.767-1.709-1.022-.913-1.712-2.04-1.913-2.384-.2-.344-.021-.53.15-.701.155-.155.344-.402.516-.603.172-.2.23-.344.344-.574.115-.23.058-.43-.029-.603-.086-.172-.777-1.873-1.065-2.564-.28-.673-.565-.582-.777-.593l-.661-.01c-.23 0-.603.086-.919.43s-1.207 1.178-1.207 2.872c0 1.694 1.236 3.332 1.408 3.562.172.23 2.433 3.714 5.896 5.208.824.356 1.467.569 1.968.729.827.263 1.58.226 2.175.137.663-.1 2.04-.834 2.327-1.638.287-.805.287-1.494.2-1.638-.086-.143-.316-.23-.66-.402z"/>
+      </svg>
+    </a>
+
+  </div>
+
+  <!-- Banner de cookies -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" aria-live="polite">
+    <p id="cookieTitle" style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--color-navy);margin-bottom:8px;">
+      Cookies e privacidade
+    </p>
+    <p style="font-size:13px;color:var(--color-slate);line-height:1.5;margin-bottom:16px;">
+      Usamos cookies essenciais para o funcionamento do site e cookies de
+      medição para entender como você navega.
+      <a href="/legal/politica-de-cookies" style="color:var(--color-cyan-600);text-decoration:underline;">Saiba mais.</a>
+    </p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn-primary btn-sm" id="acceptAll">Aceitar todos</button>
+      <button class="btn btn-secondary btn-sm" id="acceptEssential">Apenas essenciais</button>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function() {
+      // Cookie banner
+      if (!localStorage.getItem('fs_cookies')) {
+        document.getElementById('cookieBanner').classList.add('visible');
+      }
+      function accept(val) {
+        localStorage.setItem('fs_cookies', val);
+        document.getElementById('cookieBanner').classList.remove('visible');
+      }
+      document.getElementById('acceptAll').addEventListener('click', function() { accept('all'); });
+      document.getElementById('acceptEssential').addEventListener('click', function() { accept('essential'); });
+
+      // WhatsApp bubble: abre automaticamente 5s após entrar, máx 1x a cada 30min
+      var WA_KEY = 'fs_wa_last';
+      var INTERVAL = 30 * 60 * 1000;
+      var DELAY = 5000;
+
+      function shouldShowBubble() {
+        var last = localStorage.getItem(WA_KEY);
+        if (!last) return true;
+        return Date.now() - parseInt(last, 10) > INTERVAL;
+      }
+
+      function openBubble() {
+        document.getElementById('wa-bubble').classList.add('visible');
+        localStorage.setItem(WA_KEY, Date.now().toString());
+      }
+
+      function closeBubble() {
+        document.getElementById('wa-bubble').classList.remove('visible');
+      }
+
+      if (shouldShowBubble()) {
+        setTimeout(openBubble, DELAY);
+      }
+
+      document.getElementById('wa-close').addEventListener('click', closeBubble);
+      document.getElementById('wa-btn').addEventListener('click', closeBubble);
+    })();
+  </script>
+</body>
+</html>

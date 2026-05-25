@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "Service",
+    "@id": "https://firstsecurity.com.br/servicos/purple-team/#service",
+    "name": "Purple Team",
+    "description": "Exercício colaborativo entre Red Team e Blue Team para melhorar detecção, resposta a incidentes e maturidade do SOC. Ideal para organizações com equipe de segurança interna.",
+    "provider": { "@id": "https://firstsecurity.com.br/#organization" },
+    "areaServed": { "@type": "Country", "name": "Brasil" },
+    "serviceType": "Purple Team",
+    "url": "https://firstsecurity.com.br/servicos/purple-team"
+  },
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/servicos/purple-team/#webpage",
+    "url": "https://firstsecurity.com.br/servicos/purple-team",
+    "name": "Purple Team: Exercício Colaborativo Red Team e Blue Team | First Security",
+    "description": "Purple Team profissional para empresas no Brasil. Exercício colaborativo entre Red Team e Blue Team para melhorar detecção, alertas e resposta a incidentes do SOC.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Serviços", "item": "https://firstsecurity.com.br/servicos" },
+        { "@type": "ListItem", "position": 3, "name": "Purple Team", "item": "https://firstsecurity.com.br/servicos/purple-team" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Purple Team: Exercício Colaborativo Red Team e Blue Team | First Security"
+  description="Purple Team profissional para empresas no Brasil. Exercício colaborativo entre Red Team e Blue Team para melhorar detecção, alertas e resposta a incidentes do SOC."
+  canonical="/servicos/purple-team"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Serviços', href: '/servicos' }, { label: 'Purple Team' }]} />
+
+  <section style="padding:var(--space-16) 0 var(--space-12);background:linear-gradient(135deg,rgba(10,31,61,0.03) 0%,rgba(0,180,255,0.05) 100%);" aria-labelledby="purpleH1">
+    <div class="container" style="max-width:900px">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
+        <span class="badge badge-navy">Red + Blue = Purple</span>
+        <span class="badge badge-cyan">MITRE ATT&CK</span>
+        <span class="badge badge-slate">SOC improvement</span>
+      </div>
+      <h1 id="purpleH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;">Purple Team</h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;margin-bottom:24px;">
+        O Purple Team é um exercício colaborativo no qual o Red Team executa técnicas de ataque enquanto o Blue Team observa, detecta e responde em tempo real. O objetivo não é "vencer", mas melhorar coletivamente a capacidade de detecção e resposta da organização contra as táticas e técnicas (TTPs) do MITRE ATT&CK.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar Purple Team</a>
+        <a href="/contato" class="btn btn-secondary btn-lg">Falar com especialista</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="purpleVsRedTitle">
+    <div class="container" style="max-width:860px">
+      <div class="section-header text-center">
+        <div class="section-eyebrow">Diferença</div>
+        <h2 id="purpleVsRedTitle" class="section-title">Purple Team vs. Red Team</h2>
+      </div>
+      <div class="grid-2" style="margin-top:var(--space-8);">
+        <div class="card" style="border-top:3px solid rgba(255,80,80,0.5);">
+          <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:12px;">Red Team</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+            {['Adversarial e sigiloso', 'Blue Team não é informado', 'Objetivo: comprometer sem ser detectado', 'Mede resistência a ataques reais', 'Avalia também a resposta a incidentes'].map((i) => (
+              <li style="font-size:13.5px;color:var(--color-slate);display:flex;gap:8px;"><span style="color:#e05555;flex-shrink:0;font-weight:700;">R</span>{i}</li>
+            ))}
+          </ul>
+        </div>
+        <div class="card" style="border-top:3px solid #9b59b6;">
+          <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:12px;">Purple Team</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+            {['Colaborativo e transparente', 'Blue Team participa ativamente', 'Objetivo: melhorar detecção e resposta', 'Mede cobertura de alertas por TTP', 'Acelera maturidade do SOC'].map((i) => (
+              <li style="font-size:13.5px;color:var(--color-slate);display:flex;gap:8px;"><span style="color:#9b59b6;flex-shrink:0;font-weight:700;">P</span>{i}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--color-off-white);" aria-labelledby="formatoTitle">
+    <div class="container" style="max-width:860px">
+      <div class="section-header">
+        <div class="section-eyebrow">Como funciona</div>
+        <h2 id="formatoTitle" class="section-title">Formato do exercício</h2>
+      </div>
+      <div class="grid-3">
+        {[
+          { n: '01', t: 'Planejamento conjunto', d: 'Seleção das TTPs a testar com base nas ameaças mais relevantes para o setor. Alinhamento de ambiente, ferramentas de detecção e critérios de sucesso.' },
+          { n: '02', t: 'Execução e observação', d: 'Red Team executa cada técnica enquanto Blue Team monitora em tempo real. Após cada técnica: foi detectado? Em quanto tempo? Qual o alerta gerado?' },
+          { n: '03', t: 'Análise e melhoria', d: 'Para cada técnica sem detecção, Blue Team desenvolve nova regra ou ajusta threshold. O ciclo se repete até atingir a cobertura desejada.' },
+        ].map((item) => (
+          <div class="card">
+            <div style="font-family:var(--font-mono);font-size:20px;font-weight:800;color:var(--color-cyan-600);margin-bottom:10px;">{item.n}</div>
+            <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:8px;">{item.t}</h3>
+            <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;">{item.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="ctaPurple">
+    <div class="container text-center">
+      <h2 id="ctaPurple" class="section-title" style="color:white;">Melhore a detecção do seu SOC</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Indicado para organizações com Blue Team ou SOC interno. Diagnóstico gratuito.
+      </p>
+      <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar orçamento</a>
+    </div>
+  </section>
+</BaseLayout>

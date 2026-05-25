@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/comparativos/#webpage",
+    "url": "https://firstsecurity.com.br/comparativos",
+    "name": "Comparativos de Segurança: Pentest vs Outras Abordagens | First Security",
+    "description": "Comparativos técnicos entre pentest e outras abordagens de segurança: análise de vulnerabilidade, bug bounty, SAST/DAST e ferramentas automatizadas.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Comparativos", "item": "https://firstsecurity.com.br/comparativos" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Comparativos de Segurança: Pentest vs Outras Abordagens | First Security"
+  description="Comparativos técnicos entre pentest e outras abordagens de segurança: diferenças, quando usar cada um e como combinar para um programa de segurança efetivo."
+  canonical="/comparativos"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Comparativos' }]} />
+
+  <section style="padding:var(--space-16) 0 var(--space-12);" aria-labelledby="comparativosH1">
+    <div class="container" style="max-width:900px">
+      <span class="badge badge-cyan" style="margin-bottom:16px;">Guias técnicos</span>
+      <h1 id="comparativosH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;">Comparativos de segurança</h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;margin-bottom:32px;">
+        Entender as diferenças entre as abordagens de segurança ajuda a tomar decisões melhores sobre onde investir. Estes guias comparam o pentest com alternativas comuns e explicam quando usar cada uma.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="comparativosListTitle">
+    <div class="container" style="max-width:900px">
+      <div class="grid-2">
+        <a href="/comparativos/pentest-vs-analise-de-vulnerabilidade" class="card" style="text-decoration:none;display:block;">
+          <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:10px;">Pentest vs Análise de Vulnerabilidade</h3>
+          <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;">As duas abordagens mais confundidas no mercado. Entenda as diferenças técnicas, quando usar cada uma e por que a maioria das organizações precisa das duas.</p>
+          <span style="display:inline-block;margin-top:16px;font-size:13px;font-weight:600;color:var(--color-cyan-600);">Ler comparativo</span>
+        </a>
+        <div class="card" style="opacity:0.6;">
+          <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:10px;">Pentest vs Bug Bounty</h3>
+          <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;">Quando contratar um pentest estruturado versus abrir um programa de recompensas por vulnerabilidades. Vantagens, limitações e maturidade necessária para cada abordagem.</p>
+          <span style="display:inline-block;margin-top:16px;font-size:13px;font-weight:600;color:var(--color-slate);">Em breve</span>
+        </div>
+        <div class="card" style="opacity:0.6;">
+          <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:10px;">Pentest vs SAST e DAST</h3>
+          <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;">Ferramentas automatizadas de análise estática e dinâmica versus testes manuais por especialista. O que cada abordagem encontra e o que cada uma deixa passar.</p>
+          <span style="display:inline-block;margin-top:16px;font-size:13px;font-weight:600;color:var(--color-slate);">Em breve</span>
+        </div>
+        <div class="card" style="opacity:0.6;">
+          <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:10px;">Pentest vs Red Team</h3>
+          <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;">Diferença entre um pentest com escopo definido e um exercício de Red Team com objetivos de negócio. Quando a sua organização está pronta para dar esse passo.</p>
+          <span style="display:inline-block;margin-top:16px;font-size:13px;font-weight:600;color:var(--color-slate);">Em breve</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="ctaComparativos">
+    <div class="container text-center">
+      <h2 id="ctaComparativos" class="section-title" style="color:white;">Ainda tem dúvidas sobre qual abordagem usar?</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Nossa equipe pode indicar a abordagem mais adequada para o seu contexto sem compromisso.
+      </p>
+      <a href="/contato" class="btn btn-cyan btn-lg">Falar com especialista</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "ItemList",
+    "@id": "https://firstsecurity.com.br/servicos/#itemlist",
+    "name": "Serviços de pentest e cibersegurança ofensiva da First Security",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Pentest Web", "url": "https://firstsecurity.com.br/servicos/pentest-web" },
+      { "@type": "ListItem", "position": 2, "name": "Pentest Mobile", "url": "https://firstsecurity.com.br/servicos/pentest-mobile" },
+      { "@type": "ListItem", "position": 3, "name": "Pentest API", "url": "https://firstsecurity.com.br/servicos/pentest-api" },
+      { "@type": "ListItem", "position": 4, "name": "Pentest Cloud", "url": "https://firstsecurity.com.br/servicos/pentest-cloud" },
+      { "@type": "ListItem", "position": 5, "name": "Pentest Infraestrutura", "url": "https://firstsecurity.com.br/servicos/pentest-infraestrutura" },
+      { "@type": "ListItem", "position": 6, "name": "Red Team", "url": "https://firstsecurity.com.br/red-team" },
+    ]
+  },
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/servicos/#webpage",
+    "url": "https://firstsecurity.com.br/servicos",
+    "name": "Serviços de Pentest e Cibersegurança Ofensiva | First Security",
+    "description": "Todos os serviços de pentest e cibersegurança ofensiva da First Security: pentest web, mobile, API, cloud, infraestrutura, Red Team e Purple Team.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Serviços", "item": "https://firstsecurity.com.br/servicos" }
+      ]
+    }
+  }
+];
+
+const servicosPrincipais = [
+  {
+    titulo: 'Pentest Web',
+    href: '/servicos/pentest-web',
+    desc: 'Teste de penetração em aplicações web cobrindo OWASP Top 10, lógica de negócio, autenticação e autorização, injeções e configuração de infraestrutura.',
+    tags: ['OWASP Top 10', 'Lógica de negócio', 'Autenticação'],
+    destaque: false,
+  },
+  {
+    titulo: 'Pentest Mobile',
+    href: '/servicos/pentest-mobile',
+    desc: 'Testes em aplicativos Android e iOS conforme OWASP MASVS. Análise estática e dinâmica, comunicação insegura, armazenamento de dados e controles de autenticação.',
+    tags: ['Android', 'iOS', 'OWASP MASVS'],
+    destaque: false,
+  },
+  {
+    titulo: 'Pentest API',
+    href: '/servicos/pentest-api',
+    desc: 'Avaliação de segurança de APIs REST, GraphQL e gRPC conforme OWASP API Security Top 10. Autenticação, autorização por objeto e propriedade, rate limiting e exposição de dados.',
+    tags: ['REST', 'GraphQL', 'OWASP API Top 10'],
+    destaque: false,
+  },
+  {
+    titulo: 'Pentest Cloud',
+    href: '/servicos/pentest-cloud',
+    desc: 'Avaliação de ambientes AWS, Azure, GCP, Kubernetes e SaaS. Configurações inseguras, permissões excessivas, exposição de buckets e escalada de privilégios em IAM.',
+    tags: ['AWS', 'Azure', 'GCP', 'Kubernetes'],
+    destaque: false,
+  },
+  {
+    titulo: 'Pentest Infraestrutura',
+    href: '/servicos/pentest-infraestrutura',
+    desc: 'Testes em redes internas, externas e wireless. Enumeração de serviços, exploração de vulnerabilidades em sistemas operacionais e dispositivos de rede, e segmentação.',
+    tags: ['Rede interna', 'Rede externa', 'Wireless'],
+    destaque: false,
+  },
+  {
+    titulo: 'Pentest Active Directory',
+    href: '/servicos/pentest-active-directory',
+    desc: 'Avaliação completa de ambientes Windows AD: Kerberoasting, AS-REP Roasting, Pass-the-Hash, BloodHound, escalada de privilégios até Domain Admin.',
+    tags: ['Kerberoasting', 'BloodHound', 'Escalada AD'],
+    destaque: false,
+  },
+  {
+    titulo: 'Pentest AI e LLM',
+    href: '/servicos/pentest-ai',
+    desc: 'Testes adversariais em sistemas de inteligência artificial: prompt injection, jailbreak, vazamento de dados de treinamento, manipulação de modelos e OWASP Top 10 para LLMs.',
+    tags: ['Prompt injection', 'LLM', 'AI Security'],
+    destaque: false,
+  },
+  {
+    titulo: 'Pentest IoT e OT/SCADA',
+    href: '/servicos/pentest-iot',
+    desc: 'Avaliação de dispositivos IoT, sistemas industriais OT/SCADA e ambientes de tecnologia operacional. Firmware analysis, protocolos industriais e interfaces de gerenciamento.',
+    tags: ['IoT', 'SCADA', 'OT Security'],
+    destaque: false,
+  },
+];
+
+const servicosEspeciais = [
+  {
+    titulo: 'Red Team',
+    href: '/red-team',
+    desc: 'Simulação realista de ameaças avançadas (APT) com múltiplos vetores de ataque simultâneos: phishing direcionado, exploração técnica, engenharia social e persistência. Avalia pessoas, processos e tecnologia em conjunto.',
+    badge: 'Avançado',
+  },
+  {
+    titulo: 'Purple Team',
+    href: '/servicos/purple-team',
+    desc: 'Exercício colaborativo entre Red Team (ataque) e Blue Team (defesa) para melhorar detecção, resposta a incidentes e maturidade do SOC. Ideal para organizações com equipe de segurança interna.',
+    badge: 'Colaborativo',
+  },
+  {
+    titulo: 'Pentest as a Service (PTaaS)',
+    href: '/servicos/pentest-as-a-service',
+    desc: 'Modelo de contrato contínuo com créditos de pentest utilizados ao longo do ano, acesso prioritário à equipe, retestes ilimitados e relatórios consolidados para compliance.',
+    badge: 'Contínuo',
+  },
+];
+---
+
+<BaseLayout
+  title="Serviços de Pentest e Cibersegurança Ofensiva | First Security"
+  description="Todos os serviços de pentest e cibersegurança ofensiva da First Security: pentest web, mobile, API, cloud, infraestrutura, Red Team, Purple Team e PTaaS."
+  canonical="/servicos"
+  schema={schema}
+>
+
+  <Breadcrumbs items={[{ label: 'Serviços' }]} />
+
+  <!-- HERO -->
+  <section style="padding:var(--space-16) 0 var(--space-12);background:linear-gradient(135deg,rgba(10,31,61,0.03) 0%,rgba(0,180,255,0.05) 100%);" aria-labelledby="servicosH1">
+    <div class="container" style="max-width:900px">
+      <span class="badge badge-cyan" style="margin-bottom:16px;">Portfólio completo</span>
+      <h1 id="servicosH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;">
+        Serviços de cibersegurança ofensiva
+      </h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;margin-bottom:32px;">
+        Da aplicação web ao ambiente industrial, a First Security cobre todos os escopos de pentest com equipe certificada (OSCP, OSWE, OSEP, CRTO) e metodologia que produz relatórios usados em board, compliance e remediação.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar orçamento</a>
+        <a href="/contato" class="btn btn-secondary btn-lg">Falar com especialista</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS PRINCIPAIS: PENTESTS -->
+  <section class="section" aria-labelledby="escoposPentestTitle">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Escopos de pentest</div>
+        <h2 id="escoposPentestTitle" class="section-title">Todos os tipos de pentest</h2>
+        <p class="section-subtitle">Cada escopo tem metodologia própria, ferramentas dedicadas e equipe especializada.</p>
+      </div>
+      <div class="grid-4">
+        {servicosPrincipais.map((s) => (
+          <a href={s.href} class="card" style="text-decoration:none;display:block;">
+            <h3 class="t-heading-md" style="margin-bottom:8px;color:var(--color-navy);">{s.titulo}</h3>
+            <p style="font-size:13.5px;color:var(--color-slate);line-height:1.55;margin-bottom:14px;">{s.desc}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              {s.tags.map((t) => (
+                <span style="font-size:11.5px;background:var(--color-off-white);border:1px solid var(--color-slate-200);border-radius:var(--radius-full);padding:2px 8px;color:var(--color-slate-600);">{t}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS AVANÇADOS -->
+  <section class="section" style="background:var(--color-navy);" aria-labelledby="servicosAvancadosTitle">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow" style="color:var(--color-cyan-400);">Serviços avançados</div>
+        <h2 id="servicosAvancadosTitle" class="section-title" style="color:white;">Red Team, Purple Team e PTaaS</h2>
+        <p class="section-subtitle" style="color:rgba(255,255,255,0.65);">Para organizações com maior maturidade de segurança ou necessidade de avaliações mais abrangentes.</p>
+      </div>
+      <div class="grid-3">
+        {servicosEspeciais.map((s) => (
+          <a href={s.href} style="text-decoration:none;display:block;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:var(--space-6);transition:all 0.2s;cursor:pointer;" class="card-navy">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+              <h3 class="t-heading-md" style="color:white;margin:0;">{s.titulo}</h3>
+              <span style="font-size:11px;font-weight:700;color:var(--color-cyan-400);background:rgba(0,180,255,0.12);border:1px solid rgba(0,180,255,0.2);border-radius:var(--radius-full);padding:3px 10px;flex-shrink:0;">{s.badge}</span>
+            </div>
+            <p style="font-size:13.5px;color:rgba(255,255,255,0.65);line-height:1.6;">{s.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO ESCOLHER -->
+  <section class="section" aria-labelledby="comoEscolherTitle">
+    <div class="container" style="max-width:860px">
+      <div class="section-header">
+        <div class="section-eyebrow">Orientação</div>
+        <h2 id="comoEscolherTitle" class="section-title">Como escolher o escopo certo</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--color-slate-200);border-radius:var(--radius-lg);overflow:hidden;">
+        {[
+          { cenario: 'Tenho uma aplicação web ou e-commerce', recomendacao: 'Pentest Web', href: '/servicos/pentest-web' },
+          { cenario: 'Lançarei um aplicativo mobile', recomendacao: 'Pentest Mobile', href: '/servicos/pentest-mobile' },
+          { cenario: 'Preciso testar minha API ou backend', recomendacao: 'Pentest API', href: '/servicos/pentest-api' },
+          { cenario: 'Minha infraestrutura está na nuvem (AWS, Azure, GCP)', recomendacao: 'Pentest Cloud', href: '/servicos/pentest-cloud' },
+          { cenario: 'Quero avaliar minha rede interna ou datacenter', recomendacao: 'Pentest Infraestrutura', href: '/servicos/pentest-infraestrutura' },
+          { cenario: 'Tenho ambiente Windows com Active Directory', recomendacao: 'Pentest Active Directory', href: '/servicos/pentest-active-directory' },
+          { cenario: 'Quero uma simulação realista de APT', recomendacao: 'Red Team', href: '/red-team' },
+          { cenario: 'Preciso de cobertura contínua ao longo do ano', recomendacao: 'Pentest as a Service', href: '/servicos/pentest-as-a-service' },
+        ].map((item, i) => (
+          <div style={`display:flex;align-items:center;justify-content:space-between;padding:16px 20px;${i > 0 ? 'border-top:1px solid var(--color-slate-200);' : ''}gap:16px;`}>
+            <span style="font-size:14px;color:var(--color-slate-700);">{item.cenario}</span>
+            <a href={item.href} style="font-size:13.5px;font-weight:600;color:var(--color-cyan-600);white-space:nowrap;text-decoration:none;flex-shrink:0;">
+              {item.recomendacao} &rarr;
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" aria-labelledby="ctaServicos">
+    <div class="container text-center">
+      <h2 id="ctaServicos" class="section-title" style="color:white;">Qual escopo faz sentido para você?</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Diagnóstico inicial gratuito. Ajudamos a definir o escopo mais adequado para o seu ambiente e orçamento.
+      </p>
+      <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar diagnóstico gratuito</a>
+    </div>
+  </section>
+
+</BaseLayout>

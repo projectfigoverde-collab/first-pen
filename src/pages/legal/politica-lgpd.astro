@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/legal/politica-lgpd/#webpage",
+    "url": "https://firstsecurity.com.br/legal/politica-lgpd",
+    "name": "Política de Privacidade e LGPD | First Security",
+    "description": "Como a First Security trata dados pessoais de acordo com a LGPD (Lei 13.709/2018): dados coletados, finalidades, direitos dos titulares e contato com o encarregado.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Legal", "item": "https://firstsecurity.com.br/legal" },
+        { "@type": "ListItem", "position": 3, "name": "Política LGPD", "item": "https://firstsecurity.com.br/legal/politica-lgpd" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Política de Privacidade e LGPD | First Security"
+  description="Como a First Security trata dados pessoais conforme a LGPD (Lei 13.709/2018): quais dados coletamos, por que coletamos, seus direitos como titular e como exercê-los."
+  canonical="/legal/politica-lgpd"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Legal', href: '/legal' }, { label: 'Política LGPD' }]} />
+
+  <section style="padding:var(--space-16) 0 var(--space-12);" aria-labelledby="lgpdPolH1">
+    <div class="container" style="max-width:760px">
+      <span class="badge badge-navy" style="margin-bottom:16px;">LGPD | Lei 13.709/2018</span>
+      <h1 id="lgpdPolH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:12px;">Política de Privacidade e LGPD</h1>
+      <p style="font-size:13px;color:var(--color-slate);">Última atualização: maio de 2026</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" aria-label="Conteúdo da política de privacidade">
+    <div class="container" style="max-width:760px">
+      <div class="prose">
+        <h2>1. Sobre este documento</h2>
+        <p>Esta Política descreve como a First Security, na qualidade de controladora de dados, coleta, usa, armazena e protege os dados pessoais dos visitantes do Site e de prospectos que entram em contato por meio dos formulários disponíveis. Este documento cumpre o art. 9º da Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018).</p>
+
+        <h2>2. Dados coletados e finalidades</h2>
+
+        <h3>2.1. Formulário de contato e orçamento</h3>
+        <p>Coletamos: nome, e-mail, telefone (opcional), nome da empresa e descrição do projeto. Base legal: execução de contrato (art. 7º, V LGPD) e legítimo interesse em responder à solicitação (art. 7º, IX).</p>
+
+        <h3>2.2. Dados de navegação</h3>
+        <p>Com seu consentimento, coletamos dados anônimos de navegação (páginas acessadas, tempo de sessão) por meio de cookies analíticos. Base legal: consentimento (art. 7º, I). Você pode revogar a qualquer momento pelo banner de cookies.</p>
+
+        <h3>2.3. Dados de clientes em projetos de pentest</h3>
+        <p>No contexto de projetos contratados, tratamos dados técnicos dos ambientes dos clientes (endereços IP, credenciais temporárias, informações de sistemas) exclusivamente para execução do serviço contratado. Esses dados são regidos pelo contrato de prestação de serviços e pelo NDA assinado com o cliente.</p>
+
+        <h2>3. Compartilhamento de dados</h2>
+        <p>Não vendemos, cedemos ou compartilhamos dados pessoais com terceiros para fins comerciais. Podemos compartilhar com:</p>
+        <ul>
+          <li>Prestadores de serviços de infraestrutura tecnológica (hospedagem, e-mail) sob contrato de confidencialidade;</li>
+          <li>Autoridades públicas quando exigido por lei ou ordem judicial.</li>
+        </ul>
+
+        <h2>4. Retenção de dados</h2>
+        <p>Dados de formulários de contato são mantidos pelo período necessário para responder à solicitação e pelo prazo prescricional aplicável (5 anos). Dados de cookies analíticos são mantidos conforme o prazo definido em nossa Política de Cookies.</p>
+
+        <h2>5. Seus direitos como titular (art. 18 LGPD)</h2>
+        <ul>
+          <li><strong>Confirmação e acesso:</strong> saber se tratamos seus dados e obter uma cópia;</li>
+          <li><strong>Correção:</strong> solicitar a atualização de dados incorretos ou incompletos;</li>
+          <li><strong>Eliminação:</strong> solicitar a exclusão de dados tratados com base no consentimento;</li>
+          <li><strong>Portabilidade:</strong> receber seus dados em formato estruturado;</li>
+          <li><strong>Revogação de consentimento:</strong> retirar o consentimento a qualquer tempo;</li>
+          <li><strong>Oposição:</strong> opor-se ao tratamento quando entender que não é necessário;</li>
+          <li><strong>Informação:</strong> saber com quem seus dados são compartilhados.</li>
+        </ul>
+        <p>Para exercer seus direitos, entre em contato pelo formulário em <a href="/contato">/contato</a>, indicando o direito que deseja exercer. Responderemos em até 15 dias úteis.</p>
+
+        <h2>6. Encarregado de Dados (DPO)</h2>
+        <p>Nosso Encarregado de Proteção de Dados pode ser contatado pelo e-mail disponível na página de contato, com assunto "DPO" ou "LGPD".</p>
+
+        <h2>7. Segurança dos dados</h2>
+        <p>Adotamos medidas técnicas e administrativas de segurança para proteger os dados pessoais contra acesso não autorizado, perda ou alteração, incluindo criptografia de dados em trânsito (TLS), controles de acesso e revisão periódica de segurança de nossa própria infraestrutura.</p>
+
+        <h2>8. Alterações desta política</h2>
+        <p>Esta Política pode ser atualizada a qualquer momento. Alterações materiais serão comunicadas com destaque no Site. O uso continuado do Site após as alterações constitui aceite da política revisada.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

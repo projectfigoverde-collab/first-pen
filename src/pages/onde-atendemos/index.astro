@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/onde-atendemos/#webpage",
+    "url": "https://firstsecurity.com.br/onde-atendemos",
+    "name": "Onde Atendemos: Pentest Remoto e Presencial no Brasil | First Security",
+    "description": "A First Security realiza pentests remotamente para todo o Brasil e presencialmente em São Paulo. Infraestrutura remota profissional para testes de infraestrutura interna.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Onde Atendemos", "item": "https://firstsecurity.com.br/onde-atendemos" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Onde Atendemos: Pentest Remoto e Presencial no Brasil | First Security"
+  description="A First Security atende empresas em todo o Brasil de forma remota e presencialmente em São Paulo. Infraestrutura profissional para pentest de redes internas à distância."
+  canonical="/onde-atendemos"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Onde Atendemos' }]} />
+
+  <section style="padding:var(--space-16) 0 var(--space-12);" aria-labelledby="ondeH1">
+    <div class="container" style="max-width:860px">
+      <span class="badge badge-cyan" style="margin-bottom:16px;">Cobertura nacional</span>
+      <h1 id="ondeH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;">Onde atendemos</h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;">
+        A First Security atende empresas em todo o Brasil. A maioria dos pentests é realizada remotamente com a mesma profundidade de um teste presencial. Para avaliações que exigem acesso físico à rede interna, atendemos presencialmente em São Paulo e viajamos para outras localidades mediante agendamento.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="modalidadeTitle">
+    <div class="container" style="max-width:900px">
+      <div class="section-header">
+        <div class="section-eyebrow">Formas de atendimento</div>
+        <h2 id="modalidadeTitle" class="section-title">Remoto ou presencial: como funciona</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card" style="border-top:3px solid var(--color-cyan-600);">
+          <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:12px;">Pentest remoto</h3>
+          <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;margin-bottom:16px;">Adequado para pentest de aplicações web, APIs, cloud, mobile e a maioria dos ambientes de rede. Executado de nossa infraestrutura com IPs documentados e autorizados. Todo o projeto é conduzido com a mesma metodologia e qualidade do presencial.</p>
+          <ul style="font-size:13px;color:var(--color-slate);padding-left:18px;line-height:2;">
+            <li>Pentest web e API</li>
+            <li>Pentest cloud (AWS, Azure, GCP)</li>
+            <li>Pentest mobile (iOS e Android)</li>
+            <li>Pentest de infraestrutura externa</li>
+            <li>Pentest de infraestrutura interna via VPN/Jump Server</li>
+          </ul>
+        </div>
+        <div class="card" style="border-top:3px solid var(--color-navy);">
+          <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:12px;">Pentest presencial</h3>
+          <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;margin-bottom:16px;">Recomendado quando o acesso à rede interna não pode ser viabilizado remotamente ou quando o escopo inclui testes de segmentação física, redes wireless, dispositivos IoT/OT ou ambientes de alta segurança.</p>
+          <ul style="font-size:13px;color:var(--color-slate);padding-left:18px;line-height:2;">
+            <li>Pentest de rede interna sem VPN disponível</li>
+            <li>Pentest wireless (Wi-Fi e redes corporativas)</li>
+            <li>Pentest de dispositivos IoT e OT/SCADA</li>
+            <li>Avaliação de segurança física</li>
+            <li>Red Team com componente de engenharia social presencial</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--color-off-white);" aria-labelledby="estadosTitle">
+    <div class="container" style="max-width:860px">
+      <div class="section-header">
+        <div class="section-eyebrow">Cobertura geográfica</div>
+        <h2 id="estadosTitle" class="section-title">Estados atendidos</h2>
+      </div>
+      <div class="prose">
+        <p>Atendemos remotamente empresas em todos os estados do Brasil: São Paulo, Rio de Janeiro, Minas Gerais, Rio Grande do Sul, Paraná, Santa Catarina, Bahia, Pernambuco, Ceará, Goiás, Mato Grosso, Mato Grosso do Sul, Pará, Maranhão, Espírito Santo, Amazonas, Rio Grande do Norte, Paraíba, Piauí, Alagoas, Sergipe, Rondônia, Tocantins, Amapá, Acre, Roraima e Distrito Federal.</p>
+        <p>Para atendimento presencial fora de São Paulo, consulte a disponibilidade de deslocamento. Projetos com componente presencial em outras localidades podem incluir custos de viagem na proposta.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="ctaOnde">
+    <div class="container text-center">
+      <h2 id="ctaOnde" class="section-title" style="color:white;">Atendemos sua empresa onde quer que esteja</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Solicite um orçamento informando sua localização e o escopo desejado.
+      </p>
+      <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar orçamento</a>
+    </div>
+  </section>
+</BaseLayout>

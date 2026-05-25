@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "AboutPage",
+    "@id": "https://firstsecurity.com.br/quem-somos/#aboutpage",
+    "url": "https://firstsecurity.com.br/quem-somos",
+    "name": "Quem Somos: First Security, Empresa de Pentest no Brasil",
+    "description": "Conheça a First Security: equipe certificada (OSCP, OSWE, OSEP, CRTO), metodologia transparente e mais de 500 pentests realizados em empresas brasileiras.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "about": { "@id": "https://firstsecurity.com.br/#organization" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Quem somos", "item": "https://firstsecurity.com.br/quem-somos" }
+      ]
+    }
+  }
+];
+
+const valores = [
+  {
+    titulo: 'Evidências, não promessas',
+    desc: 'Cada vulnerabilidade entregue no relatório vem com prova de conceito reproduzível. Nenhuma afirmação sem evidência documentada.',
+  },
+  {
+    titulo: 'Transparência total',
+    desc: 'Comunicação aberta durante todo o projeto: escopo acordado, progresso compartilhado, descobertas críticas comunicadas em tempo real.',
+  },
+  {
+    titulo: 'Aprendizado contínuo',
+    desc: 'O cenário de ameaças evolui diariamente. Nossa equipe está em constante atualização: novas certificações, pesquisa própria e participação em CTFs.',
+  },
+  {
+    titulo: 'Impacto real para o negócio',
+    desc: 'Vulnerabilidades técnicas são traduzidas em impacto de negócio: qual é a consequência concreta de cada falha para a organização.',
+  },
+];
+
+const stats = [
+  { numero: '500+', label: 'Pentests realizados' },
+  { numero: '8+', label: 'Anos de experiência' },
+  { numero: '15', label: 'Setores atendidos' },
+  { numero: '98%', label: 'Clientes que renovam' },
+];
+---
+
+<BaseLayout
+  title="Quem Somos: First Security, Empresa de Pentest no Brasil"
+  description="Conheça a First Security: equipe certificada (OSCP, OSWE, OSEP, CRTO), metodologia transparente e mais de 500 pentests realizados em empresas brasileiras."
+  canonical="/quem-somos"
+  schema={schema}
+>
+
+  <Breadcrumbs items={[{ label: 'Quem somos' }]} />
+
+  <!-- HERO -->
+  <section style="padding:var(--space-16) 0 var(--space-12);background:linear-gradient(135deg,rgba(10,31,61,0.03) 0%,rgba(0,180,255,0.05) 100%);" aria-labelledby="quemSomosH1">
+    <div class="container" style="max-width:860px">
+      <span class="badge badge-cyan" style="margin-bottom:16px;">Empresa brasileira de pentest</span>
+      <h1 id="quemSomosH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;">
+        Especialistas em cibersegurança ofensiva
+      </h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;margin-bottom:24px;">
+        A First Security é uma empresa brasileira especializada em pentest, Red Team e Purple Team. Nossa missão é ajudar organizações a identificar e corrigir vulnerabilidades antes que atacantes maliciosos as explorem.
+      </p>
+      <p style="color:var(--color-slate);max-width:700px;line-height:1.7;margin-bottom:36px;">
+        Trabalhamos com equipe própria certificada, sem terceirização de testes. Cada projeto é conduzido por especialistas OSCP, OSWE, OSEP e CRTO com experiência real em ambientes corporativos de diferentes setores: financeiro, saúde, varejo, tecnologia e governo.
+      </p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-strip" aria-label="Números da First Security">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-8);">
+        {stats.map((s) => (
+          <div class="stat-item">
+            <span class="stat-number">{s.numero}</span>
+            <span class="stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSSA HISTÓRIA -->
+  <section class="section" aria-labelledby="historiaTitle">
+    <div class="container" style="max-width:860px">
+      <div class="section-header">
+        <div class="section-eyebrow">Nossa trajetória</div>
+        <h2 id="historiaTitle" class="section-title">Como chegamos até aqui</h2>
+      </div>
+      <div class="prose">
+        <p>
+          A First Security nasceu da insatisfação com o padrão de mercado de relatórios de pentest que listavam vulnerabilidades sem exploração real, sem evidências reproduzíveis e sem relevância para o negócio. Fundada por profissionais certificados com passagem por empresas do setor financeiro e de tecnologia, a empresa foi construída com um princípio central: <strong>evidências, não promessas</strong>.
+        </p>
+        <p>
+          Nos primeiros anos, o foco foi exclusivo no segmento financeiro, onde a régua de qualidade é mais alta e os riscos de uma falha de segurança são mais concretos. Essa escolha foi deliberada: dominar o mercado mais exigente antes de expandir. Hoje, atendemos empresas de 15 setores diferentes, mas a profundidade técnica e o padrão de relatório do setor financeiro são mantidos em todos os projetos.
+        </p>
+        <p>
+          Com mais de 500 pentests realizados, expandimos o portfólio para incluir Red Team, Purple Team e Pentest as a Service (PTaaS), mantendo o princípio de equipe própria, sem terceirização, e certificações atualizadas como critério inegociável para permanência na equipe.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="section" style="background:var(--color-off-white);" aria-labelledby="valoresTitle">
+    <div class="container" style="max-width:900px">
+      <div class="section-header text-center">
+        <div class="section-eyebrow">O que nos guia</div>
+        <h2 id="valoresTitle" class="section-title">Nossos valores</h2>
+      </div>
+      <div class="grid-2">
+        {valores.map((v) => (
+          <div class="card">
+            <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:10px;">{v.titulo}</h3>
+            <p style="font-size:14px;color:var(--color-slate);line-height:1.65;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICAÇÕES -->
+  <section class="section" aria-labelledby="certsTitle">
+    <div class="container" style="max-width:860px">
+      <div class="section-header">
+        <div class="section-eyebrow">Credenciais técnicas</div>
+        <h2 id="certsTitle" class="section-title">Certificações da equipe</h2>
+        <p class="section-subtitle">Certificações não são troféus. São a garantia de que a equipe domina as técnicas que usa nos testes.</p>
+      </div>
+      <div class="grid-3">
+        {[
+          { sigla: 'OSCP', nome: 'Offensive Security Certified Professional', org: 'Offensive Security', desc: 'Certificação prática de 24h de exploração de sistemas reais. Referência global em pentest de infraestrutura.' },
+          { sigla: 'OSWE', nome: 'Offensive Security Web Expert', org: 'Offensive Security', desc: 'Especialização avançada em exploração de aplicações web com foco em code review e técnicas personalizadas.' },
+          { sigla: 'OSEP', nome: 'Offensive Security Experienced Penetration Tester', org: 'Offensive Security', desc: 'Evasão de controles de segurança modernos (AV, EDR), Active Directory avançado e operações de Red Team.' },
+          { sigla: 'CRTO', nome: 'Certified Red Team Operator', org: 'Zero-Point Security', desc: 'Operações de Red Team com Cobalt Strike, infraestrutura de C2 e técnicas avançadas de persistência e movimento lateral.' },
+          { sigla: 'OWASP Member', nome: 'Open Web Application Security Project', org: 'OWASP Foundation', desc: 'Participação ativa na comunidade OWASP, contribuição para guias de teste e presença em eventos do ecossistema.' },
+          { sigla: 'CEH', nome: 'Certified Ethical Hacker', org: 'EC-Council', desc: 'Certificação reconhecida internacionalmente cobrindo metodologias e técnicas de hacking ético.' },
+        ].map((cert) => (
+          <div class="card">
+            <span class="cert-badge" style="margin-bottom:12px;">{cert.sigla}</span>
+            <h3 class="t-heading-sm" style="color:var(--color-navy);margin-bottom:4px;">{cert.nome}</h3>
+            <div style="font-size:12px;color:var(--color-cyan-600);margin-bottom:10px;">{cert.org}</div>
+            <p style="font-size:13px;color:var(--color-slate);line-height:1.55;">{cert.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKS INTERNOS -->
+  <section class="section" style="background:var(--color-off-white);" aria-label="Mais sobre a First Security">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-eyebrow">Saiba mais</div>
+        <h2 class="section-title">Conheça nossa metodologia e equipe</h2>
+      </div>
+      <div class="grid-3">
+        <a href="/quem-somos/metodologia" class="card" style="text-decoration:none;">
+          <h3 class="t-heading-md" style="margin-bottom:8px;color:var(--color-navy);">Nossa metodologia</h3>
+          <p style="font-size:13.5px;color:var(--color-slate);">Como estruturamos cada projeto: fases, controles de qualidade e comunicação durante a execução.</p>
+        </a>
+        <a href="/quem-somos/equipe" class="card" style="text-decoration:none;">
+          <h3 class="t-heading-md" style="margin-bottom:8px;color:var(--color-navy);">Nossa equipe</h3>
+          <p style="font-size:13.5px;color:var(--color-slate);">Conheça os especialistas que conduzem os testes e suas áreas de especialização.</p>
+        </a>
+        <a href="/casos-de-uso" class="card" style="text-decoration:none;">
+          <h3 class="t-heading-md" style="margin-bottom:8px;color:var(--color-navy);">Casos de uso</h3>
+          <p style="font-size:13.5px;color:var(--color-slate);">Exemplos de como empresas de diferentes setores utilizaram nossos serviços.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" aria-labelledby="ctaQuemSomos">
+    <div class="container text-center">
+      <h2 id="ctaQuemSomos" class="section-title" style="color:white;">Converse com nossa equipe</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Diagnóstico inicial gratuito. Entendemos o seu ambiente e propomos o escopo mais adequado.
+      </p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar orçamento</a>
+        <a href="/contato" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,0.3);color:white;">Falar com especialista</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

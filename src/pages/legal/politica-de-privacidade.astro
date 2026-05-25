@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/legal/politica-de-privacidade/#webpage",
+    "url": "https://firstsecurity.com.br/legal/politica-de-privacidade",
+    "name": "Política de Privacidade | First Security",
+    "description": "Política de privacidade da First Security. Como coletamos, usamos, armazenamos e protegemos seus dados pessoais, em conformidade com a LGPD.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Legal", "item": "https://firstsecurity.com.br/legal" },
+        { "@type": "ListItem", "position": 3, "name": "Política de Privacidade", "item": "https://firstsecurity.com.br/legal/politica-de-privacidade" }
+      ]
+    }
+  }
+];
+
+const dataAtualizacao = '24 de maio de 2026';
+---
+
+<BaseLayout
+  title="Política de Privacidade | First Security"
+  description="Política de privacidade da First Security. Como coletamos, usamos, armazenamos e protegemos seus dados pessoais, em conformidade com a LGPD (Lei 13.709/2018)."
+  canonical="/legal/politica-de-privacidade"
+  schema={schema}
+  noindex={false}
+>
+
+  <Breadcrumbs items={[{ label: 'Legal', href: '/legal' }, { label: 'Política de Privacidade' }]} />
+
+  <!-- HEADER DA PÁGINA -->
+  <section style="padding:var(--space-14) 0 var(--space-8);border-bottom:1px solid var(--color-slate-200);" aria-labelledby="privacidadeH1">
+    <div class="container" style="max-width:800px">
+      <h1 id="privacidadeH1" class="t-display-md" style="color:var(--color-navy);margin-bottom:12px;">
+        Política de Privacidade
+      </h1>
+      <p style="font-size:14px;color:var(--color-slate-400);">
+        Última atualização: {dataAtualizacao}. Versão 1.0.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <section style="padding:var(--space-10) 0 var(--space-16);" aria-label="Conteúdo da política de privacidade">
+    <div class="container" style="max-width:800px">
+      <div class="prose">
+
+        <p>
+          A First Security Segurança da Informação Ltda. ("First Security", "nós", "nosso") está comprometida com a proteção dos seus dados pessoais. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos informações quando você utiliza nosso site (<a href="https://firstsecurity.com.br">firstsecurity.com.br</a>) ou contrata nossos serviços.
+        </p>
+
+        <p>
+          Esta política está em conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD), Lei n.º 13.709/2018</strong>.
+        </p>
+
+        <h2>1. Dados que coletamos</h2>
+
+        <h3>1.1 Dados fornecidos diretamente por você</h3>
+        <p>
+          Quando você preenche formulários de contato, solicitação de orçamento ou inscrição em newsletter em nosso site, coletamos:
+        </p>
+        <ul>
+          <li>Nome completo</li>
+          <li>Endereço de e-mail</li>
+          <li>Nome da empresa e cargo</li>
+          <li>Informações sobre o ambiente ou projeto descritas na mensagem</li>
+          <li>Preferências de comunicação</li>
+        </ul>
+
+        <h3>1.2 Dados coletados automaticamente</h3>
+        <p>
+          Ao acessar nosso site, podem ser coletados automaticamente dados como endereço IP, tipo de navegador, páginas visitadas, tempo de permanência e origem do acesso. Esses dados são utilizados exclusivamente para fins analíticos e melhoria do site.
+        </p>
+
+        <h2>2. Como usamos seus dados</h2>
+        <p>Utilizamos seus dados pessoais para as seguintes finalidades:</p>
+        <ul>
+          <li>Responder às suas solicitações de contato ou orçamento;</li>
+          <li>Elaborar propostas comerciais personalizadas;</li>
+          <li>Enviar comunicações de marketing quando você autorizou expressamente (newsletter);</li>
+          <li>Cumprir obrigações legais e regulatórias;</li>
+          <li>Melhorar a experiência de uso do nosso site.</li>
+        </ul>
+
+        <h2>3. Base legal para o tratamento</h2>
+        <p>
+          O tratamento dos seus dados pessoais é realizado com fundamento nas seguintes bases legais previstas na LGPD:
+        </p>
+        <ul>
+          <li><strong>Consentimento (art. 7.º, I)</strong>: para envio de comunicações de marketing e newsletter;</li>
+          <li><strong>Execução de contrato (art. 7.º, V)</strong>: para prestação dos serviços contratados;</li>
+          <li><strong>Interesse legítimo (art. 7.º, IX)</strong>: para responder a solicitações e melhorar nossos serviços;</li>
+          <li><strong>Cumprimento de obrigação legal (art. 7.º, II)</strong>: quando exigido por lei ou regulamentação.</li>
+        </ul>
+
+        <h2>4. Compartilhamento de dados</h2>
+        <p>
+          A First Security não vende, aluga nem compartilha seus dados pessoais com terceiros para fins comerciais. Podemos compartilhar dados nas seguintes situações limitadas:
+        </p>
+        <ul>
+          <li>Com prestadores de serviços tecnológicos essenciais ao funcionamento do site (hospedagem, e-mail, analytics), sob acordos de confidencialidade;</li>
+          <li>Quando exigido por ordem judicial, autoridade competente ou obrigação legal;</li>
+          <li>Em caso de fusão, aquisição ou reestruturação societária, garantindo a continuidade das proteções desta política.</li>
+        </ul>
+
+        <h2>5. Armazenamento e segurança dos dados</h2>
+        <p>
+          Seus dados são armazenados em servidores seguros no Brasil ou em jurisdições com nível de proteção equivalente. Adotamos medidas técnicas e organizacionais adequadas para proteger seus dados contra acesso não autorizado, perda, alteração ou destruição, incluindo controles de acesso, criptografia e auditorias periódicas.
+        </p>
+        <p>
+          Dados de contato e orçamento são retidos pelo período necessário para a finalidade da coleta ou, no máximo, por 5 (cinco) anos, salvo obrigação legal de retenção por prazo maior.
+        </p>
+
+        <h2>6. Seus direitos como titular de dados</h2>
+        <p>
+          Conforme a LGPD, você tem os seguintes direitos em relação aos seus dados pessoais:
+        </p>
+        <ul>
+          <li>Confirmar a existência de tratamento;</li>
+          <li>Acessar seus dados;</li>
+          <li>Corrigir dados incompletos, inexatos ou desatualizados;</li>
+          <li>Solicitar a anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos;</li>
+          <li>Solicitar a portabilidade dos dados;</li>
+          <li>Revogar o consentimento a qualquer momento;</li>
+          <li>Solicitar a eliminação dos dados tratados com base no consentimento;</li>
+          <li>Obter informações sobre compartilhamento com terceiros;</li>
+          <li>Solicitar revisão de decisões automatizadas que afetem seus interesses.</li>
+        </ul>
+        <p>
+          Para exercer seus direitos, envie solicitação para <a href="mailto:privacidade@firstsecurity.com.br">privacidade@firstsecurity.com.br</a>. Respondemos em até 15 dias úteis.
+        </p>
+
+        <h2>7. Cookies</h2>
+        <p>
+          Utilizamos cookies essenciais para o funcionamento do site e cookies analíticos para entender o comportamento dos visitantes. Você pode gerenciar suas preferências de cookies a qualquer momento pelo banner de cookies exibido na primeira visita. Para mais informações, consulte nossa <a href="/legal/politica-de-cookies">Política de Cookies</a>.
+        </p>
+
+        <h2>8. Encarregado de Proteção de Dados (DPO)</h2>
+        <p>
+          O Encarregado de Proteção de Dados da First Security pode ser contatado pelo e-mail <a href="mailto:privacidade@firstsecurity.com.br">privacidade@firstsecurity.com.br</a>. Todas as solicitações relacionadas a dados pessoais devem ser enviadas para esse endereço.
+        </p>
+
+        <h2>9. Alterações a esta política</h2>
+        <p>
+          Podemos atualizar esta Política de Privacidade periodicamente. Em caso de alterações materiais, notificaremos os usuários por meio de aviso no site ou por e-mail, quando aplicável. A data de última atualização é sempre indicada no topo deste documento.
+        </p>
+
+        <h2>10. Legislação e foro</h2>
+        <p>
+          Esta política é regida pela legislação brasileira. Em caso de controvérsia, fica eleito o foro da Comarca de São Paulo, Estado de São Paulo, com renúncia a qualquer outro.
+        </p>
+
+        <hr style="margin:var(--space-8) 0;border:none;border-top:1px solid var(--color-slate-200);" />
+
+        <p style="font-size:13.5px;color:var(--color-slate-400);">
+          First Security Segurança da Informação Ltda. CNPJ 00.000.000/0001-00. Rua Exemplo, 123, São Paulo, SP.
+          Última atualização: {dataAtualizacao}.
+        </p>
+
+      </div>
+
+      <!-- LINKS LEGAIS RELACIONADOS -->
+      <nav style="margin-top:var(--space-10);padding-top:var(--space-8);border-top:1px solid var(--color-slate-200);" aria-label="Documentos legais relacionados">
+        <div style="font-size:12px;font-weight:700;color:rgba(0,0,0,0.35);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-4);">Documentos relacionados</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <a href="/legal/termos-de-uso" class="btn btn-secondary btn-sm">Termos de Uso</a>
+          <a href="/legal/politica-lgpd" class="btn btn-secondary btn-sm">Política LGPD</a>
+          <a href="/legal/politica-de-cookies" class="btn btn-secondary btn-sm">Política de Cookies</a>
+          <a href="/legal/politica-de-divulgacao-responsavel" class="btn btn-secondary btn-sm">Divulgação Responsável</a>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+</BaseLayout>

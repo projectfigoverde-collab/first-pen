@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "HowTo",
+    "@id": "https://firstsecurity.com.br/quem-somos/metodologia/#howto",
+    "name": "Como funciona a metodologia de pentest da First Security",
+    "description": "As 8 fases do processo de pentest da First Security: da definição de escopo ao reteste de remediação, seguindo PTES, OWASP e NIST SP 800-115.",
+    "totalTime": "P10D",
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "BRL", "value": "8000" },
+    "tool": [
+      { "@type": "HowToTool", "name": "PTES — Penetration Testing Execution Standard" },
+      { "@type": "HowToTool", "name": "OWASP Top 10 e MASVS" },
+      { "@type": "HowToTool", "name": "NIST SP 800-115" },
+      { "@type": "HowToTool", "name": "MITRE ATT&CK Framework" }
+    ],
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Definição de escopo e contrato", "text": "Reunião de alinhamento, definição de escopo técnico, assinatura de NDA e contrato de autorização. Comunicação de IPs de origem para whitelisting." },
+      { "@type": "HowToStep", "position": 2, "name": "Reconhecimento e inteligência (OSINT)", "text": "Coleta de informações sobre o alvo: subdomínios, tecnologias, funcionários, vazamentos, registros históricos e superfície de ataque exposta." },
+      { "@type": "HowToStep", "position": 3, "name": "Mapeamento e enumeração", "text": "Identificação de ativos, portas, serviços, versões de software, endpoints de API e funcionalidades da aplicação. Construção do mapa de ataque." },
+      { "@type": "HowToStep", "position": 4, "name": "Análise e modelagem de ameaças", "text": "Priorização de vetores de ataque com base no perfil de risco do cliente, casos de uso de negócio e ameaças mais prováveis para o segmento." },
+      { "@type": "HowToStep", "position": 5, "name": "Exploração manual", "text": "Tentativas de exploração de vulnerabilidades identificadas, incluindo encadeamento de vulnerabilidades, bypass de controles e exploração de lógica de negócio." },
+      { "@type": "HowToStep", "position": 6, "name": "Pós-exploração", "text": "Em escopos que permitem: escalada de privilégios, movimentação lateral, acesso a sistemas adjacentes e documentação do impacto real da cadeia de ataque." },
+      { "@type": "HowToStep", "position": 7, "name": "Relatório e debriefing", "text": "Entrega do relatório técnico e executivo com evidências, CVSS, impacto e recomendações. Reunião de debriefing para apresentação dos achados e esclarecimento de dúvidas." },
+      { "@type": "HowToStep", "position": 8, "name": "Reteste de remediação", "text": "Após as correções implementadas pelo cliente, verificação de que as vulnerabilidades críticas e altas foram efetivamente remediadas. Atualização do relatório com status de remediação." }
+    ]
+  },
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/quem-somos/metodologia/#webpage",
+    "url": "https://firstsecurity.com.br/quem-somos/metodologia",
+    "name": "Metodologia de Pentest da First Security | PTES, OWASP e NIST SP 800-115",
+    "description": "A metodologia de pentest da First Security: fases do projeto, frameworks de referência (PTES, OWASP, NIST SP 800-115) e como garantimos qualidade e reprodutibilidade.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Quem Somos", "item": "https://firstsecurity.com.br/quem-somos" },
+        { "@type": "ListItem", "position": 3, "name": "Metodologia", "item": "https://firstsecurity.com.br/quem-somos/metodologia" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Metodologia de Pentest da First Security | PTES, OWASP e NIST SP 800-115"
+  description="Conheça a metodologia da First Security: fases do projeto, frameworks de referência (PTES, OWASP, NIST SP 800-115), critérios de qualidade e processo de relatório."
+  canonical="/quem-somos/metodologia"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Quem Somos', href: '/quem-somos' }, { label: 'Metodologia' }]} />
+
+  <section style="padding:var(--space-16) 0 var(--space-12);" aria-labelledby="metH1">
+    <div class="container" style="max-width:860px">
+      <span class="badge badge-navy" style="margin-bottom:16px;">Como trabalhamos</span>
+      <h1 id="metH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;">Nossa metodologia</h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:700px;">
+        A metodologia da First Security é baseada em frameworks internacionalmente reconhecidos e adaptada à realidade do ambiente brasileiro. Cada projeto segue um processo estruturado que garante cobertura, reprodutibilidade e qualidade consistente nos relatórios entregues.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="frameworksTitle">
+    <div class="container" style="max-width:860px">
+      <div class="section-header">
+        <div class="section-eyebrow">Frameworks de referência</div>
+        <h2 id="frameworksTitle" class="section-title">Padrões que seguimos</h2>
+      </div>
+      <div class="grid-3">
+        {[
+          { sigla: 'PTES', nome: 'Penetration Testing Execution Standard', desc: 'Framework principal para execução de pentests: define as 7 fases do projeto, da inteligência à elaboração do relatório.' },
+          { sigla: 'OWASP', nome: 'Open Worldwide Application Security Project', desc: 'Top 10, MASVS e API Security Top 10 como base de casos de teste para aplicações web, mobile e APIs.' },
+          { sigla: 'NIST', nome: 'NIST SP 800-115', desc: 'Guia técnico do NIST para testes de segurança de informação. Referência aceita em compliance BACEN, PCI DSS e SOC 2.' },
+          { sigla: 'MITRE', nome: 'MITRE ATT&CK Framework', desc: 'Base de conhecimento de TTPs de atacantes reais. Usada em Red Team, Purple Team e para mapeamento de detecções.' },
+          { sigla: 'OWASP MASVS', nome: 'Mobile Application Security Verification Standard', desc: 'Standard de verificação de segurança para aplicativos iOS e Android, cobrindo criptografia, autenticação e armazenamento.' },
+          { sigla: 'CVSS 3.1', nome: 'Common Vulnerability Scoring System', desc: 'Cálculo de CVSS por especialista para cada vulnerabilidade identificada, com contexto de impacto no ambiente específico.' },
+        ].map((item) => (
+          <div class="card">
+            <div style="display:inline-block;background:var(--color-navy);color:white;font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:var(--radius-sm);margin-bottom:10px;">{item.sigla}</div>
+            <h3 class="t-heading-sm" style="color:var(--color-navy);margin-bottom:6px;">{item.nome}</h3>
+            <p style="font-size:13px;color:var(--color-slate);line-height:1.6;">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--color-off-white);" aria-labelledby="fasesTitle">
+    <div class="container" style="max-width:760px">
+      <div class="section-header">
+        <div class="section-eyebrow">Processo do projeto</div>
+        <h2 id="fasesTitle" class="section-title">Fases de cada projeto</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--color-slate-200);border-radius:var(--radius-lg);overflow:hidden;">
+        {[
+          { num: '01', fase: 'Definição de escopo e contrato', desc: 'Reunião de alinhamento, definição de escopo técnico, assinatura de NDA e contrato de autorização. Comunicação de IPs de origem para whitelisting.' },
+          { num: '02', fase: 'Reconhecimento e inteligência (OSINT)', desc: 'Coleta de informações sobre o alvo: subdomínios, tecnologias, funcionários, vazamentos, registros históricos e superfície de ataque exposta.' },
+          { num: '03', fase: 'Mapeamento e enumeração', desc: 'Identificação de ativos, portas, serviços, versões de software, endpoints de API e funcionalidades da aplicação. Construção do mapa de ataque.' },
+          { num: '04', fase: 'Análise e modelagem de ameaças', desc: 'Priorização de vetores de ataque com base no perfil de risco do cliente, casos de uso de negócio e ameaças mais prováveis para o segmento.' },
+          { num: '05', fase: 'Exploração manual', desc: 'Tentativas de exploração de vulnerabilidades identificadas, incluindo encadeamento de vulnerabilidades, bypass de controles e exploração de lógica de negócio.' },
+          { num: '06', fase: 'Pós-exploração (quando aplicável)', desc: 'Em escopos que permitem: escalada de privilégios, movimentação lateral, acesso a sistemas adjacentes e documentação do impacto real da cadeia de ataque.' },
+          { num: '07', fase: 'Relatório e debriefing', desc: 'Entrega do relatório técnico e executivo com evidências, CVSS, impacto e recomendações. Reunião de debriefing para apresentação dos achados e esclarecimento de dúvidas.' },
+          { num: '08', fase: 'Reteste de remediação', desc: 'Após as correções implementadas pelo cliente, verificação de que as vulnerabilidades críticas e altas foram efetivamente remediadas. Atualização do relatório com status de remediação.' },
+        ].map((item, i) => (
+          <div style={`display:grid;grid-template-columns:48px 1fr;gap:16px;padding:16px 20px;align-items:flex-start;${i > 0 ? 'border-top:1px solid var(--color-slate-200);' : ''}`}>
+            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-cyan-600);">{item.num}</span>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:var(--color-navy);margin-bottom:4px;">{item.fase}</div>
+              <div style="font-size:13px;color:var(--color-slate);line-height:1.6;">{item.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="ctaMet">
+    <div class="container text-center">
+      <h2 id="ctaMet" class="section-title" style="color:white;">Conheça nossa metodologia na prática</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Solicite uma amostra de relatório anonimizado para ver como documentamos os achados.
+      </p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar orçamento</a>
+        <a href="/contato" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,0.3);color:white;">Ver amostra de relatório</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

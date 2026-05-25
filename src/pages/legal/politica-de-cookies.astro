@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/legal/politica-de-cookies/#webpage",
+    "url": "https://firstsecurity.com.br/legal/politica-de-cookies",
+    "name": "Política de Cookies | First Security",
+    "description": "Política de cookies do site firstsecurity.com.br: tipos de cookies utilizados, finalidade, como gerenciar e como exercer seus direitos conforme a LGPD.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Legal", "item": "https://firstsecurity.com.br/legal" },
+        { "@type": "ListItem", "position": 3, "name": "Política de Cookies", "item": "https://firstsecurity.com.br/legal/politica-de-cookies" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Política de Cookies | First Security"
+  description="Política de cookies do site firstsecurity.com.br: tipos de cookies, finalidades, como gerenciar suas preferências e direitos conforme a LGPD."
+  canonical="/legal/politica-de-cookies"
+  schema={schema}
+>
+  <Breadcrumbs items={[{ label: 'Legal', href: '/legal' }, { label: 'Política de Cookies' }]} />
+
+  <section style="padding:var(--space-16) 0 var(--space-12);" aria-labelledby="cookiesH1">
+    <div class="container" style="max-width:760px">
+      <span class="badge badge-navy" style="margin-bottom:16px;">Documento legal</span>
+      <h1 id="cookiesH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:12px;">Política de Cookies</h1>
+      <p style="font-size:13px;color:var(--color-slate);">Última atualização: maio de 2026</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;" aria-label="Conteúdo da política de cookies">
+    <div class="container" style="max-width:760px">
+      <div class="prose">
+        <h2>O que são cookies</h2>
+        <p>Cookies são pequenos arquivos de texto armazenados no seu dispositivo quando você visita um site. Eles permitem que o site reconheça seu dispositivo e armazene informações sobre suas preferências ou ações anteriores.</p>
+
+        <h2>Cookies que utilizamos</h2>
+
+        <h3>Cookies estritamente necessários</h3>
+        <p>Esses cookies são essenciais para o funcionamento do site e não podem ser desativados. Incluem:</p>
+        <ul>
+          <li><strong>cookie_consent</strong>: Armazena sua preferência de consentimento de cookies. Duração: 1 ano.</li>
+          <li>Cookies de sessão técnica necessários para navegação segura.</li>
+        </ul>
+
+        <h3>Cookies analíticos (somente com consentimento)</h3>
+        <p>Usados para entender como os visitantes interagem com o Site, ajudando-nos a melhorar a experiência:</p>
+        <ul>
+          <li>Cookies de análise de tráfego anônimos para entender quais páginas são mais visitadas;</li>
+          <li>Métricas de tempo de permanência e navegação para melhoria de conteúdo.</li>
+        </ul>
+        <p>Esses cookies só são ativados se você aceitar os cookies analíticos no banner de consentimento.</p>
+
+        <h3>Cookies de marketing (não utilizados)</h3>
+        <p>Atualmente não utilizamos cookies de rastreamento de marketing, remarketing ou publicidade no Site.</p>
+
+        <h2>Como gerenciar cookies</h2>
+        <p>Você pode gerenciar suas preferências de cookies de duas formas:</p>
+        <ol>
+          <li><strong>Banner de consentimento:</strong> Na primeira visita ao Site, um banner permite aceitar todos os cookies ou somente os essenciais. Você pode alterar sua escolha clicando em "Configurar cookies" no rodapé.</li>
+          <li><strong>Configurações do navegador:</strong> Você pode configurar seu navegador para recusar cookies. Consulte a documentação do seu navegador para instruções específicas.</li>
+        </ol>
+        <p>A desativação de cookies essenciais pode prejudicar o funcionamento do Site.</p>
+
+        <h2>Seus direitos (LGPD)</h2>
+        <p>Conforme a Lei Geral de Proteção de Dados (LGPD), você tem direito a:</p>
+        <ul>
+          <li>Saber quais dados pessoais são coletados via cookies;</li>
+          <li>Solicitar a exclusão dos dados coletados por cookies analíticos;</li>
+          <li>Revogar o consentimento a qualquer momento;</li>
+          <li>Solicitar informações sobre o tratamento dos seus dados.</li>
+        </ul>
+        <p>Para exercer seus direitos, entre em contato pelo endereço disponível em <a href="/contato">nossa página de contato</a>.</p>
+
+        <h2>Alterações desta política</h2>
+        <p>Esta Política de Cookies pode ser atualizada periodicamente. A data de última atualização está indicada no início do documento. Alterações relevantes serão comunicadas no banner de consentimento.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

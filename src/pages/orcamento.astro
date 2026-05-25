@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/orcamento/#webpage",
+    "url": "https://firstsecurity.com.br/orcamento",
+    "name": "Solicitar Orçamento de Pentest | First Security",
+    "description": "Solicite um orçamento de pentest profissional. Preencha o formulário com informações sobre seu ambiente e receba uma proposta em até 24 horas.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Orçamento", "item": "https://firstsecurity.com.br/orcamento" }
+      ]
+    }
+  }
+];
+
+const escopos = [
+  'Pentest Web',
+  'Pentest Mobile (Android/iOS)',
+  'Pentest API',
+  'Pentest Cloud (AWS/Azure/GCP)',
+  'Pentest Infraestrutura',
+  'Pentest Active Directory',
+  'Pentest IoT / OT / SCADA',
+  'Red Team',
+  'Purple Team',
+  'Pentest as a Service (PTaaS)',
+];
+---
+
+<BaseLayout
+  title="Solicitar Orçamento de Pentest | First Security"
+  description="Solicite um orçamento de pentest profissional. Preencha o formulário com informações sobre seu ambiente e receba uma proposta em até 24 horas."
+  canonical="/orcamento"
+  schema={schema}
+>
+
+  <Breadcrumbs items={[{ label: 'Orçamento' }]} />
+
+  <!-- HERO -->
+  <section style="padding:var(--space-14) 0 var(--space-10);" aria-labelledby="orcamentoH1">
+    <div class="container" style="max-width:840px">
+      <span class="badge badge-cyan" style="margin-bottom:16px;">Diagnóstico gratuito</span>
+      <h1 id="orcamentoH1" class="t-display-lg" style="color:var(--color-navy);margin-bottom:16px;">
+        Solicite seu orçamento
+      </h1>
+      <p class="t-body-lg" style="color:var(--color-slate);max-width:620px;">
+        Preencha o formulário abaixo com informações sobre o seu ambiente. Nossa equipe analisa as informações e retorna com uma proposta detalhada em até 24 horas.
+      </p>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO + BENEFÍCIOS -->
+  <section style="padding:0 0 var(--space-20);" aria-label="Formulário de orçamento">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:var(--space-12);align-items:start;">
+
+        <!-- FORMULÁRIO -->
+        <div style="background:white;border:1px solid var(--color-slate-200);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:var(--shadow-md);">
+          <h2 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--color-navy);margin-bottom:var(--space-6);">Informações do projeto</h2>
+
+          <form action="#" method="post" novalidate aria-label="Formulário de solicitação de orçamento">
+            <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+                <div>
+                  <label for="orcNome" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">Nome <span aria-hidden="true" style="color:#e05555;">*</span></label>
+                  <input type="text" id="orcNome" name="nome" required autocomplete="name" placeholder="Seu nome"
+                    style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);box-sizing:border-box;"
+                    onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                    onblur="this.style.borderColor='var(--color-slate-200)';"
+                  />
+                </div>
+                <div>
+                  <label for="orcCargo" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">Cargo</label>
+                  <input type="text" id="orcCargo" name="cargo" autocomplete="organization-title" placeholder="Ex: CTO, CISO, Gerente TI"
+                    style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);box-sizing:border-box;"
+                    onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                    onblur="this.style.borderColor='var(--color-slate-200)';"
+                  />
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+                <div>
+                  <label for="orcEmail" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">E-mail corporativo <span aria-hidden="true" style="color:#e05555;">*</span></label>
+                  <input type="email" id="orcEmail" name="email" required autocomplete="email" placeholder="voce@empresa.com.br"
+                    style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);box-sizing:border-box;"
+                    onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                    onblur="this.style.borderColor='var(--color-slate-200)';"
+                  />
+                </div>
+                <div>
+                  <label for="orcEmpresa" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">Empresa <span aria-hidden="true" style="color:#e05555;">*</span></label>
+                  <input type="text" id="orcEmpresa" name="empresa" required autocomplete="organization" placeholder="Nome da empresa"
+                    style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);box-sizing:border-box;"
+                    onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                    onblur="this.style.borderColor='var(--color-slate-200)';"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:8px;">Escopo de interesse <span aria-hidden="true" style="color:#e05555;">*</span></label>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                  {escopos.map((escopo) => (
+                    <label style="display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--color-slate);cursor:pointer;padding:8px 10px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);">
+                      <input type="checkbox" name="escopo" value={escopo.toLowerCase().replace(/\s+/g, '-')} style="flex-shrink:0;" />
+                      {escopo}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label for="orcAmbiente" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">Descreva seu ambiente</label>
+                <textarea id="orcAmbiente" name="ambiente" rows="4" placeholder="Ex: aplicação web em Node.js, banco de dados PostgreSQL, hospedada na AWS. 3 perfis de usuário: admin, operador e cliente..."
+                  style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);box-sizing:border-box;resize:vertical;line-height:1.6;"
+                  onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                  onblur="this.style.borderColor='var(--color-slate-200)';"
+                ></textarea>
+              </div>
+
+              <div>
+                <label for="orcPrazo" style="display:block;font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:6px;">Prazo desejado</label>
+                <select id="orcPrazo" name="prazo"
+                  style="width:100%;padding:10px 14px;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-body);color:var(--color-navy);background:white;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='var(--color-cyan)';this.style.outline='none';"
+                  onblur="this.style.borderColor='var(--color-slate-200)';"
+                >
+                  <option value="" disabled selected>Selecione um prazo</option>
+                  <option value="urgente">Urgente (em até 2 semanas)</option>
+                  <option value="30dias">Em até 30 dias</option>
+                  <option value="60dias">Em até 60 dias</option>
+                  <option value="planejando">Apenas planejando por agora</option>
+                </select>
+              </div>
+
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <input type="checkbox" id="orcLgpd" name="lgpd" required style="margin-top:3px;flex-shrink:0;" />
+                <label for="orcLgpd" style="font-size:13px;color:var(--color-slate);line-height:1.5;">
+                  Concordo com a <a href="/legal/politica-de-privacidade" style="color:var(--color-cyan-600);">Política de Privacidade</a> e autorizo o uso dos meus dados para elaboração de proposta comercial conforme a LGPD.
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-cyan" style="width:100%;justify-content:center;padding:13px 20px;font-size:15px;">
+                Solicitar orçamento
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- BENEFÍCIOS E GARANTIAS -->
+        <div style="display:flex;flex-direction:column;gap:var(--space-6);">
+
+          <div>
+            <div style="font-size:12px;font-weight:700;color:rgba(0,0,0,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-4);">O que você recebe</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              {[
+                { icone: '01', t: 'Diagnóstico gratuito', d: 'Análise do seu ambiente e recomendação do escopo mais adequado, sem custo e sem compromisso.' },
+                { icone: '02', t: 'Proposta em 24 horas', d: 'Proposta comercial detalhada com escopo, prazo, metodologia e valores dentro de um dia útil.' },
+                { icone: '03', t: 'Equipe certificada', d: 'Todos os projetos conduzidos por especialistas OSCP, OSWE, OSEP ou CRTO. Sem terceirização.' },
+                { icone: '04', t: 'Relatório completo', d: 'Relatório executivo e técnico com evidências reproduzíveis, CVSS e plano de remediação priorizado.' },
+                { icone: '05', t: 'Reteste incluído', d: 'Após as correções, realizamos reteste das vulnerabilidades críticas e altas sem custo adicional.' },
+              ].map((item) => (
+                <div style="display:flex;gap:14px;padding:14px;background:white;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);">
+                  <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-cyan-600);flex-shrink:0;">{item.icone}</span>
+                  <div>
+                    <div style="font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:4px;">{item.t}</div>
+                    <div style="font-size:13px;color:var(--color-slate);line-height:1.5;">{item.d}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style="background:var(--color-navy);border-radius:var(--radius-lg);padding:var(--space-6);">
+            <div style="font-size:13.5px;font-weight:600;color:rgba(255,255,255,0.5);margin-bottom:var(--space-3);">Certificações da equipe</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              {['OSCP', 'OSWE', 'OSEP', 'CRTO', 'OWASP'].map((cert) => (
+                <span style="font-size:12px;font-weight:600;color:white;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-full);padding:4px 12px;">{cert}</span>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

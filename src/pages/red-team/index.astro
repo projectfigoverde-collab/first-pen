@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "Service",
+    "@id": "https://firstsecurity.com.br/red-team/#service",
+    "name": "Red Team",
+    "alternateName": "Simulação Avançada de Ameaças",
+    "description": "Serviço de Red Team para simulação realista de ameaças avançadas (APT) com múltiplos vetores de ataque simultâneos: phishing direcionado, exploração técnica, engenharia social e persistência.",
+    "provider": { "@id": "https://firstsecurity.com.br/#organization" },
+    "areaServed": { "@type": "Country", "name": "Brasil" },
+    "serviceType": "Red Team / Simulação de APT",
+    "url": "https://firstsecurity.com.br/red-team",
+    "sameAs": [
+      "https://en.wikipedia.org/wiki/Red_team",
+      "https://www.wikidata.org/wiki/Q7304875"
+    ]
+  },
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/red-team/#webpage",
+    "url": "https://firstsecurity.com.br/red-team",
+    "name": "Red Team: Simulação de Ameaças Avançadas | First Security",
+    "description": "Red Team profissional para empresas no Brasil. Simulação realista de APT com phishing direcionado, exploração técnica, engenharia social e relatório de impacto real.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Red Team", "item": "https://firstsecurity.com.br/red-team" }
+      ]
+    }
+  },
+  {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual a diferença entre Red Team e pentest?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O pentest testa um escopo técnico específico (aplicação web, API, infraestrutura) com prazo e regras definidas. O Red Team simula um adversário real com múltiplos vetores de ataque simultâneos (técnico, social, físico), sem escopo limitado a um único sistema, com objetivo de comprometer a organização como um todo. O Red Team avalia pessoas, processos e tecnologia em conjunto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quando minha empresa está pronta para um Red Team?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Uma empresa está pronta para Red Team quando já realizou pentests tradicionais, possui controles de segurança estabelecidos (firewalls, EDR, SIEM, políticas de segurança) e quer entender se esses controles resistem a ataques coordenados e sofisticados. Empresas sem controles básicos obtêm mais valor de pentests focados primeiro."
+        }
+      }
+    ]
+  }
+];
+
+const vetores = [
+  {
+    titulo: 'Exploração técnica',
+    desc: 'Ataques a sistemas expostos, aplicações web, APIs, infraestrutura de rede e cloud com técnicas avançadas de pós-exploração e movimentação lateral.',
+  },
+  {
+    titulo: 'Phishing direcionado',
+    desc: 'Campanhas de spear phishing personalizadas com pretextos específicos para a organização, clonagem de portais internos e entrega de payloads customizados.',
+  },
+  {
+    titulo: 'Engenharia social',
+    desc: 'Simulação de ataques de vishing, pretexting e impersonation para avaliar o nível de conscientização dos colaboradores e efetividade dos controles humanos.',
+  },
+  {
+    titulo: 'Comprometimento de credenciais',
+    desc: 'Captura e uso de credenciais via técnicas avançadas: Kerberoasting, AS-REP Roasting, LLMNR/NBT-NS poisoning e análise de dumps de memória.',
+  },
+  {
+    titulo: 'Movimentação lateral',
+    desc: 'Após acesso inicial, mapeamento de redes internas, escalada de privilégios, comprometimento de Active Directory e expansão do raio de ação do atacante.',
+  },
+  {
+    titulo: 'Persistência e C2',
+    desc: 'Implementação de mecanismos de persistência e canais de comando e controle (C2) para avaliar capacidade de detecção e resposta do time de segurança.',
+  },
+];
+---
+
+<BaseLayout
+  title="Red Team: Simulação de Ameaças Avançadas para Empresas | First Security"
+  description="Red Team profissional para empresas no Brasil. Simulação realista de APT com phishing direcionado, exploração técnica, engenharia social e relatório de impacto real."
+  canonical="/red-team"
+  schema={schema}
+>
+
+  <Breadcrumbs items={[{ label: 'Red Team' }]} />
+
+  <!-- HERO -->
+  <section style="padding:var(--space-20) 0 var(--space-16);background:var(--color-navy);position:relative;overflow:hidden;" aria-labelledby="redTeamH1">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 70% 50%,rgba(0,180,255,0.08) 0%,transparent 70%);pointer-events:none;" aria-hidden="true"></div>
+    <div class="container" style="max-width:900px;position:relative;">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+        <span class="badge" style="background:rgba(255,80,80,0.15);color:#ff6060;border:1px solid rgba(255,80,80,0.2);">Simulação APT</span>
+        <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.12);">Multi-vetor</span>
+        <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.12);">OSEP / CRTO</span>
+      </div>
+      <h1 id="redTeamH1" class="t-display-lg" style="color:white;margin-bottom:20px;">
+        Red Team profissional
+      </h1>
+      <p class="t-body-lg" style="color:rgba(255,255,255,0.75);max-width:700px;margin-bottom:24px;">
+        O Red Team simula adversários avançados com múltiplos vetores de ataque simultâneos: exploração técnica, phishing direcionado e engenharia social. O objetivo é responder a uma pergunta que o pentest não consegue: a sua organização resistiria a um ataque coordenado e persistente?
+      </p>
+      <p style="color:rgba(255,255,255,0.55);max-width:700px;line-height:1.7;margin-bottom:36px;">
+        Diferente do pentest, o Red Team não é limitado a um escopo técnico específico. Avaliamos pessoas, processos e tecnologia em conjunto, usando as mesmas táticas, técnicas e procedimentos (TTPs) documentados no MITRE ATT&CK que adversários reais utilizam.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar Red Team</a>
+        <a href="/contato" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,0.25);color:white;">Falar com especialista</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RED TEAM VS PENTEST -->
+  <section class="section" style="background:var(--color-off-white);" aria-labelledby="redVsPentestTitle">
+    <div class="container" style="max-width:860px">
+      <div class="section-header text-center">
+        <div class="section-eyebrow">Comparativo</div>
+        <h2 id="redVsPentestTitle" class="section-title">Red Team vs. pentest: quando usar cada um</h2>
+      </div>
+      <div class="grid-2" style="margin-top:var(--space-10);">
+        <div class="card" style="border-top:3px solid rgba(255,80,80,0.5);">
+          <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:12px;">Red Team</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            {[
+              'Múltiplos vetores simultâneos',
+              'Avalia pessoas, processos e tecnologia',
+              'Sem escopo técnico fixo',
+              'TTPs do MITRE ATT&CK',
+              'Foco em detecção e resposta do Blue Team',
+              'Duração: 4 a 12 semanas',
+              'Para organizações com controles estabelecidos',
+            ].map((item) => (
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--color-slate);">
+                <span style="color:#e05555;font-weight:700;flex-shrink:0;">R</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="card" style="border-top:3px solid var(--color-cyan);">
+          <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:12px;">Pentest</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            {[
+              'Escopo técnico definido',
+              'Teste de sistemas específicos',
+              'Prazo e regras fixas',
+              'Metodologia PTES / OWASP',
+              'Foco em identificar vulnerabilidades',
+              'Duração: 3 dias a 3 semanas',
+              'Para qualquer nível de maturidade',
+            ].map((item) => (
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--color-slate);">
+                <span style="color:var(--color-cyan-600);font-weight:700;flex-shrink:0;">P</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VETORES DE ATAQUE -->
+  <section class="section" aria-labelledby="vetoresTitle">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Capacidades</div>
+        <h2 id="vetoresTitle" class="section-title">Vetores de ataque do Red Team</h2>
+        <p class="section-subtitle">Cada operação combina múltiplos vetores, replicando a sofisticação de adversários reais.</p>
+      </div>
+      <div class="grid-3">
+        {vetores.map((v) => (
+          <div class="card">
+            <h3 class="t-heading-md" style="color:var(--color-navy);margin-bottom:10px;">{v.titulo}</h3>
+            <p style="font-size:13.5px;color:var(--color-slate);line-height:1.6;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MITRE ATT&CK -->
+  <section class="section" style="background:var(--color-off-white);" aria-labelledby="mitreTitle">
+    <div class="container" style="max-width:860px">
+      <div class="section-header">
+        <div class="section-eyebrow">Framework</div>
+        <h2 id="mitreTitle" class="section-title">Baseado no MITRE ATT&CK</h2>
+      </div>
+      <div class="prose">
+        <p>
+          O MITRE ATT&CK (Adversarial Tactics, Techniques and Common Knowledge) é o principal framework de referência para documentar as táticas e técnicas usadas por adversários reais em ataques documentados. A First Security usa o MITRE ATT&CK como base para planejar operações de Red Team e para mapear os resultados da operação em termos de cobertura de detecção.
+        </p>
+        <p>
+          O relatório final de Red Team inclui um mapeamento de cada TTP utilizada durante a operação com a referência correspondente no MITRE ATT&CK, facilitando que o time de segurança (Blue Team) valide as regras de detecção e identifique lacunas no monitoramento.
+        </p>
+      </div>
+      <div class="grid-3" style="margin-top:var(--space-8);">
+        {[
+          { titulo: 'Initial Access', exemplos: 'Spear phishing, exploit público, credenciais comprometidas' },
+          { titulo: 'Execution', exemplos: 'Macros maliciosas, scripts PowerShell, LOLBins' },
+          { titulo: 'Persistence', exemplos: 'Registry Run Keys, Scheduled Tasks, Web Shells' },
+          { titulo: 'Privilege Escalation', exemplos: 'Kerberoasting, Token Impersonation, DLL Hijacking' },
+          { titulo: 'Lateral Movement', exemplos: 'Pass-the-Hash, Remote Services, WMI' },
+          { titulo: 'Exfiltration', exemplos: 'Exfiltração via DNS, HTTPS, cloud storage' },
+        ].map((item) => (
+          <div style="background:white;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);padding:16px;">
+            <div style="font-family:var(--font-mono);font-size:11.5px;font-weight:700;color:var(--color-cyan-600);margin-bottom:8px;">{item.titulo}</div>
+            <p style="font-size:13px;color:var(--color-slate);line-height:1.5;">{item.exemplos}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUANDO CONTRATAR -->
+  <section class="section" aria-labelledby="quandoRedTeamTitle">
+    <div class="container" style="max-width:860px">
+      <div class="section-header">
+        <div class="section-eyebrow">Indicações</div>
+        <h2 id="quandoRedTeamTitle" class="section-title">Quando contratar um Red Team</h2>
+      </div>
+      <div class="grid-2">
+        {[
+          { t: 'Controles de segurança estabelecidos', d: 'Quando sua organização já tem firewall, EDR, SIEM e políticas de segurança implementados e quer validar se esses controles resistem a ataques coordenados.' },
+          { t: 'Exigência de compliance avançado', d: 'Regulamentações como DORA (Europa), TIBER-EU, CBEST (UK) e algumas exigências do BACEN demandam exercícios de simulação de ameaças avançadas.' },
+          { t: 'Avaliação do Blue Team / SOC', d: 'Para medir a capacidade de detecção, resposta e contenção do seu time de segurança defensiva em cenários reais, sem alertas prévios.' },
+          { t: 'Pós-incidente de segurança', d: 'Após um incidente real, para entender se os controles implementados após o evento são efetivos contra ataques similares ou variantes.' },
+        ].map((item) => (
+          <div class="card">
+            <h3 class="t-heading-sm" style="color:var(--color-navy);margin-bottom:8px;">{item.t}</h3>
+            <p style="font-size:14px;color:var(--color-slate);line-height:1.6;">{item.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" aria-labelledby="ctaRedTeam">
+    <div class="container text-center">
+      <h2 id="ctaRedTeam" class="section-title" style="color:white;">Sua organização resistiria a um ataque avançado?</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.65);margin:0 auto var(--space-8);">
+        Converse com nossa equipe para entender se o Red Team é o próximo passo certo para o seu nível de maturidade.
+      </p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <a href="/orcamento" class="btn btn-cyan btn-lg">Solicitar Red Team</a>
+        <a href="/contato" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,0.3);color:white;">Falar com especialista</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
