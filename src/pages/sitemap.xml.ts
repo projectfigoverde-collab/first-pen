@@ -59,7 +59,15 @@ const urls: { loc: string; lastmod: string; changefreq: string; priority: string
   { loc: '/casos-de-uso',          lastmod: TODAY, changefreq: 'monthly', priority: '0.70' },
   { loc: '/contato',               lastmod: TODAY, changefreq: 'monthly', priority: '0.70' },
   { loc: '/glossario',             lastmod: TODAY, changefreq: 'weekly',  priority: '0.70' },
-  { loc: '/blog',                  lastmod: TODAY, changefreq: 'daily',   priority: '0.70' },
+  { loc: '/blog',                                              lastmod: TODAY, changefreq: 'daily',   priority: '0.70' },
+
+  // Blog — artigos — 0.70
+  { loc: '/blog/owasp-top-10-2025',                            lastmod: TODAY, changefreq: 'monthly', priority: '0.70' },
+  { loc: '/blog/kerberoasting-pratica-ataque-defesa',          lastmod: TODAY, changefreq: 'monthly', priority: '0.70' },
+  { loc: '/blog/ssrf-cloud-aws-exploracao-impacto',            lastmod: TODAY, changefreq: 'monthly', priority: '0.70' },
+  { loc: '/blog/como-avaliar-relatorio-pentest',               lastmod: TODAY, changefreq: 'monthly', priority: '0.70' },
+  { loc: '/blog/prompt-injection-llms-ataques-corporativos',   lastmod: TODAY, changefreq: 'monthly', priority: '0.70' },
+  { loc: '/blog/pci-dss-4-pentest-requisitos-11',              lastmod: TODAY, changefreq: 'monthly', priority: '0.70' },
 ];
 
 export const GET: APIRoute = () => {

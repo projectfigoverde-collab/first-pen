@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "Article",
+    "@id": "https://firstsecurity.com.br/blog/ssrf-cloud-aws-exploracao-impacto/#article",
+    "headline": "SSRF em ambientes cloud: exploração e impacto em AWS",
+    "description": "Server-Side Request Forgery em aplicações hospedadas na AWS. Como explorar via metadata service, acesso a credenciais IAM e mitigações efetivas.",
+    "datePublished": "2025-04-15",
+    "dateModified": "2025-04-15",
+    "author": { "@id": "https://firstsecurity.com.br/#organization" },
+    "publisher": { "@id": "https://firstsecurity.com.br/#organization" },
+    "inLanguage": "pt-BR",
+    "url": "https://firstsecurity.com.br/blog/ssrf-cloud-aws-exploracao-impacto",
+    "keywords": ["SSRF", "AWS", "cloud pentest", "metadata service", "IAM", "segurança cloud"],
+    "articleSection": "Pentest Cloud",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/blog/#blog" }
+  },
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/blog/ssrf-cloud-aws-exploracao-impacto/#webpage",
+    "url": "https://firstsecurity.com.br/blog/ssrf-cloud-aws-exploracao-impacto",
+    "name": "SSRF em ambientes cloud: exploração e impacto em AWS | First Security",
+    "description": "Server-Side Request Forgery em aplicações hospedadas na AWS. Como explorar via metadata service, acesso a credenciais IAM e mitigações efetivas.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://firstsecurity.com.br/blog" },
+        { "@type": "ListItem", "position": 3, "name": "SSRF em AWS", "item": "https://firstsecurity.com.br/blog/ssrf-cloud-aws-exploracao-impacto" }
+      ]
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="SSRF em ambientes cloud: exploração e impacto em AWS | First Security"
+  description="Server-Side Request Forgery em aplicações hospedadas na AWS. Como explorar via metadata service, acesso a credenciais IAM e mitigações efetivas."
+  canonical="/blog/ssrf-cloud-aws-exploracao-impacto"
+  schema={schema}
+>
+
+  <Breadcrumbs items={[{ label: 'Blog', href: '/blog' }, { label: 'SSRF em ambientes cloud' }]} />
+
+  <article itemscope itemtype="https://schema.org/Article">
+
+    <!-- HERO -->
+    <header style="padding:var(--space-14) 0 var(--space-10);background:linear-gradient(180deg,var(--color-slate-50) 0%,white 100%);">
+      <div class="container" style="max-width:780px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <span class="compliance-tag">Pentest Cloud</span>
+          <span style="font-size:13px;color:var(--color-slate-400);">15 abr. 2025</span>
+          <span style="font-size:13px;color:var(--color-slate-400);">10 min de leitura</span>
+        </div>
+        <h1 itemprop="headline" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;line-height:1.15;">
+          SSRF em ambientes cloud: exploração e impacto em AWS
+        </h1>
+        <p class="t-body-lg" style="color:var(--color-slate);max-width:680px;line-height:1.7;">
+          Server-Side Request Forgery ganhou novo significado com a adoção de cloud. Uma SSRF em uma aplicação hospedada na AWS pode resultar em acesso a credenciais IAM temporárias e comprometimento de toda a conta. Este artigo explica como, e como se proteger.
+        </p>
+      </div>
+    </header>
+
+    <!-- CONTEUDO -->
+    <div itemprop="articleBody" style="padding:var(--space-12) 0 var(--space-16);">
+      <div class="container" style="max-width:780px;">
+
+        <div style="background:#fff7ed;border-left:4px solid #f97316;padding:var(--space-5) var(--space-6);border-radius:0 var(--radius-md) var(--radius-md) 0;margin-bottom:var(--space-10);">
+          <p style="font-size:14px;color:var(--color-slate);line-height:1.7;margin:0;">
+            <strong>Aviso:</strong> As técnicas descritas neste artigo são para fins educacionais e de segurança defensiva. Toda exploração deve ser realizada exclusivamente em ambientes de laboratório ou em testes autorizados por contrato.
+          </p>
+        </div>
+
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">O que é SSRF e por que cloud muda tudo</h2>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          Server-Side Request Forgery (SSRF) é uma vulnerabilidade na qual um atacante consegue fazer com que o servidor da aplicação realize requisicoes HTTP para alvos arbitrários. Em ambientes tradicionais, o impacto ficava limitado ao acesso a servicos internos como bancos de dados, painéis administrativos e APIs de infraestrutura.
+        </p>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          Em ambientes de cloud como AWS, Azure e GCP, esse cenário muda radicalmente. Todos esses provedores disponibilizam um servico de metadados de instância acessível via um endereço IP especial (<code style="background:var(--color-slate-100);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">169.254.169.254</code>), que expõe informacoes da instância incluindo, em muitos casos, credenciais IAM temporárias com escopo amplo.
+        </p>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:32px;">
+          O caso mais famoso de SSRF em cloud foi o incidente da Capital One em 2019, onde um atacante explorou uma configuracão incorreta do AWS WAF combinada com SSRF para acessar credenciais IAM e exfiltrar dados de mais de 100 milhões de clientes.
+        </p>
+
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">O Instance Metadata Service (IMDS) da AWS</h2>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          O AWS Instance Metadata Service (IMDS) é acessível em <code style="background:var(--color-slate-100);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">http://169.254.169.254/latest/meta-data/</code> a partir de qualquer instância EC2. Ele fornece informacoes como o ID da instância, tipo de instância, região, tags e, crucialmente, credenciais IAM temporárias associadas a roles atribuídas à instância.
+        </p>
+
+        <div style="background:#0f172a;border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:24px;overflow-x:auto;">
+          <pre style="color:#e2e8f0;font-family:var(--font-mono);font-size:13px;margin:0;white-space:pre-wrap;"><code># Acesso direto ao IMDS via SSRF
+http://169.254.169.254/latest/meta-data/
+http://169.254.169.254/latest/meta-data/iam/security-credentials/
+http://169.254.169.254/latest/meta-data/iam/security-credentials/ROLE_NAME</code></pre>
+        </div>
+
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:32px;">
+          O endpoint de credenciais retorna um objeto JSON com <code style="background:var(--color-slate-100);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">AccessKeyId</code>, <code style="background:var(--color-slate-100);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">SecretAccessKey</code> e <code style="background:var(--color-slate-100);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">Token</code>. Com essas credenciais, um atacante pode interagir com a AWS API com os mesmos privilégios da role da instância.
+        </p>
+
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">Vetores comuns de SSRF em aplicações web</h2>
+
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-navy);margin-bottom:10px;">1. Funcionalidades de fetch de URL</h3>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          Qualquer funcionalidade que aceite uma URL como input é candidata: preview de links, importacão de imagens via URL, webhooks, integracoes com servicos externos. O atacante substitui a URL legítima pelo endereço do IMDS.
+        </p>
+
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-navy);margin-bottom:10px;">2. Parâmetros de redirecionamento</h3>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          Endpoints que realizam redirecionamentos HTTP baseados em input do usuario podem ser explorados se o servidor seguir redirecionamentos para IPs internos.
+        </p>
+
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">3. Processamento de arquivos XML com DTD externo</h3>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:32px;">
+          XXE (XML External Entity) é uma forma de SSRF que pode ser explorada em processadores XML vulneráveis, incluindo parsers que processam uploads de arquivos XML ou SVG.
+        </p>
+
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">IMDSv2: a mitigacão da AWS e suas limitacoes</h2>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          A AWS lancou o IMDSv2 (Instance Metadata Service v2) como mitigacão direta contra SSRF. O IMDSv2 requer uma requisicao PUT para obter um token de sessao antes de acessar qualquer endpoint de metadados, quebrando ataques SSRF simples que usam apenas GET.
+        </p>
+        <div style="background:#0f172a;border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:24px;overflow-x:auto;">
+          <pre style="color:#e2e8f0;font-family:var(--font-mono);font-size:13px;margin:0;white-space:pre-wrap;"><code># IMDSv2: obter token (requer PUT)
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" \
+  -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+
+# Usar token nas requisicoes subsequentes
+curl -H "X-aws-ec2-metadata-token: $TOKEN" \
+  http://169.254.169.254/latest/meta-data/</code></pre>
+        </div>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:32px;">
+          Importante: IMDSv2 não é habilitado por padrão em instâncias mais antigas. Muitas organizacoes ainda operam instâncias com IMDSv1 habilitado. A configuracão <code style="background:var(--color-slate-100);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">http-tokens: required</code> deve ser aplicada via Instance Metadata Options para forcar exclusivamente IMDSv2.
+        </p>
+
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">Mitigacoes na aplicação</h2>
+
+        <div style="overflow-x:auto;margin-bottom:32px;">
+          <table style="width:100%;border-collapse:collapse;font-size:14px;">
+            <thead>
+              <tr style="background:var(--color-navy);color:white;">
+                <th style="padding:12px 16px;text-align:left;font-weight:600;">Controle</th>
+                <th style="padding:12px 16px;text-align:left;font-weight:600;">Implementacão</th>
+                <th style="padding:12px 16px;text-align:left;font-weight:600;">Efetividade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--color-slate-100);">
+                <td style="padding:12px 16px;color:var(--color-slate);">Allowlist de domínios</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">Validar que a URL pertence a domínios permitidos antes de fazer a requisicão</td>
+                <td style="padding:12px 16px;color:#16a34a;font-weight:600;">Alta</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--color-slate-100);background:var(--color-slate-50);">
+                <td style="padding:12px 16px;color:var(--color-slate);">Bloqueio de IPs privados</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">Bloquear requisicoes para 169.254.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</td>
+                <td style="padding:12px 16px;color:#16a34a;font-weight:600;">Alta</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--color-slate-100);">
+                <td style="padding:12px 16px;color:var(--color-slate);">Resolucão de DNS antes do bloqueio</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">Resolver o hostname e verificar o IP antes de fazer a requisicão (evita DNS rebinding)</td>
+                <td style="padding:12px 16px;color:#f59e0b;font-weight:600;">Média</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--color-slate-100);background:var(--color-slate-50);">
+                <td style="padding:12px 16px;color:var(--color-slate);">IMDSv2 obrigatorio</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">Configurar http-tokens: required em todas as instâncias EC2</td>
+                <td style="padding:12px 16px;color:#16a34a;font-weight:600;">Alta</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 16px;color:var(--color-slate);">Principio do menor privilégio para roles IAM</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">Limitar permissions das instance roles ao mínimo necessário</td>
+                <td style="padding:12px 16px;color:#16a34a;font-weight:600;">Alta (limita impacto)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- CTA -->
+        <div style="margin-top:var(--space-12);background:var(--color-navy);border-radius:var(--radius-xl);padding:var(--space-8);text-align:center;">
+          <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:white;margin-bottom:12px;">Sua infraestrutura cloud está exposta a SSRF?</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.65;margin-bottom:var(--space-5);max-width:500px;margin-left:auto;margin-right:auto;">
+            O pentest cloud da First Security cobre SSRF, IMDS exploitation, misconfigurações IAM e todos os principais vetores de ataque em AWS, Azure e GCP.
+          </p>
+          <a href="/servicos/pentest-cloud" class="btn btn-cyan" style="margin-right:12px;">Ver pentest cloud</a>
+          <a href="/orcamento" class="btn btn-secondary" style="border-color:rgba(255,255,255,0.3);color:white;">Solicitar orçamento</a>
+        </div>
+
+      </div>
+    </div>
+
+  </article>
+
+</BaseLayout>

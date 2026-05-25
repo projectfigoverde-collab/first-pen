@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/layout/Breadcrumbs.astro';
+
+const schema = [
+  {
+    "@type": "Article",
+    "@id": "https://firstsecurity.com.br/blog/kerberoasting-pratica-ataque-defesa/#article",
+    "headline": "Kerberoasting na prática: ataque e defesa em ambientes Active Directory",
+    "description": "Como o Kerberoasting funciona, como executar o ataque em ambiente de laboratório e quais controles implementar para detectar e prevenir.",
+    "datePublished": "2025-04-28",
+    "dateModified": "2025-04-28",
+    "author": { "@id": "https://firstsecurity.com.br/#organization" },
+    "publisher": { "@id": "https://firstsecurity.com.br/#organization" },
+    "inLanguage": "pt-BR",
+    "url": "https://firstsecurity.com.br/blog/kerberoasting-pratica-ataque-defesa",
+    "keywords": ["Kerberoasting", "Active Directory", "Kerberos", "pentest AD", "segurança Windows"],
+    "articleSection": "Active Directory",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/blog/#blog" }
+  },
+  {
+    "@type": "WebPage",
+    "@id": "https://firstsecurity.com.br/blog/kerberoasting-pratica-ataque-defesa/#webpage",
+    "url": "https://firstsecurity.com.br/blog/kerberoasting-pratica-ataque-defesa",
+    "name": "Kerberoasting na prática: ataque e defesa em Active Directory | First Security",
+    "description": "Como o Kerberoasting funciona, como executar o ataque em ambiente de laboratório e quais controles implementar para detectar e prevenir.",
+    "isPartOf": { "@id": "https://firstsecurity.com.br/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstsecurity.com.br" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://firstsecurity.com.br/blog" },
+        { "@type": "ListItem", "position": 3, "name": "Kerberoasting", "item": "https://firstsecurity.com.br/blog/kerberoasting-pratica-ataque-defesa" }
+      ]
+    }
+  },
+  {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que é Kerberoasting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kerberoasting é uma técnica de ataque ao protocolo Kerberos que permite a qualquer usuário autenticado no domínio solicitar tickets de serviço (TGS) para contas com SPNs registrados e depois realizar ataque offline de força bruta para recuperar a senha da conta de serviço."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kerberoasting requer privilégios elevados?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. Qualquer conta de usuário comum autenticada no domínio pode executar Kerberoasting. Isso torna o ataque especialmente perigoso: um atacante que compromete qualquer conta pode potencialmente elevar privilégios para contas de serviço com senhas fracas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como detectar Kerberoasting em produção?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Monitorar o Event ID 4769 (Kerberos Service Ticket Request) com Ticket Encryption Type 0x17 (RC4-HMAC) é o principal indicador. Volume anormal de requisições TGS de um único usuário em curto período também indica Kerberoasting automatizado."
+        }
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title="Kerberoasting na prática: ataque e defesa em Active Directory | First Security"
+  description="Como o Kerberoasting funciona, como executar o ataque em ambiente de laboratório e quais controles implementar para detectar e prevenir."
+  canonical="/blog/kerberoasting-pratica-ataque-defesa"
+  schema={schema}
+>
+
+  <Breadcrumbs items={[{ label: 'Blog', href: '/blog' }, { label: 'Kerberoasting no Active Directory' }]} />
+
+  <article itemscope itemtype="https://schema.org/Article">
+
+    <!-- HERO -->
+    <header style="padding:var(--space-14) 0 var(--space-10);background:linear-gradient(180deg,var(--color-slate-50) 0%,white 100%);">
+      <div class="container" style="max-width:780px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <span class="compliance-tag">Active Directory</span>
+          <span style="font-size:13px;color:var(--color-slate-400);">28 abr. 2025</span>
+          <span style="font-size:13px;color:var(--color-slate-400);">15 min de leitura</span>
+        </div>
+        <h1 itemprop="headline" class="t-display-lg" style="color:var(--color-navy);margin-bottom:20px;line-height:1.15;">
+          Kerberoasting na prática: ataque e defesa em ambientes Active Directory
+        </h1>
+        <p class="t-body-lg" style="color:var(--color-slate);max-width:680px;line-height:1.7;">
+          Kerberoasting é uma das técnicas de pós-exploração mais eficazes em ambientes Windows corporativos. Este artigo explica como o ataque funciona, demonstra a execução em laboratório e apresenta controles concretos para detecção e prevenção.
+        </p>
+      </div>
+    </header>
+
+    <!-- CONTEUDO -->
+    <div itemprop="articleBody" style="padding:var(--space-12) 0 var(--space-16);">
+      <div class="container" style="max-width:780px;">
+
+        <div style="background:#fff7ed;border-left:4px solid #f97316;padding:var(--space-5) var(--space-6);border-radius:0 var(--radius-md) var(--radius-md) 0;margin-bottom:var(--space-10);">
+          <p style="font-size:14px;color:var(--color-slate);line-height:1.7;margin:0;">
+            <strong>Aviso:</strong> As técnicas apresentadas neste artigo são para fins educacionais e de segurança defensiva. A execução de qualquer desses ataques em ambientes sem autorização expressa é ilegal. Este conteúdo destina-se a profissionais de segurança realizando testes autorizados.
+          </p>
+        </div>
+
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">O protocolo Kerberos e os Service Principal Names</h2>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          O Kerberos é o protocolo de autenticação padrão em domínios Active Directory desde o Windows 2000. Seu funcionamento baseia-se em três componentes: o cliente, o servidor alvo e o Key Distribution Center (KDC), que no contexto do AD é o Domain Controller.
+        </p>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          O fluxo de autenticação ocorre em duas etapas principais: primeiro, o cliente obtém um Ticket Granting Ticket (TGT) apresentando suas credenciais ao KDC. Em seguida, quando precisa acessar um servico, apresenta o TGT para obter um Ticket de Servico (TGS) especifico para aquele recurso.
+        </p>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:32px;">
+          Os Service Principal Names (SPNs) são identificadores que associam uma conta de servico a um servico especifico no domínio. Por exemplo, <code style="background:var(--color-slate-100);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">MSSQLSvc/sqlserver01.empresa.local:1433</code> indica que a conta associada a esse SPN é responsável pelo servico SQL Server naquele servidor.
+        </p>
+
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">Como o Kerberoasting explora esse mecanismo</h2>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          O ponto critico: o KDC criptografa o ticket TGS com a hash da senha da conta de servico associada ao SPN. Qualquer usuario autenticado no domínio pode solicitar um TGS para qualquer SPN registrado, sem precisar de privilégios especiais.
+        </p>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          Um atacante que compromete qualquer conta de usuario pode enumerar todos os SPNs do domínio, solicitar tickets TGS para esses servicos e exportar esses tickets para realizar um ataque offline de força bruta para recuperar a senha em texto claro.
+        </p>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:32px;">
+          A viabilidade do ataque depende da forca da senha da conta de servico. Contas configuradas com senhas fracas ou que nunca foram rotacionadas são os alvos mais comuns.
+        </p>
+
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">Execução do ataque: passo a passo</h2>
+
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-navy);margin-bottom:10px;">1. Enumeração de SPNs</h3>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:12px;">
+          Com qualquer conta de usuario autenticada, é possível enumerar SPNs usando ferramentas nativas ou do PowerView:
+        </p>
+        <div style="background:#0f172a;border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:24px;overflow-x:auto;">
+          <pre style="color:#e2e8f0;font-family:var(--font-mono);font-size:13px;margin:0;white-space:pre-wrap;"><code># Usando PowerView
+Get-DomainUser -SPN | Select-Object SamAccountName, ServicePrincipalName
+
+# Usando setspn nativo
+setspn -T empresa.local -Q */*
+
+# Usando Impacket (Linux)
+python3 GetUserSPNs.py empresa.local/usuario:senha</code></pre>
+        </div>
+
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-navy);margin-bottom:10px;">2. Requisicao e exportacão dos tickets</h3>
+        <div style="background:#0f172a;border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:24px;overflow-x:auto;">
+          <pre style="color:#e2e8f0;font-family:var(--font-mono);font-size:13px;margin:0;white-space:pre-wrap;"><code># Rubeus (Windows) - solicita e exporta hashes no formato Hashcat
+Rubeus.exe kerberoast /outputfile:hashes.txt
+
+# Impacket (Linux) - coleta e formata para Hashcat
+python3 GetUserSPNs.py -request empresa.local/usuario:senha</code></pre>
+        </div>
+
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-navy);margin-bottom:10px;">3. Cracking offline</h3>
+        <div style="background:#0f172a;border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:32px;overflow-x:auto;">
+          <pre style="color:#e2e8f0;font-family:var(--font-mono);font-size:13px;margin:0;white-space:pre-wrap;"><code># Hashcat com wordlist
+hashcat -m 13100 hashes.txt wordlist.txt --rules-file=best64.rule
+
+# John the Ripper
+john --format=krb5tgs hashes.txt --wordlist=wordlist.txt</code></pre>
+        </div>
+
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">Controles de defesa e detecção</h2>
+
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-navy);margin-bottom:10px;">Senhas longas e complexas para contas de servico</h3>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          A mitigação mais efetiva é garantir que contas de servico com SPNs possuam senhas longas e aleatórias, com no mínimo 25 caracteres. Isso torna o cracking offline inviável mesmo com hardware dedicado.
+        </p>
+
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-navy);margin-bottom:10px;">Group Managed Service Accounts (gMSA)</h3>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          As gMSAs gerenciam automaticamente senhas de 240 bits rotacionadas a cada 30 dias, eliminando o risco de Kerberoasting para essas contas. É a solucão recomendada pela Microsoft para servicos que suportam esse tipo de conta.
+        </p>
+
+        <h3 style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-navy);margin-bottom:10px;">Detecção via Event ID 4769</h3>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          O Event ID 4769 registra requisicoes de tickets TGS. Um indicador claro de Kerberoasting é o campo "Ticket Encryption Type" com valor <code style="background:var(--color-slate-100);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">0x17</code> (RC4-HMAC). Ambientes modernos devem usar AES256 por padrao; requisicoes RC4 são suspeitas.
+        </p>
+
+        <div style="overflow-x:auto;margin-bottom:32px;">
+          <table style="width:100%;border-collapse:collapse;font-size:14px;">
+            <thead>
+              <tr style="background:var(--color-navy);color:white;">
+                <th style="padding:12px 16px;text-align:left;font-weight:600;">Indicador</th>
+                <th style="padding:12px 16px;text-align:left;font-weight:600;">Event ID</th>
+                <th style="padding:12px 16px;text-align:left;font-weight:600;">Threshold de alerta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--color-slate-100);">
+                <td style="padding:12px 16px;color:var(--color-slate);">TGS Request RC4 (0x17)</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">4769</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">Qualquer ocorrência</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--color-slate-100);background:var(--color-slate-50);">
+                <td style="padding:12px 16px;color:var(--color-slate);">Volume alto de TGS de 1 usuario</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">4769</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">Mais de 10 em 5 minutos</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--color-slate-100);">
+                <td style="padding:12px 16px;color:var(--color-slate);">Falhas de autenticacao em contas SPN</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">4625</td>
+                <td style="padding:12px 16px;color:var(--color-slate);">Mais de 3 em 10 minutos</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--color-navy);margin-bottom:16px;">Impacto em ambientes corporativos</h2>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:16px;">
+          Em <a href="/servicos/pentest-active-directory" style="color:var(--color-cyan-700);text-decoration:underline;">pentests de Active Directory</a> realizados pela First Security, Kerberoasting foi o vetor de escalada de privilégio mais frequente em 2024. Na maioria dos casos, contas de servico de aplicacoes legadas como SQL Server, IIS e sistemas ERP possuíam senhas que nunca foram rotacionadas desde a implementacão do sistema.
+        </p>
+        <p style="font-size:15px;color:var(--color-slate);line-height:1.75;margin-bottom:32px;">
+          O impacto de uma conta de servico comprometida varia. Em casos onde a conta possui privilégios de Domain Admin (configuracão incorreta comum), o ataque resulta em comprometimento total do domínio.
+        </p>
+
+        <!-- FAQ -->
+        <section style="margin-top:var(--space-12);padding:var(--space-8);background:var(--color-slate-50);border-radius:var(--radius-xl);" aria-labelledby="faqKerbTitle">
+          <h2 id="faqKerbTitle" style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--color-navy);margin-bottom:var(--space-6);">Perguntas frequentes</h2>
+
+          <details style="margin-bottom:var(--space-4);border-bottom:1px solid var(--color-slate-200);padding-bottom:var(--space-4);">
+            <summary style="font-size:15px;font-weight:600;color:var(--color-navy);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;">
+              <span style="color:var(--color-cyan);">+</span> O que é Kerberoasting?
+            </summary>
+            <p style="font-size:14px;color:var(--color-slate);line-height:1.7;margin-top:12px;padding-left:20px;">
+              Kerberoasting é uma técnica de ataque ao protocolo Kerberos que permite a qualquer usuario autenticado no domínio solicitar tickets de servico (TGS) para contas com SPNs registrados e depois realizar ataque offline de força bruta para recuperar a senha da conta de servico.
+            </p>
+          </details>
+
+          <details style="margin-bottom:var(--space-4);border-bottom:1px solid var(--color-slate-200);padding-bottom:var(--space-4);">
+            <summary style="font-size:15px;font-weight:600;color:var(--color-navy);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;">
+              <span style="color:var(--color-cyan);">+</span> Kerberoasting requer privilégios elevados?
+            </summary>
+            <p style="font-size:14px;color:var(--color-slate);line-height:1.7;margin-top:12px;padding-left:20px;">
+              Não. Qualquer conta de usuario comum autenticada no domínio pode executar Kerberoasting. Isso torna o ataque especialmente perigoso: um atacante que compromete qualquer conta pode potencialmente elevar privilégios para contas de servico com senhas fracas.
+            </p>
+          </details>
+
+          <details>
+            <summary style="font-size:15px;font-weight:600;color:var(--color-navy);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;">
+              <span style="color:var(--color-cyan);">+</span> Como detectar Kerberoasting em producão?
+            </summary>
+            <p style="font-size:14px;color:var(--color-slate);line-height:1.7;margin-top:12px;padding-left:20px;">
+              Monitorar o Event ID 4769 com Ticket Encryption Type 0x17 (RC4-HMAC) é o principal indicador. Volume anormal de requisicoes TGS de um único usuario em curto período também indica Kerberoasting automatizado.
+            </p>
+          </details>
+        </section>
+
+        <!-- CTA -->
+        <div style="margin-top:var(--space-12);background:var(--color-navy);border-radius:var(--radius-xl);padding:var(--space-8);text-align:center;">
+          <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;color:white;margin-bottom:12px;">Seu Active Directory está vulnerável ao Kerberoasting?</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.65;margin-bottom:var(--space-5);max-width:500px;margin-left:auto;margin-right:auto;">
+            A First Security realiza pentests completos de Active Directory cobrindo Kerberoasting, Pass-the-Hash, DCSync e todos os principais vetores de ataque a ambientes Windows.
+          </p>
+          <a href="/servicos/pentest-active-directory" class="btn btn-cyan" style="margin-right:12px;">Ver pentest de AD</a>
+          <a href="/orcamento" class="btn btn-secondary" style="border-color:rgba(255,255,255,0.3);color:white;">Solicitar orçamento</a>
+        </div>
+
+      </div>
+    </div>
+
+  </article>
+
+</BaseLayout>
