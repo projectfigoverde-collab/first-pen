@@ -59,7 +59,7 @@ const escopos = [
   <!-- FORMULÁRIO + BENEFÍCIOS -->
   <section style="padding:0 0 var(--space-20);" aria-label="Formulário de orçamento">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:var(--space-12);align-items:start;">
+      <div style="max-width:680px;margin:0 auto;">
 
         <!-- FORMULÁRIO -->
         <div style="background:white;border:1px solid var(--color-slate-200);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:var(--shadow-md);">
@@ -156,40 +156,6 @@ const escopos = [
           </form>
         </div>
 
-        <!-- BENEFÍCIOS E GARANTIAS -->
-        <div style="display:flex;flex-direction:column;gap:var(--space-6);">
-
-          <div>
-            <div style="font-size:12px;font-weight:700;color:rgba(0,0,0,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--space-4);">O que você recebe</div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              {[
-                { icone: '01', t: 'Diagnóstico gratuito', d: 'Análise do seu ambiente e recomendação do escopo mais adequado, sem custo e sem compromisso.' },
-                { icone: '02', t: 'Proposta em 24 horas', d: 'Proposta comercial detalhada com escopo, prazo, metodologia e valores dentro de um dia útil.' },
-                { icone: '03', t: 'Equipe certificada', d: 'Todos os projetos conduzidos por especialistas OSCP, OSWE, OSEP ou CRTO. Sem terceirização.' },
-                { icone: '04', t: 'Relatório completo', d: 'Relatório executivo e técnico com evidências reproduzíveis, CVSS e plano de remediação priorizado.' },
-                { icone: '05', t: 'Reteste incluído', d: 'Após as correções, realizamos reteste das vulnerabilidades críticas e altas sem custo adicional.' },
-              ].map((item) => (
-                <div style="display:flex;gap:14px;padding:14px;background:white;border:1px solid var(--color-slate-200);border-radius:var(--radius-md);">
-                  <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-cyan-600);flex-shrink:0;">{item.icone}</span>
-                  <div>
-                    <div style="font-size:13.5px;font-weight:600;color:var(--color-navy);margin-bottom:4px;">{item.t}</div>
-                    <div style="font-size:13px;color:var(--color-slate);line-height:1.5;">{item.d}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div style="background:var(--color-navy);border-radius:var(--radius-lg);padding:var(--space-6);">
-            <div style="font-size:13.5px;font-weight:600;color:rgba(255,255,255,0.5);margin-bottom:var(--space-3);">Certificações da equipe</div>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;">
-              {['OSCP', 'OSWE', 'OSEP', 'CRTO', 'OWASP'].map((cert) => (
-                <span style="font-size:12px;font-weight:600;color:white;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-full);padding:4px 12px;">{cert}</span>
-              ))}
-            </div>
-          </div>
-
-        </div>
 
       </div>
     </div>
