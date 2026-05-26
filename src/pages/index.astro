@@ -18,33 +18,33 @@ const schema = [
 ];
 
 const servicos = [
-  { icon: '🌐', title: 'Pentest Web', desc: 'OWASP Top 10, injeção SQL, XSS, CSRF, autenticação quebrada e lógica de negócio.', href: '/servicos/pentest-web' },
-  { icon: '📱', title: 'Pentest Mobile', desc: 'Android e iOS conforme OWASP MASVS, analisando armazenamento, rede e lógica do app.', href: '/servicos/pentest-mobile' },
-  { icon: '⚙️', title: 'Pentest API', desc: 'REST, GraphQL e gRPC. OWASP API Top 10, controle de acesso e autenticacao de tokens.', href: '/servicos/pentest-api' },
-  { icon: '☁️', title: 'Pentest Cloud', desc: 'AWS, Azure e GCP. Misconfiguration de IAM, S3 públicos, Kubernetes e permissões excessivas.', href: '/servicos/pentest-cloud' },
-  { icon: '🏢', title: 'Pentest Infraestrutura', desc: 'Redes internas, externas e wireless. Identificação de vetores de entrada e escalada de privilégios.', href: '/servicos/pentest-infraestrutura' },
-  { icon: '🪟', title: 'Pentest Active Directory', desc: 'Kerberoasting, Pass-the-Hash, BloodHound e ataques a trust de domínios.', href: '/servicos/pentest-active-directory' },
-  { icon: '🤖', title: 'Pentest AI e LLM', desc: 'Prompt injection, jailbreak, exfiltração de dados e testes em modelos de linguagem.', href: '/servicos/pentest-ai' },
+  { icon: '/icons/pentest-web.svg',              title: 'Pentest Web',              desc: 'OWASP Top 10, injeção SQL, XSS, CSRF, autenticação quebrada e lógica de negócio.', href: '/servicos/pentest-web' },
+  { icon: '/icons/pentest-mobile.svg',           title: 'Pentest Mobile',           desc: 'Android e iOS conforme OWASP MASVS, analisando armazenamento, rede e lógica do app.', href: '/servicos/pentest-mobile' },
+  { icon: '/icons/pentest-api.svg',              title: 'Pentest API',              desc: 'REST, GraphQL e gRPC. OWASP API Top 10, controle de acesso e autenticacao de tokens.', href: '/servicos/pentest-api' },
+  { icon: '/icons/pentest-cloud.svg',            title: 'Pentest Cloud',            desc: 'AWS, Azure e GCP. Misconfiguration de IAM, S3 públicos, Kubernetes e permissões excessivas.', href: '/servicos/pentest-cloud' },
+  { icon: '/icons/pentest-infraestrutura.svg',   title: 'Pentest Infraestrutura',   desc: 'Redes internas, externas e wireless. Identificação de vetores de entrada e escalada de privilégios.', href: '/servicos/pentest-infraestrutura' },
+  { icon: '/icons/pentest-active-directory.svg', title: 'Pentest Active Directory', desc: 'Kerberoasting, Pass-the-Hash, BloodHound e ataques a trust de domínios.', href: '/servicos/pentest-active-directory' },
+  { icon: '/icons/pentest-ai.svg',               title: 'Pentest AI e LLM',         desc: 'Prompt injection, jailbreak, exfiltração de dados e testes em modelos de linguagem.', href: '/servicos/pentest-ai' },
 ];
 
 const diferenciais = [
   {
-    icon: '📋',
+    icon: '/icons/diferencial-metodologia.svg',
     title: 'Metodologia certificada',
     desc: 'PTES, OWASP WSTG e MASTG, NIST SP 800-115 e MITRE ATT&CK como frameworks de referência. Cada fase documentada com evidências reproduzíveis.',
   },
   {
-    icon: '🏆',
+    icon: '/icons/diferencial-equipe.svg',
     title: 'Equipe com certificações ofensivas',
     desc: 'OSCP, OSWE, OSEP e CRTO na equipe ativa. Certificações que exigem exploração real de vulnerabilidades em ambientes controlados.',
   },
   {
-    icon: '📄',
+    icon: '/icons/diferencial-relatorio.svg',
     title: 'Relatório de verdade',
     desc: 'Relatório executivo para o C-level e relatório técnico para o time de desenvolvimento, com severidade CVSS, prova de conceito e remediações priorizadas.',
   },
   {
-    icon: '🔁',
+    icon: '/icons/diferencial-reteste.svg',
     title: 'Reteste sem custo adicional',
     desc: 'Após a remediação das vulnerabilidades críticas e altas, validamos a correção sem cobrar nova rodada de serviço.',
   },
@@ -249,7 +249,7 @@ const faqs = [
       <div class="grid-4" style="gap:16px;">
         {servicos.map((s) => (
           <article class="card">
-            <div class="card-icon" aria-hidden="true" style="font-size:20px;">{s.icon}</div>
+            <div class="card-icon" aria-hidden="true"><img src={s.icon} alt="" width="26" height="26" loading="lazy" /></div>
             <h3 class="t-heading-md" style="margin-bottom:8px;">{s.title}</h3>
             <p style="font-size:13.5px;color:var(--color-slate);line-height:1.55;margin-bottom:16px;">{s.desc}</p>
             <a href={s.href} class="btn btn-ghost" style="padding:0;font-size:13px;color:var(--color-cyan-600);">
@@ -261,7 +261,7 @@ const faqs = [
 
         <!-- Card Red Team -->
         <article class="card" style="border-color:rgba(0,180,255,0.25);background:linear-gradient(135deg,rgba(0,180,255,0.04),var(--color-white));">
-          <div class="card-icon" aria-hidden="true" style="font-size:20px;">🎯</div>
+          <div class="card-icon" aria-hidden="true"><img src="/icons/red-team.svg" alt="" width="26" height="26" loading="lazy" /></div>
           <h3 class="t-heading-md" style="margin-bottom:8px;">Red Team</h3>
           <p style="font-size:13.5px;color:var(--color-slate);line-height:1.55;margin-bottom:16px;">Simulação completa de adversário real com TTPs do MITRE ATT&amp;CK. Testa pessoas, processos e tecnologia de forma integrada.</p>
           <a href="/red-team" class="btn btn-ghost" style="padding:0;font-size:13px;color:var(--color-cyan-600);">
@@ -305,7 +305,7 @@ const faqs = [
       <div class="grid-2">
         {diferenciais.map((d) => (
           <div style="display:flex;gap:16px;align-items:flex-start;">
-            <div class="card-icon" aria-hidden="true" style="font-size:20px;flex-shrink:0;">{d.icon}</div>
+            <div class="card-icon" aria-hidden="true" style="flex-shrink:0;"><img src={d.icon} alt="" width="26" height="26" loading="lazy" /></div>
             <div>
               <h3 class="t-heading-md" style="margin-bottom:8px;">{d.title}</h3>
               <p style="font-size:14px;color:var(--color-slate);line-height:1.6;">{d.desc}</p>
