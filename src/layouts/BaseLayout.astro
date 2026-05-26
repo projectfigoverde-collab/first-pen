@@ -35,23 +35,8 @@ const schemaArray = schema
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Tag Manager -->
-  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5HM7TJZG');</script>
-  <!-- End Google Tag Manager -->
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SGNGH7Y8X" is:inline></script>
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8SGNGH7Y8X');
-  </script>
-  <!-- End Google tag -->
+  <!-- dataLayer init — deve ficar no head, antes do GTM -->
+  <script is:inline>window.dataLayer = window.dataLayer || [];</script>
 
   <title>{title}</title>
   <meta name="description" content={description} />
@@ -191,10 +176,9 @@ const schemaArray = schema
   )}
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
+  <!-- Google Tag Manager (noscript fallback) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HM7TJZG"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
   <a href="#main-content" class="sr-only" style="position:fixed;top:4px;left:4px;z-index:9999;padding:8px 14px;background:var(--color-cyan);color:white;border-radius:6px;font-weight:600;">
     Ir para o conteúdo principal
@@ -273,13 +257,31 @@ const schemaArray = schema
     <p style="font-size:13px;color:var(--color-slate);line-height:1.5;margin-bottom:16px;">
       Usamos cookies essenciais para o funcionamento do site e cookies de
       medição para entender como você navega.
-      <a href="/legal/politica-de-cookies" style="color:var(--color-cyan-600);text-decoration:underline;">Saiba mais.</a>
+      <a href="/legal/politica-de-cookies" style="color:var(--color-cyan-700);text-decoration:underline;">Saiba mais.</a>
     </p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <button class="btn btn-primary btn-sm" id="acceptAll">Aceitar todos</button>
       <button class="btn btn-secondary btn-sm" id="acceptEssential">Apenas essenciais</button>
     </div>
   </div>
+
+  <!-- GTM diferido: carrega após page load em idle time para não bloquear LCP/FCP -->
+  <script is:inline>
+    (function() {
+      function loadGTM() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5HM7TJZG');
+      }
+      if (typeof requestIdleCallback === 'function') {
+        requestIdleCallback(loadGTM, { timeout: 4000 });
+      } else {
+        window.addEventListener('load', function() { setTimeout(loadGTM, 500); });
+      }
+    })();
+  </script>
 
   <script is:inline>
     (function() {
